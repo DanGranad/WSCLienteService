@@ -127,6 +127,17 @@ namespace WSGCliente.Entities.BindingModel
         public string P_DFECHA_RECEP_FACTU { get; set; }
         public string P_SIND_VENTA_COMERCIAL { get; set; }
         public string P_SLIDER_CONSORCIO { get; set; }
+
+        //hcama@mg 03.06.2021 ini
+        public string P_TIPO_BUSQUEDA { get; set; }
+        public string P_VALOR_BUSQUEDA { get; set; }
+        public Int64 P_NBRANCH { get; set; }
+        public Int64 P_NPRODUCT { get; set; }
+        public Int64 P_NPOLICY { get; set; }
+        public Int64 P_NCERTIF { get; set; }
+        //hcama@mg 03.06.2021 fin
+
+
         public List<DocumentosBindingModel> ElistDocumentClient { get; set; }
         public List<InfoBancariaBindingModel> ElistInfoBancariaClient { get; set; }
 

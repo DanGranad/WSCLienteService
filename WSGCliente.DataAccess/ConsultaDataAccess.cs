@@ -16,7 +16,8 @@ namespace WSGCliente.DataAccess
     {
         public ResponseViewModel Consultar(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+           // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             result.EListClient = new List<ClientViewModel>();
@@ -35,9 +36,18 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SLEGALNAME", OracleDbType.Varchar2, request.P_SLEGALNAME, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_COD_CUSPP", OracleDbType.Varchar2, request.P_COD_CUSPP, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SREGIST", OracleDbType.Varchar2, request.P_SREGIST, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input)); 
-                 //OUTPUT
-                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
+                parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input));
+                //hcama@mg 03.06.21 ini
+                parameter.Add(new OracleParameter("P_TIPO_BUSQUEDA", OracleDbType.Varchar2, request.P_TIPO_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_VALOR_BUSQUEDA", OracleDbType.Varchar2, request.P_VALOR_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NBRANCH", OracleDbType.Int64, request.P_NBRANCH, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPRODUCT", OracleDbType.Int64, request.P_NPRODUCT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPOLICY", OracleDbType.Int64, request.P_NPOLICY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCERTIF", OracleDbType.Int64, request.P_NCERTIF, ParameterDirection.Input));
+                //hcama@mg 03.06.21 fin
+
+                //OUTPUT
+                OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
                 OracleParameter C_TABLE = new OracleParameter("C_TABLE", OracleDbType.RefCursor, result.EListClient, ParameterDirection.Output);
 
@@ -84,6 +94,14 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_COD_CUSPP", OracleDbType.Varchar2, request.P_COD_CUSPP, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SREGIST", OracleDbType.Varchar2, request.P_SREGIST, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input));
+                //hcama@mg 03.06.21 ini
+                parameter.Add(new OracleParameter("P_TIPO_BUSQUEDA", OracleDbType.Varchar2, request.P_TIPO_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_VALOR_BUSQUEDA", OracleDbType.Varchar2, request.P_VALOR_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NBRANCH", OracleDbType.Int64, request.P_NBRANCH, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPRODUCT", OracleDbType.Int64, request.P_NPRODUCT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPOLICY", OracleDbType.Int64, request.P_NPOLICY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCERTIF", OracleDbType.Int64, request.P_NCERTIF, ParameterDirection.Input));
+                //hcama@mg 03.06.21 fin
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
@@ -111,7 +129,8 @@ namespace WSGCliente.DataAccess
         }
         public List<ClientViewModel> ConsultarCliente(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            //var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientViewModel> EListClient = new List<ClientViewModel>();
             string V_NCODE = "";
@@ -133,6 +152,14 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_COD_CUSPP", OracleDbType.Varchar2, request.P_COD_CUSPP, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SREGIST", OracleDbType.Varchar2, request.P_SREGIST, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input));
+                //hcama@mg 03.06.21 ini
+                parameter.Add(new OracleParameter("P_TIPO_BUSQUEDA", OracleDbType.Varchar2, request.P_TIPO_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_VALOR_BUSQUEDA", OracleDbType.Varchar2, request.P_VALOR_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NBRANCH", OracleDbType.Int64, request.P_NBRANCH, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPRODUCT", OracleDbType.Int64, request.P_NPRODUCT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPOLICY", OracleDbType.Int64, request.P_NPOLICY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCERTIF", OracleDbType.Int64, request.P_NCERTIF, ParameterDirection.Input));
+                //hcama@mg 03.06.21 fin
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, V_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, V_SMESSAGE, ParameterDirection.Output);
@@ -160,7 +187,8 @@ namespace WSGCliente.DataAccess
         }
         public List<ClientPViewModel> ConsultarClienteProveedor(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientPViewModel> EListClient = new List<ClientPViewModel>();
             string V_NCODE = "";
@@ -181,6 +209,14 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_COD_CUSPP", OracleDbType.Varchar2, request.P_COD_CUSPP, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SREGIST", OracleDbType.Varchar2, request.P_SREGIST, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input));
+                //hcama@mg 03.06.21 ini
+                parameter.Add(new OracleParameter("P_TIPO_BUSQUEDA", OracleDbType.Varchar2, request.P_TIPO_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_VALOR_BUSQUEDA", OracleDbType.Varchar2, request.P_VALOR_BUSQUEDA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NBRANCH", OracleDbType.Int64, request.P_NBRANCH, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPRODUCT", OracleDbType.Int64, request.P_NPRODUCT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NPOLICY", OracleDbType.Int64, request.P_NPOLICY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCERTIF", OracleDbType.Int64, request.P_NCERTIF, ParameterDirection.Input));
+                //hcama@mg 03.06.21 fin
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, V_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, V_SMESSAGE, ParameterDirection.Output);
