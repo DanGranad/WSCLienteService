@@ -1,0 +1,28 @@
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Release\WSGCliente.Entities.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Release\WSGCliente.Entities.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csprojAssemblyReference.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Release\WSGCliente.Entities.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Release\WSGCliente.Entities.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\bin\Release\WSGCliente.Entities.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\bin\Release\WSGCliente.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb
+D:\ServicioClientesBit\WSGCliente.Entities\bin\Release\WSGCliente.Entities.dll
+D:\ServicioClientesBit\WSGCliente.Entities\bin\Release\WSGCliente.Entities.pdb
+D:\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csprojAssemblyReference.cache
+D:\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
+D:\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\bin\Release\WSGCliente.Entities.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\bin\Release\WSGCliente.Entities.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb

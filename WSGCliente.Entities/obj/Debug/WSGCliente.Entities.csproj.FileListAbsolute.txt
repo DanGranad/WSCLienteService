@@ -1,0 +1,28 @@
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csprojAssemblyReference.cache
+D:\bitbucket\protecta.gestorclientes.backend\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.dll
+D:\bitbucket\protecta.gestorclientes.backend\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.pdb
+D:\bitbucket\protecta.gestorclientes.backend\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csprojAssemblyReference.cache
+D:\bitbucket\protecta.gestorclientes.backend\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\bitbucket\protecta.gestorclientes.backend\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
+D:\bitbucket\protecta.gestorclientes.backend\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb

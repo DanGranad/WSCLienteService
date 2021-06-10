@@ -1,0 +1,39 @@
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\bin\Release\WSGCliente.Util.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\bin\Release\WSGCliente.Util.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\bin\Release\Oracle.DataAccess.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CoreCompileInputs.cache
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.csprojAssemblyReference.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\bin\Release\WSGCliente.Util.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\bin\Release\WSGCliente.Util.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\bin\Release\Oracle.DataAccess.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CoreCompileInputs.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.Util\obj\Release\WSGCliente.Util.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\bin\Release\WSGCliente.Util.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\bin\Release\WSGCliente.Util.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\bin\Release\Oracle.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Release\WSGCliente.Util.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb
+D:\ServicioClientesBit\WSGCliente.Util\bin\Release\WSGCliente.Util.dll
+D:\ServicioClientesBit\WSGCliente.Util\bin\Release\WSGCliente.Util.pdb
+D:\ServicioClientesBit\WSGCliente.Util\bin\Release\Oracle.DataAccess.dll
+D:\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csprojAssemblyReference.cache
+D:\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CoreCompileInputs.cache
+D:\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
+D:\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
+D:\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\bin\Release\WSGCliente.Util.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\bin\Release\WSGCliente.Util.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csprojAssemblyReference.cache
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CoreCompileInputs.cache
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb

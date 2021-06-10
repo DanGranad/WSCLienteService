@@ -1,0 +1,418 @@
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.dll.config
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\csc.exe
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\csc.exe.config
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\csc.rsp
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\csi.exe
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\csi.rsp
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\System.AppContext.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\vbc.exe
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\vbc.exe.config
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\vbc.rsp
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\VBCSCompiler.exe
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Antlr3.Runtime.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Net.Http.Formatting.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Cors.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Helpers.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Http.Cors.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Http.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Http.WebHost.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.WebPages.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WebGrease.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.Core.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.Entities.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.Util.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Oracle.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\EnvDTE.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\stdole.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.MSXML.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.Core.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.Util.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Net.Http.Formatting.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Http.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Http.Cors.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Newtonsoft.Json.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Helpers.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.Http.WebHost.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.WebPages.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Antlr3.Runtime.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\WSGCliente.DataAccess.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\System.Net.Http.Formatting.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\System.Web.Http.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\System.Web.Http.WebHost.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\obj\Release\WSGCliente.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\obj\Release\WSGCliente.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\obj\Release\WSGCliente.csproj.CopyComplete
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\obj\Release\WSGCliente.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente\obj\Release\WSGCliente.pdb
+D:\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.csprojAssemblyReference.cache
+D:\ServicioClientesBit\WSGCliente\obj\Release\RdlCompile.cache
+D:\ServicioClientesBit\WSGCliente\obj\Release\RdlCompile.compiled
+D:\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.csproj.CoreCompileInputs.cache
+D:\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.dll
+D:\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.pdb
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.dll.config
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.dll
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.pdb
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\csc.exe
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\csc.exe.config
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\csc.rsp
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\csi.exe
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\csi.rsp
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\System.AppContext.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\System.Collections.Immutable.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\System.IO.FileSystem.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\System.Reflection.Metadata.dll
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\vbc.exe
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\vbc.exe.config
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\vbc.rsp
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\VBCSCompiler.exe
+D:\ServicioClientesBit\WSGCliente\bin\roslyn\VBCSCompiler.exe.config
+D:\ServicioClientesBit\WSGCliente\bin\Antlr3.Runtime.dll
+D:\ServicioClientesBit\WSGCliente\bin\itextsharp.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.Common.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.DataVisualization.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.Design.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.WinForms.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.SqlServer.Types.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.Web.Infrastructure.dll
+D:\ServicioClientesBit\WSGCliente\bin\Newtonsoft.Json.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Diagnostics.DiagnosticSource.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Net.Http.Formatting.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Cors.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Helpers.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Http.Cors.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Http.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Http.WebHost.dll
+D:\ServicioClientesBit\WSGCliente\bin\WebGrease.dll
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.Core.dll
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.Entities.dll
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.Util.dll
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.DataAccess.dll
+D:\ServicioClientesBit\WSGCliente\bin\Oracle.DataAccess.dll
+D:\ServicioClientesBit\WSGCliente\bin\EnvDTE.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.dll
+D:\ServicioClientesBit\WSGCliente\bin\stdole.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.OLE.Interop.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.VSHelp.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+D:\ServicioClientesBit\WSGCliente\bin\EnvDTE80.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Data.Services.dll
+D:\ServicioClientesBit\WSGCliente\bin\VSLangProj.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Data.Core.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\VSLangProj80.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.Deployment.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.GraphModel.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.MSXML.dll
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+D:\ServicioClientesBit\WSGCliente\bin\VSLangProj2.dll
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.Core.pdb
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.Entities.pdb
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.Util.pdb
+D:\ServicioClientesBit\WSGCliente\bin\itextsharp.xml
+D:\ServicioClientesBit\WSGCliente\bin\System.Net.Http.Formatting.xml
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Http.xml
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Http.Cors.xml
+D:\ServicioClientesBit\WSGCliente\bin\Newtonsoft.Json.xml
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Helpers.xml
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.Http.WebHost.xml
+D:\ServicioClientesBit\WSGCliente\bin\Antlr3.Runtime.pdb
+D:\ServicioClientesBit\WSGCliente\bin\System.Diagnostics.DiagnosticSource.xml
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\ServicioClientesBit\WSGCliente\bin\WSGCliente.DataAccess.pdb
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.xml
+D:\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+D:\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.Deployment.xml
+D:\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\System.Net.Http.Formatting.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\System.Web.Http.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\System.Web.Helpers.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\System.Web.Http.WebHost.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\System.Web.WebPages.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.VisualStudio.Data.Services.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.VisualStudio.Data.Core.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\ServicioClientesBit\WSGCliente\bin\es\Microsoft.VisualStudio.GraphModel.resources.dll
+D:\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.csproj.CopyComplete
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.dll.config
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\csc.exe
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\csc.exe.config
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\csc.rsp
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\csi.exe
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\csi.rsp
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\System.AppContext.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\System.Collections.Immutable.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\System.IO.FileSystem.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\System.Reflection.Metadata.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\vbc.exe
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\vbc.exe.config
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\vbc.rsp
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\VBCSCompiler.exe
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\roslyn\VBCSCompiler.exe.config
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Antlr3.Runtime.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\itextsharp.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.Common.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.DataVisualization.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.Design.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.ReportViewer.WinForms.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.SqlServer.Types.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.Web.Infrastructure.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Newtonsoft.Json.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Diagnostics.DiagnosticSource.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Net.Http.Formatting.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Cors.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Helpers.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Http.Cors.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Http.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Http.WebHost.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WebGrease.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.Core.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.Entities.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.Util.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.DataAccess.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Oracle.DataAccess.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\EnvDTE.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\stdole.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.OLE.Interop.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.Deployment.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.MSXML.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.Core.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.Entities.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.Util.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\itextsharp.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Net.Http.Formatting.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Http.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Http.Cors.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Newtonsoft.Json.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Helpers.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.Http.WebHost.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Antlr3.Runtime.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Diagnostics.DiagnosticSource.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\WSGCliente.DataAccess.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\System.Web.WebPages.Deployment.xml
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\System.Net.Http.Formatting.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\System.Web.Http.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\System.Web.Helpers.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\System.Web.Http.WebHost.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\System.Web.WebPages.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.csprojAssemblyReference.cache
+D:\Disco d\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.csproj.CoreCompileInputs.cache
+D:\Disco d\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.csproj.CopyComplete
+D:\Disco d\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.dll
+D:\Disco d\ServicioClientesBit\WSGCliente\obj\Release\WSGCliente.pdb
