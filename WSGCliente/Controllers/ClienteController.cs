@@ -1691,6 +1691,8 @@ namespace WSGCliente.Controllers
                                     responseMovigoo.EListClient_P_SLASTNAME2 = responseP.EListClient[0].P_SLASTNAME2;
                                     responseMovigoo.EListClient_P_DESSEXCLIEN = responseP.EListClient[0].P_DESSEXCLIEN;
                                     responseMovigoo.EListClient_P_DESCIVILSTA = responseP.EListClient[0].P_DESCIVILSTA;
+                                    responseMovigoo.EListClient_P_NCLIENT_SEG = responseP.EListClient[0].P_NCLIENT_SEG;
+                                    responseMovigoo.EListClient_P_NCLIENT_SEG_DESCRIP = responseP.EListClient[0].P_NCLIENT_SEG_DESCRIP;
 
                                     /*AGRUPAMIENTO DE RENTAS*/
                                     responseMovigoo.EListClient_P_DESPRODUCTO = responseP.EListClient[0]. P_DESPRODUCTO

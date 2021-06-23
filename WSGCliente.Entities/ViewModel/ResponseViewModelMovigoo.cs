@@ -22,5 +22,8 @@ namespace WSGCliente.Entities.ViewModel
         public string EListClient_P_DESPRODUCTO_Ffin { get; set; } = "";
         public string EListClient_P_NPOLICY { get; set; } = "";
         public string EListClient_P_NCERTIF { get; set; } = "";
+
+        public string EListClient_P_NCLIENT_SEG { get; set; } = "";
+        public string EListClient_P_NCLIENT_SEG_DESCRIP { get; set; } = "";
     }
 }

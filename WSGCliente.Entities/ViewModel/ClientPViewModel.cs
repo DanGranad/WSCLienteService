@@ -16,5 +16,7 @@ namespace WSGCliente.Entities.ViewModel
         public string P_DESSEXCLIEN { get; set; }
         public string P_DESCIVILSTA { get; set; }
         public string P_DESPRODUCTO { get; set; }
+        public string P_NCLIENT_SEG { get; set; }
+        public string P_NCLIENT_SEG_DESCRIP { get; set; }
     }
 }
