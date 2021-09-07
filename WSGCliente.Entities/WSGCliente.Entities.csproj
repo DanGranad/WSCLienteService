@@ -78,6 +78,7 @@
     <Compile Include="BindingModel\Report\TemplateCupon1.cs" />
     <Compile Include="BindingModel\Report\TemplateCupon2.cs" />
     <Compile Include="BindingModel\ResponseSunatModel.cs" />
+    <Compile Include="BindingModel\SegmentoBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AddressViewModel.cs" />
     <Compile Include="ViewModel\CiiuViewModel.cs" />
@@ -94,10 +95,12 @@
     <Compile Include="ViewModel\ReniecViewModel.cs" />
     <Compile Include="ViewModel\ResponsePViewModel.cs" />
     <Compile Include="ViewModel\ResponseReniecViewModel.cs" />
+    <Compile Include="ViewModel\ResponseSegmentoViewModel.cs" />
     <Compile Include="ViewModel\ResponseSistemaViewModel.cs" />
     <Compile Include="ViewModel\ResponseViewModel.cs" />
     <Compile Include="ViewModel\ResponseViewModelEmBlue.cs" />
     <Compile Include="ViewModel\ResponseViewModelMovigoo.cs" />
+    <Compile Include="ViewModel\SegmentoViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
