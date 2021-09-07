@@ -1,0 +1,69 @@
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\Oracle.DataAccess.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.pdb
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.xml
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csprojAssemblyReference.cache
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
+D:\Protecta\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\Oracle.DataAccess.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.pdb
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.xml
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csprojAssemblyReference.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
+D:\Kevin\Develop\GScliente\WSGFuentes\WSGCliente\WSGCliente\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\Oracle.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.pdb
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.xml
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.dll
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.pdb
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.dll
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\Oracle.DataAccess.dll
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.dll
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.dll
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.pdb
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.pdb
+D:\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.xml
+D:\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csprojAssemblyReference.cache
+D:\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+D:\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
+D:\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
+D:\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.pdb
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.xml
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csprojAssemblyReference.cache
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
+D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb
