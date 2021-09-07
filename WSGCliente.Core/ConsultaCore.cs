@@ -75,6 +75,10 @@ namespace WSGCliente.Core
         public int ObtenerCodigoPais(string Nacionalidad)
         {
             return ConsultaDataAccess.ObtenerCodigoPais(Nacionalidad);
+        }  
+        public ResponseSegmentoViewModel ConsultarSegementoporDocumento(SegmentoBindingModel request)
+        {
+            return ConsultaDataAccess.ConsultarSegementoporDocumento(request);
         }
     }
 }
