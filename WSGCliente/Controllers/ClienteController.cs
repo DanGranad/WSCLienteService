@@ -1691,6 +1691,8 @@ namespace WSGCliente.Controllers
                                     responseMovigoo.EListClient_P_SLASTNAME2 = responseP.EListClient[0].P_SLASTNAME2;
                                     responseMovigoo.EListClient_P_DESSEXCLIEN = responseP.EListClient[0].P_DESSEXCLIEN;
                                     responseMovigoo.EListClient_P_DESCIVILSTA = responseP.EListClient[0].P_DESCIVILSTA;
+                                    responseMovigoo.EListClient_P_NCLIENT_SEG = responseP.EListClient[0].P_NCLIENT_SEG;
+                                    responseMovigoo.EListClient_P_NCLIENT_SEG_DESCRIP = responseP.EListClient[0].P_NCLIENT_SEG_DESCRIP;
 
                                     /*AGRUPAMIENTO DE RENTAS*/
                                     responseMovigoo.EListClient_P_DESPRODUCTO = responseP.EListClient[0]. P_DESPRODUCTO
@@ -2445,6 +2447,36 @@ namespace WSGCliente.Controllers
                 }
             }
             return response;
+        }
+
+        [Route("ConsultarSegmentoporDocumento")]
+        [HttpPost]
+        public IHttpActionResult ConsultarSegementoporDocumento(SegmentoBindingModel request)
+        {
+            ConsultaCore ConsultaCore = new ConsultaCore();
+
+            ResponseSegmentoViewModel response = new ResponseSegmentoViewModel();
+            try
+            {
+
+                if (request != null)
+                {
+                    response = ConsultaCore.ConsultarSegementoporDocumento(request);
+                    return Ok(response);
+                }
+                else
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El request que se ha enviado no tiene el formato correcto.";
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.P_NCODE = "-1";
+                response.P_SMESSAGE = ex.Message;
+                return Ok(response);
+            }
         }
     }
 }

@@ -74,7 +74,8 @@ namespace WSGCliente.DataAccess
 
         public ResponsePViewModel ConsultarProveedor(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            //  var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+              var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponsePViewModel result = new ResponsePViewModel();
             result.EListClient = new List<ClientPViewModel>();
@@ -511,9 +512,57 @@ namespace WSGCliente.DataAccess
             }
 
             return ElistDocumentosAdjuntos;
+        }      
+
+
+        public ResponseSegmentoViewModel ConsultarSegementoporDocumento(SegmentoBindingModel request)
+        {
+          
+            var sPackageName = "PKG_BDU_INFO_CLIENTE.SPS_LIST_OBTENER_SEGMENTO_CLIENTE";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<SegmentoViewModel> EListSegmento = new List<SegmentoViewModel>();
+            ResponseSegmentoViewModel result = new ResponseSegmentoViewModel();
+            result.EListSegmento = new List<SegmentoViewModel>();
+
+            try
+            {
+                //INPUT
+
+                parameter.Add(new OracleParameter("P_NIDDOC_TYPE", OracleDbType.Varchar2, request.P_NIDDOC_TYPE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SIDDOC", OracleDbType.Varchar2, request.P_SIDDOC, ParameterDirection.Input));   
+
+                //OUTPUT
+                OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
+                OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
+                OracleParameter C_TABLE = new OracleParameter("C_TABLE", OracleDbType.RefCursor, result.EListSegmento, ParameterDirection.Output);
+
+                P_NCODE.Size = 4000;
+                P_SMESSAGE.Size = 4000;
+
+                parameter.Add(P_NCODE);
+                parameter.Add(P_SMESSAGE);
+                parameter.Add(C_TABLE);
+
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListSegmento = dr.ReadRowsList<SegmentoViewModel>();
+                }
+                result.P_NCODE = P_NCODE.Value.ToString();
+                result.P_SMESSAGE = P_SMESSAGE.Value.ToString();
+                if (EListSegmento.Count > 0)
+                {
+                    result.EListSegmento = EListSegmento;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return result;
         }
-
-
-
     }
 }

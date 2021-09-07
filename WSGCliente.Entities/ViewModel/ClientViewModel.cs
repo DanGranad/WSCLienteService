@@ -75,6 +75,7 @@ namespace WSGCliente.Entities.ViewModel
         public string P_SISCLIENT_IND { get; set; }
         public string P_SISRENIEC_IND { get; set; }
         public string P_NCLIENT_SEG { get; set; }
+        public string P_NCLIENT_SEG_DESCRIP { get; set; }
         public string P_SPOLIZA_ELECT_IND { get; set; }
         public string P_TI_DOC_SUSTENT { get; set; }
         public string P_NU_DOC_SUSTENT { get; set; }
