@@ -795,6 +795,7 @@ namespace WSGCliente.DataAccess
         }
         public ResponseViewModel InsertarCliente(ClientBindingModel request, DbConnection connection, DbTransaction trx)
         {
+
             var sPackageName = "PKG_BDU_CLIENTE.SP_INS_CLIENTE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
@@ -2238,5 +2239,6 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
+
     }
 }

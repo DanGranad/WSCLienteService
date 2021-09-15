@@ -72,6 +72,6 @@ namespace WSGCliente.Core
  public ResponseViewModel DestinatarioEmail(string nUSERCODE)
         {
             return InsertaDataAccess.DestinatarioEmail(nUSERCODE);
-        }
+        }    
     }
 }
