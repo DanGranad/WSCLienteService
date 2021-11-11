@@ -16,8 +16,8 @@ namespace WSGCliente.DataAccess
     {
         public ResponseViewModel Consultar(ClientBindingModel request)
         {
-           // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-            var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+          //  var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             result.EListClient = new List<ClientViewModel>();
@@ -74,8 +74,8 @@ namespace WSGCliente.DataAccess
 
         public ResponsePViewModel ConsultarProveedor(ClientBindingModel request)
         {
-            //  var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-              var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
+              var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+           //   var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponsePViewModel result = new ResponsePViewModel();
             result.EListClient = new List<ClientPViewModel>();
@@ -130,8 +130,8 @@ namespace WSGCliente.DataAccess
         }
         public List<ClientViewModel> ConsultarCliente(ClientBindingModel request)
         {
-            //var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-            var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+           // var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientViewModel> EListClient = new List<ClientViewModel>();
             string V_NCODE = "";
@@ -188,8 +188,8 @@ namespace WSGCliente.DataAccess
         }
         public List<ClientPViewModel> ConsultarClienteProveedor(ClientBindingModel request)
         {
-            // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-            var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
+             var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            //var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientPViewModel> EListClient = new List<ClientPViewModel>();
             string V_NCODE = "";
