@@ -69,3 +69,16 @@ C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGClient
 C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.csproj.CopyComplete
 C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.dll
 C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.pdb
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\WSGCliente.DataAccess.dll
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\WSGCliente.DataAccess.pdb
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\WSGCliente.Entities.dll
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\WSGCliente.Util.dll
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\WSGCliente.Entities.pdb
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\WSGCliente.Util.pdb
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.csproj.CopyComplete
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.dll
+C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.DataAccess\obj\Debug\WSGCliente.DataAccess.pdb
