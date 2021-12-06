@@ -2239,5 +2239,36 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
+        public ResponseViewModel InsertarPhoto(ResponseReniecViewModel item, DbConnection connection, DbTransaction trx)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_INS_PHOTO";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            ResponseViewModel result = new ResponseViewModel();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_SFOTO", OracleDbType.Clob, item.FOTO , ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SFIRMA", OracleDbType.Clob, item.FIRMA, ParameterDirection.Input));
+      
+                //OUTPUT
+                OracleParameter P_NIDCM = new OracleParameter("P_NIDCM", OracleDbType.Int32, result.P_NIDCM, ParameterDirection.Output);
+               
+
+                parameter.Add(P_NIDCM);
+              
+
+                this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, connection, trx);
+                result.P_NIDCM = result.P_NIDCM;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
     }
 }

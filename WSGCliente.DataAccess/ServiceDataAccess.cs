@@ -123,6 +123,5 @@ namespace WSGCliente.DataAccess
             return true;
         }
 
-
     }
 }
