@@ -52,5 +52,6 @@ namespace WSGCliente.Entities.BindingModel
         public string P_SMANZANA_R { get; set; }
         public string P_SLOTE_R { get; set; }
         public Int64 P_NUSERCODE { get; set; }
+        public string P_SFOTO { get; set; }
     }
 }

@@ -350,13 +350,13 @@ namespace WSGCliente.DataAccess
                     if (countLista == countSCam)
                     {
                         response.P_NCODE = "2";
-                        response.P_SMESSAGE = "No se ha realizado ninguna modificación en el cliente";
+                        response.P_SMESSAGE = "No se ha realizado ninguna modificaciï¿½n en el cliente";
                     }
                     else
                     {
                         //  AgregarSIACSA(request);
                         response.P_NCODE = "0";
-                        response.P_SMESSAGE = "Se ha realizado la actualización correctamente";
+                        response.P_SMESSAGE = "Se ha realizado la actualizaciï¿½n correctamente";
                         if (request.P_SISSEACSA_IND == "1" && EnvioSEACSA == 1)
                         {
                             try
@@ -384,7 +384,7 @@ namespace WSGCliente.DataAccess
                                     if(ResponseSEACSA.P_NCODE == "4")
                                     {
                                         response.P_NCODE = "0";
-                                        response.P_SMESSAGE = "El cliente cuenta con un endoso pendiente de aprobar.Solo se ha realizado la actualización en la base unica de clientes";
+                                        response.P_SMESSAGE = "El cliente cuenta con un endoso pendiente de aprobar.Solo se ha realizado la actualizaciï¿½n en la base unica de clientes";
                                         trx.Commit();
                                     }
                                     else
@@ -1147,12 +1147,13 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SE_MAIL", OracleDbType.Varchar2, request2.P_SE_MAIL, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SPHONE", OracleDbType.Varchar2, request2.P_SPHONE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SNAMEAREA", OracleDbType.Varchar2, request2.P_SNAMEAREA, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_SNAMEPOSITION", OracleDbType.Varchar2, request2.P_SNAMEPOSITION, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_UBIGEO", OracleDbType.Varchar2, request2.P_SNAMEPOSITION, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SNAMEPOSITION", OracleDbType.Varchar2, request2.P_SNAMEPOSITION, ParameterDirection.Input)); 
                 parameter.Add(new OracleParameter("P_NUSERCODE", OracleDbType.Varchar2, request.P_NUSERCODE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NROW", OracleDbType.Varchar2, request2.P_NROW, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, request.P_CodAplicacion, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SPHONE1", OracleDbType.Varchar2, request2.P_SPHONE1, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_ADDRESS", OracleDbType.Varchar2, request2.P_ADDRESS, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_UBIGEO", OracleDbType.Varchar2, request2.P_UBIGEO, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NEXTENS", OracleDbType.Varchar2, request2.P_NEXTENS, ParameterDirection.Input));
                 
 

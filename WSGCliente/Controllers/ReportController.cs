@@ -17,6 +17,44 @@ namespace WSGCliente.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ReportController : ApiController
     {
+        [Route("CreateSolicitud")]
+        [HttpPost]
+        public IHttpActionResult CreateSolicitud(Ticket request)
+        {
+       
+            GenerateResponse reponse = new GenerateResponse();
+            try
+            { 
+                string base64String = GenerarSolicitud(request);
+                reponse.data = base64String;
+                reponse.P_NCODE = 0;
+            }
+            catch (Exception ex)
+            {
+                reponse.P_NCODE = 1;
+                reponse.P_SMESSAGE = ex.Message;
+            }
+            return Ok(reponse);
+        }
+        [Route("CreateReclamo")]
+        [HttpPost]
+        public IHttpActionResult CreateReclamo(Ticket request)
+        {
+
+            GenerateResponse reponse = new GenerateResponse();
+            try
+            {
+                string base64String = GenerarSolicitud(request);
+                reponse.data = base64String;
+                reponse.P_NCODE = 0;
+            }
+            catch (Exception ex)
+            {
+                reponse.P_NCODE = 1;
+                reponse.P_SMESSAGE = ex.Message;
+            }
+            return Ok(reponse);
+        }
 
         [Route("GenerateReport")]
         [HttpPost]
@@ -160,8 +198,270 @@ namespace WSGCliente.Controllers
             return renderedBytes;
         }
 
+        public string GenerarSolicitud(Ticket ticket)
+        {
 
+            string filename = "Solicitud" + "-" + ticket.Codigo + ".pdf";
+            string pat = "C:/PDFs/" + filename;
+            string respuesta = pat; 
+            string direccion = ticket.Direccion;
+            string telefono = ".";
+            string Cdoc = "-";
+            LocalReport Reporte = new LocalReport(); 
+            Reporte.ReportPath = HttpContext.Current.Server.MapPath("~/Reports/SOL.rdlc");
+            ReportParameterCollection parametros = new ReportParameterCollection();
+            parametros.Add(new ReportParameter("FechaRecepcion", ticket.FecRecepcion.ToString().Substring(0, 10)));
+            parametros.Add(new ReportParameter("ViaRecepcion", ticket.ViaRecepcion.ToString()));
+            parametros.Add(new ReportParameter("Numero", ticket.Codigo.ToString()));
+            if (ticket.TipoDocumento == "RUC")
+            {
+                if (ticket.Documento.Substring(0, 2) == "10" || ticket.Documento.Substring(0, 2) == "15" || ticket.Documento.Substring(0, 2) == "17")
+                {
+                    parametros.Add(new ReportParameter("NombreContacto", ticket.Contacto.ToString()));
+                    parametros.Add(new ReportParameter("RazonSocialContacto", Cdoc));
+                }
+                else
+                {
+                    parametros.Add(new ReportParameter("NombreContacto", Cdoc));
+                    parametros.Add(new ReportParameter("RazonSocialContacto", ticket.Contacto.ToString()));
+                }
+            }
+            else
+            {
+                parametros.Add(new ReportParameter("NombreContacto", ticket.Contacto.ToString()));
+                parametros.Add(new ReportParameter("RazonSocialContacto", Cdoc));
+            }
+            Cdoc = ticket.TipoDocumento + " " + ticket.Documento.ToString();
+            parametros.Add(new ReportParameter("DocumentoContacto", Cdoc));
+            Cdoc = "-";
+            parametros.Add(new ReportParameter("VinculoContacto", ticket.Vinculo));
+            parametros.Add(new ReportParameter("DireccionContacto", ticket.Direccion));
+            parametros.Add(new ReportParameter("ReferenciaContacto", ticket.referencia));
+            parametros.Add(new ReportParameter("CorreoContacto", ticket.Email));
+            parametros.Add(new ReportParameter("TelefonoContacto", ticket.Telefono));
+            parametros.Add(new ReportParameter("CelularContacto", "-"));
+            if (ticket.TipoDocumento == "RUC")
+            {
+                if (ticket.Documento.Substring(0, 2) == "10" || ticket.Documento.Substring(0, 2) == "15" || ticket.Documento.Substring(0, 2) == "17")
+                {
+                    parametros.Add(new ReportParameter("NombreCliente", ticket.Nombre.ToString()));
+                    parametros.Add(new ReportParameter("RazonSocialCliente", Cdoc));
+                }
+                else
+                {
+                    parametros.Add(new ReportParameter("NombreCliente", Cdoc));
+                    parametros.Add(new ReportParameter("RazonSocialCliente", ticket.Nombre.ToString()));
+                }
+            }
+            else
+            {
+                parametros.Add(new ReportParameter("NombreCliente", ticket.Nombre.ToString()));
+                parametros.Add(new ReportParameter("RazonSocialCliente", Cdoc));
+            }
+            Cdoc = ticket.TipoDocumento + " " + ticket.Documento.ToString();
+            parametros.Add(new ReportParameter("DocumentoCliente", Cdoc));
+            parametros.Add(new ReportParameter("DireccionCliente", ticket.direccioncli));
+            parametros.Add(new ReportParameter("CorreoCliente", ticket.EmailCli));
+            parametros.Add(new ReportParameter("TelefonoCliente", telefono));
+            parametros.Add(new ReportParameter("CelularCliente", "-"));
+            parametros.Add(new ReportParameter("Producto", ticket.Producto));
+            parametros.Add(new ReportParameter("Poliza", ticket.Poliza));
+            parametros.Add(new ReportParameter("Motivo", ticket.SubMotivo));
+            parametros.Add(new ReportParameter("Descripcion", ticket.Descripcion));
+            parametros.Add(new ReportParameter("Ejecutivo", ticket.Ejecutivo));
+            string adjunto1 = " ";
+            string adjunto2 = " ";
+            string adjunto3 = " ";
+            string adjunto4 = " ";
+            string adjunto5 = " ";
+            int control = 0;
+            if (ticket.Adjuntos != null)
+            {
+                foreach (Archivo archivo in ticket.Adjuntos)
+                {
+                    control++;
+                    if (control == 1) { adjunto1 = archivo.name; }
+                    if (control == 2) { adjunto2 = archivo.name; }
+                    if (control == 3) { adjunto3 = archivo.name; }
+                    if (control == 4) { adjunto4 = archivo.name; }
+                    if (control == 5) { adjunto5 = archivo.name; }
+                }
+            }
 
+            parametros.Add(new ReportParameter("Adjunto1", adjunto1));
+            parametros.Add(new ReportParameter("Adjunto2", adjunto2));
+            parametros.Add(new ReportParameter("Adjunto3", adjunto3));
+            parametros.Add(new ReportParameter("Adjunto4", adjunto4));
+            parametros.Add(new ReportParameter("Adjunto5", adjunto5));
+
+            try
+            {
+                Reporte.SetParameters(parametros);
+                Reporte.Refresh();
+                var pgs = Reporte.GetDefaultPageSettings();
+
+                string deviceInfo = "<DeviceInfo><OutputFormat>PDF</OutputFormat><MarginRight>0in</MarginRight><MarginTop>0in</MarginTop><MarginBottom>0in</MarginBottom>><MarginLeft>0in</MarginLeft></DeviceInfo>";
+                Warning[] warnings;
+                byte[] renderedBytes;
+                string[] streams;
+                string mimeType;
+                string encoding;
+                string fileNameExtension;
+                renderedBytes = Reporte.Render("PDF", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                respuesta = Convert.ToBase64String(renderedBytes, 0, renderedBytes.Length); 
+
+            }
+            catch (Exception ex)
+            {
+                var inn = ex.InnerException;
+                string mess = "";
+                if (inn != null)
+                {
+                    mess = ex.InnerException.ToString();
+                } 
+                respuesta = "0";
+            }
+            return respuesta;
+        }
+
+        public string GeneraReclamacion(Ticket ticket)
+        {
+            string respuesta = "";
+            try
+            { 
+                string filename = "Reclamo" + "-" + ticket.Codigo + ".pdf"; 
+                string pat = "C:/PDFs/" + filename;
+                respuesta = pat;  
+                string direccion = ticket.Direccion;
+                string Cdoc = "-"; 
+                LocalReport Reporte = new LocalReport();
+                Reporte.ReportPath = HttpContext.Current.Server.MapPath("~/Reports/REC2.rdlc"); 
+                ReportParameterCollection parametros = new ReportParameterCollection();
+                parametros.Add(new ReportParameter("FechaRecepcion", ticket.FecRecepcion.ToString().Substring(0, 10)));
+                parametros.Add(new ReportParameter("ViaRecepcion", ticket.ViaRecepcion.ToString()));
+                parametros.Add(new ReportParameter("Numero", ticket.Codigo.ToString()));
+                 
+                if (ticket.TipoDocumento == "RUC")
+                {
+                    if (ticket.Documento.Substring(0, 2) == "10" || ticket.Documento.Substring(0, 2) == "15" || ticket.Documento.Substring(0, 2) == "17")
+                    {
+                        parametros.Add(new ReportParameter("NombreContacto", ticket.Contacto.ToString()));
+                        parametros.Add(new ReportParameter("RazonSocialContacto", Cdoc));
+                    }
+                    else
+                    {
+                        parametros.Add(new ReportParameter("NombreContacto", Cdoc));
+                        parametros.Add(new ReportParameter("RazonSocialContacto", ticket.Contacto.ToString()));
+                    }
+                }
+                else
+                {
+                    parametros.Add(new ReportParameter("NombreContacto", ticket.Contacto.ToString()));
+                    parametros.Add(new ReportParameter("RazonSocialContacto", Cdoc));
+                }
+                Cdoc = ticket.TipoDocumento + " " + ticket.Documento.ToString();
+                parametros.Add(new ReportParameter("DocumentoContacto", Cdoc));
+                Cdoc = "-";
+                parametros.Add(new ReportParameter("VinculoContacto", ticket.Vinculo));
+                parametros.Add(new ReportParameter("DireccionContacto", ticket.Direccion));
+                parametros.Add(new ReportParameter("ReferenciaContacto", ticket.referencia));
+                parametros.Add(new ReportParameter("CorreoContacto", ticket.Email));
+                parametros.Add(new ReportParameter("TelefonoContacto", ticket.Telefono));
+                parametros.Add(new ReportParameter("CelularContacto", "-"));
+                parametros.Add(new ReportParameter("ViaRespuestaContacto", ticket.ViaRespuesta.ToString()));
+                 
+                if (ticket.TipoDocumentoCli == "RUC")
+                {
+                    if (ticket.DocumentoCli.Substring(0, 2) == "10" || ticket.DocumentoCli.Substring(0, 2) == "15" || ticket.DocumentoCli.Substring(0, 2) == "17")
+                    {
+                        parametros.Add(new ReportParameter("NombreAsegurado", ticket.Nombre));
+                        parametros.Add(new ReportParameter("RazonSocialAsegurado", Cdoc));
+                    }
+                    else
+                    {
+                        parametros.Add(new ReportParameter("NombreAsegurado", Cdoc));
+                        parametros.Add(new ReportParameter("RazonSocialAsegurado", ticket.Nombre));
+                    }
+                }
+                else
+                {
+                    parametros.Add(new ReportParameter("NombreAsegurado", ticket.Nombre));
+                    parametros.Add(new ReportParameter("RazonSocialAsegurado", Cdoc));
+                }
+                Cdoc = ticket.TipoDocumentoCli + " " + ticket.DocumentoCli.ToString();
+                parametros.Add(new ReportParameter("DocumentoAsegurado", Cdoc));
+                parametros.Add(new ReportParameter("DireccionAsegurado", ticket.direccioncli));
+                parametros.Add(new ReportParameter("CorreoAsegurado", ticket.EmailCli));
+                parametros.Add(new ReportParameter("TelefonoAsegurado", ""));
+                parametros.Add(new ReportParameter("Servicio", ticket.Producto));
+                parametros.Add(new ReportParameter("Monto", ticket.Monto));
+                parametros.Add(new ReportParameter("Motivo", ticket.SubMotivo));
+                parametros.Add(new ReportParameter("Descripcion", ticket.Descripcion));
+                parametros.Add(new ReportParameter("Ejecutivo", ticket.Ejecutivo));
+                string adjunto1 = " ";
+                string adjunto2 = " ";
+                string adjunto3 = " ";
+                string adjunto4 = " ";
+                string adjunto5 = " ";
+                int control = 0;
+                if (ticket.Adjuntos != null)
+                {
+                    foreach (Archivo archivo in ticket.Adjuntos)
+                    {
+                        control++;
+                        if (control == 1) { adjunto1 = archivo.name; }
+                        if (control == 2) { adjunto2 = archivo.name; }
+                        if (control == 3) { adjunto3 = archivo.name; }
+                        if (control == 4) { adjunto4 = archivo.name; }
+                        if (control == 5) { adjunto5 = archivo.name; }
+                    }
+                } 
+                parametros.Add(new ReportParameter("Adjunto1", adjunto1));
+                parametros.Add(new ReportParameter("Adjunto2", adjunto2));
+                parametros.Add(new ReportParameter("Adjunto3", adjunto3));
+                parametros.Add(new ReportParameter("Adjunto4", adjunto4));
+                parametros.Add(new ReportParameter("Adjunto5", adjunto5));
+
+                try
+                {
+                    Reporte.SetParameters(parametros);
+                    Reporte.Refresh(); 
+                    var pgs = Reporte.GetDefaultPageSettings();
+
+                    string deviceInfo = "<DeviceInfo><OutputFormat>PDF</OutputFormat><MarginRight>0in</MarginRight><MarginTop>0in</MarginTop><MarginBottom>0in</MarginBottom>><MarginLeft>0in</MarginLeft></DeviceInfo>";
+                    Warning[] warnings;
+                    string[] streams;
+                    string mimeType;
+                    byte[] renderedBytes;
+                    string encoding;
+                    string fileNameExtension; 
+                    renderedBytes = Reporte.Render("PDF", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                    respuesta = Convert.ToBase64String(renderedBytes, 0, renderedBytes.Length); 
+
+                }
+                catch (Exception ex)
+                { 
+                    var inn = ex.InnerException;
+                    string mess = "";
+                    if (inn != null)
+                    {
+                        mess = ex.InnerException.ToString();
+                    } 
+                    respuesta = "0";
+                }
+            }
+            catch (Exception ex)
+            { 
+                var inn = ex.InnerException;
+                string mess = "";
+                if (inn != null)
+                {
+                    mess = ex.InnerException.ToString();
+                } 
+                respuesta = "0";
+            }
+            return respuesta;
+        }
 
         public byte[] GeneratePDFTemplateCupon1(TemplateCupon1 cupon1)
         {

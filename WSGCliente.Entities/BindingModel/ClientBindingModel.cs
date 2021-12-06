@@ -54,6 +54,7 @@ namespace WSGCliente.Entities.BindingModel
         public string P_SSMOKING { get; set; }
         public string P_SCUIT { get; set; }
         public string P_NTITLE { get; set; }
+        public string P_NOCCUPATION { get; set; }
         public string P_NWEIGHT { get; set; }
         public string P_SAUTO_CHAR { get; set; }
         public string P_SCREDIT_CARD { get; set; }
@@ -127,6 +128,17 @@ namespace WSGCliente.Entities.BindingModel
         public string P_DFECHA_RECEP_FACTU { get; set; }
         public string P_SIND_VENTA_COMERCIAL { get; set; }
         public string P_SLIDER_CONSORCIO { get; set; }
+
+        //hcama@mg 03.06.2021 ini
+        public string P_TIPO_BUSQUEDA { get; set; }
+        public string P_VALOR_BUSQUEDA { get; set; }
+        public Int64 P_NBRANCH { get; set; }
+        public Int64 P_NPRODUCT { get; set; }
+        public Int64 P_NPOLICY { get; set; }
+        public Int64 P_NCERTIF { get; set; }
+        //hcama@mg 03.06.2021 fin
+
+
         public List<DocumentosBindingModel> ElistDocumentClient { get; set; }
         public List<InfoBancariaBindingModel> ElistInfoBancariaClient { get; set; }
 

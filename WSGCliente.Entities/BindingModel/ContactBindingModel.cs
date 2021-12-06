@@ -26,5 +26,7 @@ namespace WSGCliente.Entities.BindingModel
         public string P_SNAMEPOSITION { get; set; }
 public string P_SPHONE1 { get; set; } 
         public string P_NEXTENS { get; set; }
+        public string P_ADDRESS { get; set; }
+        public string P_UBIGEO { get; set; }
     }
 }

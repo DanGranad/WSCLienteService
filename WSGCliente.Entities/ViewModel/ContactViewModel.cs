@@ -28,5 +28,7 @@ namespace WSGCliente.Entities.ViewModel
         public string P_SNAMEAREA { get; set; }
         public string P_SNAMEPOSITION { get; set; }
         public string P_SNOMUSUARIO { get; set; }
+        public string P_ADDRESS { get; set; }
+        public string P_UBIGEO { get; set; }
     }
 }

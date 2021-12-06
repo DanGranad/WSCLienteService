@@ -26,3 +26,9 @@ D:\Disco d\ServicioClientesBit\WSGCliente.Entities\bin\Release\WSGCliente.Entiti
 D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
 D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
 D:\Disco d\ServicioClientesBit\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Entities\bin\Release\WSGCliente.Entities.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Entities\bin\Release\WSGCliente.Entities.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Entities\obj\Release\WSGCliente.Entities.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Entities\obj\Release\WSGCliente.Entities.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Entities\obj\Release\WSGCliente.Entities.csprojAssemblyReference.cache

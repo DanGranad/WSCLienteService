@@ -302,8 +302,7 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="bin\WSGCliente.dll.config" />
-    <Content Include="obj\Debug\build.force" />
+    <Content Include="bin\WSGCliente.dll.config" /> 
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\WSGCliente.csproj.CoreCompileInputs.cache" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -325,6 +324,12 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Reports\REC2.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SOL.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

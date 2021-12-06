@@ -37,3 +37,10 @@ D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.cspro
 D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
 D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
 D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\bin\Release\WSGCliente.Util.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\bin\Release\WSGCliente.Util.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Release\WSGCliente.Util.csprojAssemblyReference.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Release\WSGCliente.Util.csproj.CopyComplete
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Release\WSGCliente.Util.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Release\WSGCliente.Util.pdb

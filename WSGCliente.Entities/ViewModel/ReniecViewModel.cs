@@ -53,5 +53,6 @@ namespace WSGCliente.Entities.ViewModel
         public string SLOTE_R { get; set; }
         public Int64 NUSERCODE { get; set; }
         public DateTime DCOMPDATE { get; set; }
-    }
+        public string SFOTO { get; set; }
+    } 
 }

@@ -64,3 +64,19 @@ C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGC
 C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Core\obj\Debug\WSGCliente.Core.pdb
 D:\Disco d\ServicioClientesBit\WSGCliente.Core\obj\Debug\WSGCliente.Core.csprojAssemblyReference.cache
 D:\Disco d\ServicioClientesBit\WSGCliente.Core\obj\Debug\WSGCliente.Core.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\obj\Debug\WSGCliente.Core.csprojAssemblyReference.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\obj\Debug\WSGCliente.Core.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.Core.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.Core.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.DataAccess.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.Entities.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.Util.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\Oracle.DataAccess.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.DataAccess.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.Entities.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\WSGCliente.Util.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\obj\Debug\WSGCliente.Core.csproj.CopyComplete
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\obj\Debug\WSGCliente.Core.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Core\obj\Debug\WSGCliente.Core.pdb

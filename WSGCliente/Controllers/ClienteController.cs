@@ -28,7 +28,7 @@ namespace WSGCliente.Controllers
 
         string[] ArrayAplicacion = new ConsultaCore().ConsultarAplicacionesGC().Select(x=> x.SCOD_APPLICATION).ToArray();
 
- [Route("ValidarClienteMasivoSCTR")]
+     [Route("ValidarClienteMasivoSCTR")]
         [HttpPost]
         public IHttpActionResult ValidarClienteMasivoSCTR(List<ClientBindingModel> request)
         {
@@ -675,7 +675,7 @@ namespace WSGCliente.Controllers
                     itemCliente.P_SSEXCLIEN = responseReniec.SEXO;
                 }
                 itemCliente.P_ORIGEN_DATA = "RENIEC";
-                itemCliente.P_NNATIONALITY = "604";
+                itemCliente.P_NNATIONALITY = "1";
                 itemCliente.P_SSISTEMA = item.P_SSISTEMA;
                 itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
                 itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
@@ -701,7 +701,7 @@ namespace WSGCliente.Controllers
 
                 itemCliente.EListAddresClient = new List<AddressViewModel>();
                 var itemDireccion = new AddressViewModel();
-                itemDireccion.P_NCOUNTRY = "604";
+                itemDireccion.P_NCOUNTRY = "1";
                 itemDireccion.P_DESTIDIRE = "Particular";
                 itemDireccion.P_SRECTYPE = "2";
                 itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
@@ -841,6 +841,10 @@ namespace WSGCliente.Controllers
         }
 
 
+
+        
+
+
         [Route("GestionarCliente")]
         [HttpPost]
         public IHttpActionResult GestionarCliente(ClientBindingModel request)
@@ -848,7 +852,7 @@ namespace WSGCliente.Controllers
             ConsultaCore ConsultaCore = new ConsultaCore();
             InsertaCore InsertaCore = new InsertaCore();
             ServiceCore ServiceCore = new ServiceCore();
-
+            
             ResponseViewModel response = new ResponseViewModel();
             ResponsePViewModel responseP = new ResponsePViewModel();
             ResponseReniecViewModel responseReniec = new ResponseReniecViewModel();
@@ -902,13 +906,14 @@ namespace WSGCliente.Controllers
                                 switch (request.P_TipOper.ToUpper())
                                 {
                                     case "CON":
+
                                         response = ConsultaCore.Consultar(request);
                                         if (response.P_NCODE == "0")
                                         {
                                             response.EListClient = new List<ClientViewModel>();
                                             if (request.P_CONSUMESERV_IND != "1")
                                             {
-                                            response.EListClient = ConsultaCore.ConsultarCliente(request);
+                                                response.EListClient = ConsultaCore.ConsultarCliente(request);
                                             }
                                             if (response.EListClient.Count == 0)
                                             {
@@ -993,7 +998,7 @@ namespace WSGCliente.Controllers
                                                                     itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
                                                                 }
                                                                 itemCliente.P_ORIGEN_DATA = "RENIEC";
-                                                                itemCliente.P_NNATIONALITY = "604";
+                                                                itemCliente.P_NNATIONALITY = "1";
                                                                 itemCliente.P_SSISTEMA = request.P_SSISTEMA;
                                                                 itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
                                                                 itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
@@ -1019,7 +1024,7 @@ namespace WSGCliente.Controllers
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
                                                                 var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "604";
+                                                                itemDireccion.P_NCOUNTRY = "1";
                                                                 itemDireccion.P_DESTIDIRE = "Particular";
                                                                 itemDireccion.P_SRECTYPE = "2";
                                                                 itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
@@ -1185,7 +1190,7 @@ namespace WSGCliente.Controllers
                                         }
                                         catch (Exception ex)
                                         {
-                                        response = EjecutarStore(request);
+                                            response = EjecutarStore(request);
                                         }    
                                         break;
                                 }
@@ -1225,6 +1230,628 @@ namespace WSGCliente.Controllers
                 return Ok(response);
             }
         }
+
+
+        [Route("GestionarClienteReniec")]
+        [HttpPost]
+        public IHttpActionResult GestionarClienteReniec(ClientBindingModel request)
+        {
+            ConsultaCore ConsultaCore = new ConsultaCore();
+            InsertaCore InsertaCore = new InsertaCore();
+            ServiceCore ServiceCore = new ServiceCore();
+
+            ResponseViewModel response = new ResponseViewModel();
+            ResponsePViewModel responseP = new ResponsePViewModel();
+            ResponseReniecViewModel responseReniec = new ResponseReniecViewModel();
+            string TipoDoc;
+            try
+            {
+                //Se homologa el tipo de documento de acuerdo al codigo de aplicacion
+                TipoDoc = HomologarCampo(request.P_NIDDOC_TYPE, request.P_CodAplicacion, "DOCIDE");
+
+                if (request.P_SIDDOC.Length != 8)
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El número de documento debe tener 8 caracteres.";
+                    return Ok(response);
+                }
+
+                if (request != null)
+                {
+                    switch (request.P_CodAplicacion.ToUpper())
+                    {
+
+                        default:
+
+                            if (ArrayAplicacion.Contains(request.P_CodAplicacion.ToUpper()))
+                            {
+                                if (request.P_CodAplicacion.ToUpper() == "REGISTRORM" || request.P_CodAplicacion.ToUpper() == "REGISTROR")
+                                {
+                                }
+                                else
+                                {
+                                    if (request.EListAddresClient != null)
+                                    {
+                                        request.EListAddresClient = SetRecowner(request.EListAddresClient);
+                                    }
+                                }
+                                //response = ValidarCamposCliente(request);
+
+                                switch (request.P_TipOper.ToUpper())
+                                {
+                                    case "CON":
+                                        response = ConsultaCore.Consultar(request);
+                                        if (response.P_NCODE == "0")
+                                        {
+                                            response.EListClient = new List<ClientViewModel>();
+                                            if (request.P_CONSUMESERV_IND != "1")
+                                            {
+                                                //response.EListClient = ConsultaCore.ConsultarCliente(request);
+                                            }
+                                            if (response.EListClient.Count == 0)
+                                            {
+                                                if (request.P_NROL != "104")
+                                                {
+                                                    if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "2")
+                                                    {
+                                                        try
+                                                        {
+                                                            try
+                                                            {
+                                                                string responseR = "";
+                                                                var ExisteLocal = false;
+                                                                //  responseReniec = ObtenerClientReniecLocal(request,out ExisteLocal);
+                                                                if (ExisteLocal != true)
+                                                                {
+                                                                    responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
+                                                                    responseReniec = JsonConvert.DeserializeObject<ResponseReniecViewModel>(responseR, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                                                                    AddClientReniec(responseReniec);
+                                                                }
+                                                                if (responseReniec.CODIGOERROR != "0000")
+                                                                {
+                                                                    responseReniec.CODIGOERROR = "0004";
+                                                                    response.P_NCODE = "3";
+                                                                    response.P_SMESSAGE = "No se encontro informacion .";
+                                                                    return Ok(response);
+                                                                }
+                                                            }
+                                                            catch (Exception ex)
+                                                            {
+                                                                responseReniec.CODIGOERROR = "0004";
+                                                                response.P_NCODE = "3";
+                                                                response.P_SMESSAGE = "No se encontro informacion .";
+                                                                return Ok(response);
+
+                                                            }
+
+                                                            if (responseReniec.CODIGOERROR == "0000")
+                                                            {
+                                                                var itemCliente = new ClientViewModel();
+                                                                itemCliente.P_NIDDOC_TYPE = "2";
+                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
+                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
+                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
+                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
+                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
+                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+
+                                                                if (responseReniec.ESTADOCIVILCIUDADANO == "1")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = "2";
+                                                                }
+                                                                else if (responseReniec.ESTADOCIVILCIUDADANO == "2")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = responseReniec.ESTADOCIVILCIUDADANO;
+                                                                }
+
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = HomologarCampo(responseReniec.ESTADOCIVILCIUDADANO, request.P_CodAplicacion, "RESTADOCIVIL");
+                                                                }
+
+                                                                itemCliente.P_SGRADO_INSTRUCCION = responseReniec.CODIGOGRADOINSTRUCCION;
+                                                                itemCliente.P_NHEIGHT = responseReniec.ESTATURA;
+
+                                                                if (responseReniec.SEXO == "1")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = "2";
+                                                                }
+                                                                else if (responseReniec.SEXO == "2")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = responseReniec.SEXO;
+                                                                }
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
+                                                                }
+                                                                itemCliente.P_ORIGEN_DATA = "RENIEC";
+                                                               // itemCliente.P_NNATIONALITY = "604";
+                                                                itemCliente.P_NNATIONALITY = "1";
+                                                                itemCliente.P_SSISTEMA = request.P_SSISTEMA;
+                                                                itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
+                                                                itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
+                                                                itemCliente.P_COD_UBIG_DEP_NAC = responseReniec.CODIGOUBIGEODEPARTAMENTONACIMIENTO;
+                                                                itemCliente.P_COD_UBIG_PROV_NAC = responseReniec.CODIGOUBIGEOPROVINCIANACIMIENTO;
+                                                                itemCliente.P_COD_UBIG_DIST_NAC = responseReniec.CODIGOUBIGEODISTRITONACIMIENTO;
+                                                                itemCliente.P_DEPARTAMENTO_NACIMIENTO = responseReniec.DEPARTAMENTONACIMIENTO.Trim();
+                                                                itemCliente.P_PROVINCIA_NACIMIENTO = responseReniec.PROVINCIANACIMIENTO.Trim();
+                                                                itemCliente.P_DISTRITO_NACIMIENTO = responseReniec.DISTRITONACIMIENTO.Trim();
+                                                                var fechaNacimiento = DateTime.ParseExact(responseReniec.FECHANACIMIENTO, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_DBIRTHDAT = fechaNacimiento.ToString("dd/MM/yyyy");
+                                                                itemCliente.P_NOMBRE_PADRE = responseReniec.NOMBRESPADRE.Trim();
+                                                                itemCliente.P_NOMBRE_MADRE = responseReniec.NOMBRESMADRE.Trim();
+                                                                var fechaInscripcion = DateTime.ParseExact(responseReniec.FECHAINSCRIPCION, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_FECHA_INSC = fechaInscripcion.ToString("dd/MM/yyyy");
+                                                                var fechaEmision = DateTime.ParseExact(responseReniec.FECHAEMISION, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_FECHA_EXPEDICION = fechaEmision.ToString("dd/MM/yyyy");
+                                                                itemCliente.P_CONSTANCIA_VOTACION = responseReniec.CONSTANCIAVOTACION;
+                                                                itemCliente.P_RESTRICCION = responseReniec.RESTRICCIONES.Trim();
+                                                                itemCliente.P_NTITLE = "99";
+                                                                itemCliente.P_NSPECIALITY = "99";
+                                                                itemCliente.P_SISRENIEC_IND = "1";
+                                                                itemCliente.P_SFOTO = responseReniec.FOTO;
+
+                                                                itemCliente.EListAddresClient = new List<AddressViewModel>();
+                                                                var itemDireccion = new AddressViewModel();
+                                                               // itemDireccion.P_NCOUNTRY = "604";
+                                                                itemDireccion.P_NCOUNTRY = "1";
+                                                                itemDireccion.P_DESTIDIRE = "Particular";
+                                                                itemDireccion.P_SRECTYPE = "2";
+                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
+                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
+                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
+                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
+                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
+                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
+                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
+                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
+                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
+                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
+                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
+                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
+                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
+                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
+                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
+                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                //Direccion completa
+                                                                var param = new DireccionCompletaBindingModel();
+                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
+                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
+                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
+                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
+                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
+                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
+                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
+                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
+                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
+                                                                param.P_SREFERENCIA = "";
+                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
+                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var result = InsertaCore.DireccionCompleta(param);
+                                                                itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
+                                                                itemCliente.EListAddresClient.Add(itemDireccion);
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.EListAddresClient = HomologarUbigeo(itemCliente.EListAddresClient, request.P_CodAplicacion.ToString());
+                                                                }
+                                                                response.EListClient.Add(itemCliente);
+
+                                                                itemCliente.EListPhoneClient = new List<PhoneViewModel>();
+                                                                itemCliente.EListEmailClient = new List<EmailViewModel>();
+                                                                itemCliente.EListContactClient = new List<ContactViewModel>();
+                                                                itemCliente.EListCIIUClient = new List<CiiuViewModel>();
+                                                            }
+                                                            else
+                                                            {
+                                                                // response.P_NCODE = "1";
+                                                                if (request.P_CodAplicacion.ToUpper() == "SEACSA")
+                                                                {
+                                                                    response.P_NCODE = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    response.P_NCODE = "3";
+                                                                }
+                                                                response.P_SMESSAGE = "no se encontro informacion!";
+                                                            }
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            if (request.P_CodAplicacion.ToUpper() == "SEACSA")
+                                                            {
+                                                                response.P_NCODE = "1";
+                                                            }
+                                                            else
+                                                            {
+                                                                response.P_NCODE = "3";
+                                                            }
+                                                            response.P_SMESSAGE = "no se encontro informacion!";
+                                                            //response.P_NCODE = "1";
+                                                            //response.P_SMESSAGE = "El dni ingresado NO es válido.";
+                                                        }
+
+
+                                                    }
+                                                    else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "1")
+                                                    {
+                                                        return Ok(ConsultarSUNAT(request.P_SIDDOC));
+                                                    }
+                                                    else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "4")
+                                                    {
+                                                        return Ok(ConsultarCE(request));
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                response.P_NCODE = "1";
+                                response.P_SMESSAGE = "El tipo de operación enviado no es el correcto.";
+                            }
+                            break;
+                    }
+
+
+
+                    if (request.P_CodAplicacion == "EXTERNO1GCI")
+                    {
+                        return Ok(responseP);
+                    }
+                    else
+                    {
+                        //return Ok(responseReniec);
+                        return Ok(response);
+                    }
+
+                }
+                else
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El request que se ha enviado no tiene el formato correcto.";
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.P_NCODE = "-1";
+                response.P_SMESSAGE = ex.Message;
+                return Ok(response);
+            }
+        }
+
+
+        [Route("GestionarClienteReniec_Inter")]
+        [HttpPost]
+        public IHttpActionResult GestionarClienteReniec_Inter(ClientBindingModel request)
+        {
+            ConsultaCore ConsultaCore = new ConsultaCore();
+            InsertaCore InsertaCore = new InsertaCore();
+            ServiceCore ServiceCore = new ServiceCore();
+
+            ResponseViewModel response = new ResponseViewModel();
+            ResponsePViewModel responseP = new ResponsePViewModel();
+            ResponseReniecViewModel responseReniec = new ResponseReniecViewModel();
+            string TipoDoc;
+            try
+            {
+                //Se homologa el tipo de documento de acuerdo al codigo de aplicacion
+                TipoDoc = HomologarCampo(request.P_NIDDOC_TYPE, request.P_CodAplicacion, "DOCIDE");
+
+                if (request.P_SIDDOC.Length != 8)
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El número de documento debe tener 8 caracteres.";
+                    return Ok(response);
+                }
+
+                if (request != null)
+                {
+                    switch (request.P_CodAplicacion.ToUpper())
+                    {
+
+                        default:
+
+                            if (ArrayAplicacion.Contains(request.P_CodAplicacion.ToUpper()))
+                            {
+                                if (request.P_CodAplicacion.ToUpper() == "REGISTRORM" || request.P_CodAplicacion.ToUpper() == "REGISTROR")
+                                {
+                                }
+                                else
+                                {
+                                    if (request.EListAddresClient != null)
+                                    {
+                                        request.EListAddresClient = SetRecowner(request.EListAddresClient);
+                                    }
+                                }
+                                //response = ValidarCamposCliente(request);
+
+                                switch (request.P_TipOper.ToUpper())
+                                {
+                                    case "CON":
+                                        response = ConsultaCore.Consultar(request);
+                                        if (response.P_NCODE == "0")
+                                        {
+                                            response.EListClient = new List<ClientViewModel>();
+                                            if (request.P_CONSUMESERV_IND != "1")
+                                            {
+                                                //response.EListClient = ConsultaCore.ConsultarCliente(request);
+                                            }
+                                            if (response.EListClient.Count == 0)
+                                            {
+                                                if (request.P_NROL != "104")
+                                                {
+                                                    if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "2")
+                                                    {
+                                                        try
+                                                        {
+                                                            try
+                                                            {
+                                                                string responseR = "";
+                                                                var ExisteLocal = false;
+                                                                responseReniec = ObtenerClientReniecLocal(request,out ExisteLocal);
+                                                                if (ExisteLocal != true)
+                                                                {
+                                                                    responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
+                                                                    responseReniec = JsonConvert.DeserializeObject<ResponseReniecViewModel>(responseR, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                                                                    AddClientReniec(responseReniec);
+                                                                }
+                                                                if (responseReniec.CODIGOERROR != "0000")
+                                                                {
+                                                                    responseReniec.CODIGOERROR = "0004";
+                                                                    response.P_NCODE = "3";
+                                                                    response.P_SMESSAGE = "No se encontro informacion .";
+                                                                    return Ok(response);
+                                                                }
+                                                            }
+                                                            catch (Exception ex)
+                                                            {
+                                                                responseReniec.CODIGOERROR = "0004";
+                                                                response.P_NCODE = "3";
+                                                                response.P_SMESSAGE = "No se encontro informacion .";
+                                                                return Ok(response);
+
+                                                            }
+
+                                                            if (responseReniec.CODIGOERROR == "0000")
+                                                            {
+                                                                var itemCliente = new ClientViewModel();
+                                                                itemCliente.P_NIDDOC_TYPE = "2";
+                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
+                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
+                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
+                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
+                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
+                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+
+                                                                if (responseReniec.ESTADOCIVILCIUDADANO == "1")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = "2";
+                                                                }
+                                                                else if (responseReniec.ESTADOCIVILCIUDADANO == "2")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = responseReniec.ESTADOCIVILCIUDADANO;
+                                                                }
+
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = HomologarCampo(responseReniec.ESTADOCIVILCIUDADANO, request.P_CodAplicacion, "RESTADOCIVIL");
+                                                                }
+
+                                                                itemCliente.P_SGRADO_INSTRUCCION = responseReniec.CODIGOGRADOINSTRUCCION;
+                                                                itemCliente.P_NHEIGHT = responseReniec.ESTATURA;
+
+                                                                if (responseReniec.SEXO == "1")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = "2";
+                                                                }
+                                                                else if (responseReniec.SEXO == "2")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = responseReniec.SEXO;
+                                                                }
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
+                                                                }
+                                                                itemCliente.P_ORIGEN_DATA = "RENIEC";
+                                                                // itemCliente.P_NNATIONALITY = "604";
+                                                                itemCliente.P_NNATIONALITY = "1";
+                                                                itemCliente.P_SSISTEMA = request.P_SSISTEMA;
+                                                                itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
+                                                                itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
+                                                                itemCliente.P_COD_UBIG_DEP_NAC = responseReniec.CODIGOUBIGEODEPARTAMENTONACIMIENTO;
+                                                                itemCliente.P_COD_UBIG_PROV_NAC = responseReniec.CODIGOUBIGEOPROVINCIANACIMIENTO;
+                                                                itemCliente.P_COD_UBIG_DIST_NAC = responseReniec.CODIGOUBIGEODISTRITONACIMIENTO;
+                                                                itemCliente.P_DEPARTAMENTO_NACIMIENTO = responseReniec.DEPARTAMENTONACIMIENTO.Trim();
+                                                                itemCliente.P_PROVINCIA_NACIMIENTO = responseReniec.PROVINCIANACIMIENTO.Trim();
+                                                                itemCliente.P_DISTRITO_NACIMIENTO = responseReniec.DISTRITONACIMIENTO.Trim();
+                                                                var fechaNacimiento = DateTime.ParseExact(responseReniec.FECHANACIMIENTO, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_DBIRTHDAT = fechaNacimiento.ToString("dd/MM/yyyy");
+                                                                itemCliente.P_NOMBRE_PADRE = responseReniec.NOMBRESPADRE.Trim();
+                                                                itemCliente.P_NOMBRE_MADRE = responseReniec.NOMBRESMADRE.Trim();
+                                                                var fechaInscripcion = DateTime.ParseExact(responseReniec.FECHAINSCRIPCION, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_FECHA_INSC = fechaInscripcion.ToString("dd/MM/yyyy");
+                                                                var fechaEmision = DateTime.ParseExact(responseReniec.FECHAEMISION, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_FECHA_EXPEDICION = fechaEmision.ToString("dd/MM/yyyy");
+                                                                itemCliente.P_CONSTANCIA_VOTACION = responseReniec.CONSTANCIAVOTACION;
+                                                                itemCliente.P_RESTRICCION = responseReniec.RESTRICCIONES.Trim();
+                                                                itemCliente.P_NTITLE = "99";
+                                                                itemCliente.P_NSPECIALITY = "99";
+                                                                itemCliente.P_SISRENIEC_IND = "1";
+
+                                                                itemCliente.EListAddresClient = new List<AddressViewModel>();
+                                                                var itemDireccion = new AddressViewModel();
+                                                                // itemDireccion.P_NCOUNTRY = "604";
+                                                                itemDireccion.P_NCOUNTRY = "1";
+                                                                itemDireccion.P_DESTIDIRE = "Particular";
+                                                                itemDireccion.P_SRECTYPE = "2";
+                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
+                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
+                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
+                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
+                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
+                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
+                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
+                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
+                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
+                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
+                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
+                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
+                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
+                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
+                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
+                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                //Direccion completa
+                                                                var param = new DireccionCompletaBindingModel();
+                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
+                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
+                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
+                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
+                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
+                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
+                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
+                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
+                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
+                                                                param.P_SREFERENCIA = "";
+                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
+                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var result = InsertaCore.DireccionCompleta(param);
+                                                                itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
+                                                                itemCliente.EListAddresClient.Add(itemDireccion);
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.EListAddresClient = HomologarUbigeo(itemCliente.EListAddresClient, request.P_CodAplicacion.ToString());
+                                                                }
+                                                                response.EListClient.Add(itemCliente);
+
+                                                                itemCliente.EListPhoneClient = new List<PhoneViewModel>();
+                                                                itemCliente.EListEmailClient = new List<EmailViewModel>();
+                                                                itemCliente.EListContactClient = new List<ContactViewModel>();
+                                                                itemCliente.EListCIIUClient = new List<CiiuViewModel>();
+                                                            }
+                                                            else
+                                                            {
+                                                                // response.P_NCODE = "1";
+                                                                if (request.P_CodAplicacion.ToUpper() == "SEACSA")
+                                                                {
+                                                                    response.P_NCODE = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    response.P_NCODE = "3";
+                                                                }
+                                                                response.P_SMESSAGE = "no se encontro informacion!";
+                                                            }
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            if (request.P_CodAplicacion.ToUpper() == "SEACSA")
+                                                            {
+                                                                response.P_NCODE = "1";
+                                                            }
+                                                            else
+                                                            {
+                                                                response.P_NCODE = "3";
+                                                            }
+                                                            response.P_SMESSAGE = "no se encontro informacion!";
+                                                            //response.P_NCODE = "1";
+                                                            //response.P_SMESSAGE = "El dni ingresado NO es válido.";
+                                                        }
+
+
+                                                    }
+                                                    else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "1")
+                                                    {
+                                                        return Ok(ConsultarSUNAT(request.P_SIDDOC));
+                                                    }
+                                                    else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "4")
+                                                    {
+                                                        return Ok(ConsultarCE(request));
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                response.P_NCODE = "1";
+                                response.P_SMESSAGE = "El tipo de operación enviado no es el correcto.";
+                            }
+                            break;
+                    }
+
+
+
+                    if (request.P_CodAplicacion == "EXTERNO1GCI")
+                    {
+                        return Ok(responseP);
+                    }
+                    else
+                    {
+                        //return Ok(responseReniec);
+                        return Ok(response);
+                    }
+
+                }
+                else
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El request que se ha enviado no tiene el formato correcto.";
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.P_NCODE = "-1";
+                response.P_SMESSAGE = ex.Message;
+                return Ok(response);
+            }
+        }
+
 
         private List<Message> listMessage(ClientBindingModel request, ApplicationsBindingModel applications)
         {
@@ -1348,6 +1975,412 @@ namespace WSGCliente.Controllers
         }
 
 
+        [Route("GestionarClienteSegmento")]
+        [HttpPost]
+
+        public IHttpActionResult GestionarClienteSegmento(ClientBindingModel request)
+        {
+            ConsultaCore ConsultaCore = new ConsultaCore();
+            InsertaCore InsertaCore = new InsertaCore();
+            ServiceCore ServiceCore = new ServiceCore();
+
+            ResponseViewModel response = new ResponseViewModel();
+            ResponsePViewModel responseP = new ResponsePViewModel();
+            ResponseReniecViewModel responseReniec = new ResponseReniecViewModel();
+            ResponseViewModelSegmento responseMovigoo = new ResponseViewModelSegmento();
+            string TipoDoc;
+            try
+            {
+                //Se homologa el tipo de documento de acuerdo al codigo de aplicacion
+                TipoDoc = HomologarCampo(request.P_NIDDOC_TYPE, request.P_CodAplicacion, "DOCIDE");
+
+                if (request != null)
+                {
+                    switch (request.P_CodAplicacion.ToUpper())
+                    {
+                        case "EXTERNO1GCI":
+                            response = ConsultaCore.Consultar(request);
+                            if (response.P_NCODE == "0")
+                            {
+                                responseP = ConsultaCore.ConsultarProveedor(request);
+                                if (responseP.P_NCODE == "0")
+                                {
+                                    responseP.EListClient = ConsultaCore.ConsultarClienteProveedor(request);
+                                    if (responseP.EListClient.Count == 0)
+                                    {
+                                        responseP.P_SMESSAGE = "No existen registros con los criterios ingresados.";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                responseP.P_NCODE = response.P_NCODE;
+                                responseP.P_SMESSAGE = response.P_SMESSAGE;
+                            }
+
+                            break;
+                        default:
+
+                            if (ArrayAplicacion.Contains(request.P_CodAplicacion.ToUpper()))
+                            {
+                                if (request.P_CodAplicacion.ToUpper() == "REGISTRORM" || request.P_CodAplicacion.ToUpper() == "REGISTROR")
+                                {
+                                }
+                                else
+                                {
+                                    if (request.EListAddresClient != null)
+                                    {
+                                        request.EListAddresClient = SetRecowner(request.EListAddresClient);
+                                    }
+                                }
+                                //response = ValidarCamposCliente(request);
+
+                                switch (request.P_TipOper.ToUpper())
+                                {
+                                    case "CON":
+                                        response = ConsultaCore.Consultar(request);
+                                        if (response.P_NCODE == "0")
+                                        {
+                                            response.EListClient = new List<ClientViewModel>();
+                                            response.EListClient = ConsultaCore.ConsultarCliente(request);
+
+                                            if (response.EListClient.Count == 0)
+                                            {
+                                                if (request.P_NROL != "104")
+                                                {
+                                                    if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "2")
+                                                    {
+                                                        try
+                                                        {
+                                                            try
+                                                            {
+                                                                string responseR = "";
+                                                                var ExisteLocal = false;
+                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                if (ExisteLocal != true)
+                                                                {
+                                                                    responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
+                                                                    responseReniec = JsonConvert.DeserializeObject<ResponseReniecViewModel>(responseR, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                                                                    AddClientReniec(responseReniec);
+                                                                }
+                                                                if (responseReniec.CODIGOERROR != "0000")
+                                                                {
+                                                                    responseReniec.CODIGOERROR = "0004";
+                                                                    response.P_NCODE = "3";
+                                                                    return Ok(response);
+                                                                }
+                                                            }
+                                                            catch (Exception ex)
+                                                            {
+                                                                responseReniec.CODIGOERROR = "0004";
+                                                                response.P_NCODE = "3";
+                                                                response.P_SMESSAGE = "No se encontro informacion .";
+                                                                return Ok(response);
+
+                                                            }
+
+                                                            if (responseReniec.CODIGOERROR == "0000")
+                                                            {
+                                                                var itemCliente = new ClientViewModel();
+                                                                itemCliente.P_NIDDOC_TYPE = "2";
+                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
+                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
+                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
+                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
+                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
+                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+
+                                                                if (responseReniec.ESTADOCIVILCIUDADANO == "1")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = "2";
+                                                                }
+                                                                else if (responseReniec.ESTADOCIVILCIUDADANO == "2")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = responseReniec.ESTADOCIVILCIUDADANO;
+                                                                }
+
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.P_NCIVILSTA = HomologarCampo(responseReniec.ESTADOCIVILCIUDADANO, request.P_CodAplicacion, "RESTADOCIVIL");
+                                                                }
+
+                                                                itemCliente.P_SGRADO_INSTRUCCION = responseReniec.CODIGOGRADOINSTRUCCION;
+                                                                itemCliente.P_NHEIGHT = responseReniec.ESTATURA;
+
+                                                                if (responseReniec.SEXO == "1")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = "2";
+                                                                }
+                                                                else if (responseReniec.SEXO == "2")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = responseReniec.SEXO;
+                                                                }
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
+                                                                }
+                                                                itemCliente.P_ORIGEN_DATA = "RENIEC";
+                                                                itemCliente.P_NNATIONALITY = "1";
+                                                                itemCliente.P_SSISTEMA = request.P_SSISTEMA;
+                                                                itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
+                                                                itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
+                                                                itemCliente.P_COD_UBIG_DEP_NAC = responseReniec.CODIGOUBIGEODEPARTAMENTONACIMIENTO;
+                                                                itemCliente.P_COD_UBIG_PROV_NAC = responseReniec.CODIGOUBIGEOPROVINCIANACIMIENTO;
+                                                                itemCliente.P_COD_UBIG_DIST_NAC = responseReniec.CODIGOUBIGEODISTRITONACIMIENTO;
+                                                                itemCliente.P_DEPARTAMENTO_NACIMIENTO = responseReniec.DEPARTAMENTONACIMIENTO.Trim();
+                                                                itemCliente.P_PROVINCIA_NACIMIENTO = responseReniec.PROVINCIANACIMIENTO.Trim();
+                                                                itemCliente.P_DISTRITO_NACIMIENTO = responseReniec.DISTRITONACIMIENTO.Trim();
+                                                                var fechaNacimiento = DateTime.ParseExact(responseReniec.FECHANACIMIENTO, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_DBIRTHDAT = fechaNacimiento.ToString("dd/MM/yyyy");
+                                                                itemCliente.P_NOMBRE_PADRE = responseReniec.NOMBRESPADRE.Trim();
+                                                                itemCliente.P_NOMBRE_MADRE = responseReniec.NOMBRESMADRE.Trim();
+                                                                var fechaInscripcion = DateTime.ParseExact(responseReniec.FECHAINSCRIPCION, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_FECHA_INSC = fechaInscripcion.ToString("dd/MM/yyyy");
+                                                                var fechaEmision = DateTime.ParseExact(responseReniec.FECHAEMISION, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                                                itemCliente.P_FECHA_EXPEDICION = fechaEmision.ToString("dd/MM/yyyy");
+                                                                itemCliente.P_CONSTANCIA_VOTACION = responseReniec.CONSTANCIAVOTACION;
+                                                                itemCliente.P_RESTRICCION = responseReniec.RESTRICCIONES.Trim();
+                                                                itemCliente.P_NTITLE = "99";
+                                                                itemCliente.P_NSPECIALITY = "99";
+                                                                itemCliente.P_SISRENIEC_IND = "1";
+
+                                                                itemCliente.EListAddresClient = new List<AddressViewModel>();
+                                                                var itemDireccion = new AddressViewModel();
+                                                                itemDireccion.P_NCOUNTRY = "1";
+                                                                itemDireccion.P_DESTIDIRE = "Particular";
+                                                                itemDireccion.P_SRECTYPE = "2";
+                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
+                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
+                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
+                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
+                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
+                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
+                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
+                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
+                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
+                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
+                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
+                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
+                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
+                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
+                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
+                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                //Direccion completa
+                                                                var param = new DireccionCompletaBindingModel();
+                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
+                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
+                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
+                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
+                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
+                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
+                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
+                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
+                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
+                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
+                                                                param.P_SREFERENCIA = "";
+                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
+                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
+                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var result = InsertaCore.DireccionCompleta(param);
+                                                                itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
+                                                                itemCliente.EListAddresClient.Add(itemDireccion);
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                {
+                                                                    itemCliente.EListAddresClient = HomologarUbigeo(itemCliente.EListAddresClient, request.P_CodAplicacion.ToString());
+                                                                }
+                                                                response.EListClient.Add(itemCliente);
+
+                                                                itemCliente.EListPhoneClient = new List<PhoneViewModel>();
+                                                                itemCliente.EListEmailClient = new List<EmailViewModel>();
+                                                                itemCliente.EListContactClient = new List<ContactViewModel>();
+                                                                itemCliente.EListCIIUClient = new List<CiiuViewModel>();
+                                                            }
+                                                            else
+                                                            {
+                                                                // response.P_NCODE = "1";
+                                                                if (request.P_CodAplicacion.ToUpper() == "SEACSA")
+                                                                {
+                                                                    response.P_NCODE = "1";
+                                                                }
+                                                                else
+                                                                {
+                                                                    response.P_NCODE = "3";
+                                                                }
+                                                                response.P_SMESSAGE = "no se encontro informacion!";
+                                                            }
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            if (request.P_CodAplicacion.ToUpper() == "SEACSA")
+                                                            {
+                                                                response.P_NCODE = "1";
+                                                            }
+                                                            else
+                                                            {
+                                                                response.P_NCODE = "3";
+                                                            }
+                                                            response.P_SMESSAGE = "no se encontro informacion!";
+                                                            //response.P_NCODE = "1";
+                                                            //response.P_SMESSAGE = "El dni ingresado NO es válido.";
+                                                        }
+
+
+                                                    }
+                                                    else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "1")
+                                                    {
+                                                        return Ok(ConsultarSUNAT(request.P_SIDDOC));
+                                                    }
+
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in response.EListClient)
+                                                {
+                                                    item.P_SSISTEMA = request.P_SSISTEMA;
+                                                    item.P_ORIGEN_DATA = "VTIME";
+                                                    if (request.P_CodAplicacion == "FIDELIZACION")
+                                                    {
+                                                        item.P_SSEXCLIEN = HomologarCampo(item.P_SSEXCLIEN, request.P_CodAplicacion, "RSEXO");
+                                                        item.P_NCIVILSTA = HomologarCampo(item.P_NCIVILSTA, request.P_CodAplicacion, "RESTADOCIVIL");
+                                                        List<AddressViewModel> ListAddress = ConsultaCore.ConsultarClienteDireccion(item.P_SCLIENT);
+                                                        item.EListAddresClient = HomologarUbigeo(ListAddress, request.P_CodAplicacion);
+                                                    }
+                                                    else
+                                                    {
+                                                        item.EListAddresClient = ConsultaCore.ConsultarClienteDireccion(item.P_SCLIENT);
+                                                    }
+                                                    item.EListPhoneClient = ConsultaCore.ConsultarClienteTelefono(item.P_SCLIENT);
+                                                    item.EListEmailClient = ConsultaCore.ConsultarClienteEmail(item.P_SCLIENT);
+                                                    item.EListContactClient = ConsultaCore.ConsultarClienteContacto(item.P_SCLIENT, item.P_NPERSON_TYP);
+                                                    item.EListCIIUClient = ConsultaCore.ConsultarClienteCiiu(item.P_SCLIENT);
+                                                    item.EListHistoryClient = ConsultaCore.ConsultarClienteHistory(item.P_SCLIENT);
+                                                }
+                                            }
+
+                                        }
+                                        break;
+                                    case "INS":
+                                        response = EjecutarStore(request);
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                response.P_NCODE = "1";
+                                response.P_SMESSAGE = "El tipo de operación enviado no es el correcto.";
+                            }
+                            break;
+                    }
+
+
+
+                    if (request.P_CodAplicacion == "EXTERNO1GCI")
+                    {
+                        responseMovigoo.P_NCODE = responseP.P_NCODE;
+                        responseMovigoo.P_SMESSAGE = responseP.P_SMESSAGE;
+
+                        if (responseP.EListClient != null)
+                        {
+
+                            if (responseP.EListClient.Count == 1)
+                            {
+
+                                if (responseMovigoo.EListClient_P_DESPRODUCTO == "COLABORADORES")
+                                {
+
+                                    responseMovigoo.P_SMESSAGE = "No existen registros con los criterios ingresados.";
+                                }
+                                else
+                                {
+
+                                    responseMovigoo.P_SMESSAGE = "";
+                                    responseMovigoo.EListClient_P_DESDOC_TYPE = responseP.EListClient[0].P_DESDOC_TYPE;
+                                    responseMovigoo.EListClient_P_SIDDOC = responseP.EListClient[0].P_SIDDOC;
+                                    responseMovigoo.EListClient_P_SFIRSTNAME = responseP.EListClient[0].P_SFIRSTNAME;
+                                    responseMovigoo.EListClient_P_SLASTNAME = responseP.EListClient[0].P_SLASTNAME;
+                                    responseMovigoo.EListClient_P_SLASTNAME2 = responseP.EListClient[0].P_SLASTNAME2;
+                                    responseMovigoo.EListClient_P_DESSEXCLIEN = responseP.EListClient[0].P_DESSEXCLIEN;
+                                    responseMovigoo.EListClient_P_DESCIVILSTA = responseP.EListClient[0].P_DESCIVILSTA;
+                                    responseMovigoo.EListClient_P_NCLIENT_SEG = responseP.EListClient[0].P_NCLIENT_SEG;
+                                    responseMovigoo.EListClient_P_NCLIENT_SEG_DESCRIP = responseP.EListClient[0].P_NCLIENT_SEG_DESCRIP;
+
+                                    /*AGRUPAMIENTO DE RENTAS*/
+                                    responseMovigoo.EListClient_P_DESPRODUCTO = responseP.EListClient[0].P_DESPRODUCTO
+                                        .Replace("COLABORADORES | ", "")
+                                        .Replace(" | COLABORADORES | ", "")
+                                        .Replace(" | COLABORADORES", "");
+
+                                    var sepSegmentos = responseMovigoo.EListClient_P_DESPRODUCTO.Split('|');
+                                    List<string> resAgrupado = new List<string>();
+                                    foreach (var segmento in sepSegmentos)
+                                    {
+                                        if (segmento.Trim().Contains("RENTA"))
+                                        {
+                                            resAgrupado.Add("RENTAS");
+                                        }
+                                        else if (segmento.Trim().Contains("SOAT"))
+                                        {
+                                            resAgrupado.Add("SOAT");
+                                        }
+                                        else
+                                        {
+                                            resAgrupado.Add(segmento.Trim());
+                                        }
+                                    }
+                                    resAgrupado.Sort();
+                                    responseMovigoo.EListClient_P_DESPRODUCTO = String.Join(" | ", resAgrupado.ToArray());
+                                }
+                            }
+                        }
+                        return Ok(responseMovigoo);
+                    }
+                    else
+                    {
+                        responseMovigoo.P_NCODE = response.P_NCODE;
+                        responseMovigoo.P_SMESSAGE = response.P_SMESSAGE;
+                        responseMovigoo.EListClient_P_DESDOC_TYPE = response.EListClient[0].P_NIDDOC_TYPE;
+                        responseMovigoo.EListClient_P_SIDDOC = response.EListClient[0].P_SIDDOC;
+                        responseMovigoo.EListClient_P_SFIRSTNAME = response.EListClient[0].P_SFIRSTNAME;
+                        responseMovigoo.EListClient_P_SLASTNAME = response.EListClient[0].P_SLASTNAME;
+                        responseMovigoo.EListClient_P_SLASTNAME2 = response.EListClient[0].P_SLASTNAME2;
+                        responseMovigoo.EListClient_P_DESSEXCLIEN = response.EListClient[0].P_SSEXCLIEN;
+                        responseMovigoo.EListClient_P_DESCIVILSTA = response.EListClient[0].P_NCIVILSTA;
+                        responseMovigoo.EListClient_P_DESPRODUCTO = "";
+                        return Ok(responseMovigoo);
+                    }
+
+                }
+                else
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El request que se ha enviado no tiene el formato correcto.";
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.P_NCODE = "-1";
+                response.P_SMESSAGE = ex.Message;
+                return Ok(response);
+            }
+        }
 
         [Route("GestionarClienteMovigoo")]
         [HttpPost]
@@ -1502,7 +2535,7 @@ namespace WSGCliente.Controllers
                                                                     itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
                                                                 }
                                                                 itemCliente.P_ORIGEN_DATA = "RENIEC";
-                                                                itemCliente.P_NNATIONALITY = "604";
+                                                                itemCliente.P_NNATIONALITY = "1";
                                                                 itemCliente.P_SSISTEMA = request.P_SSISTEMA;
                                                                 itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
                                                                 itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
@@ -1528,7 +2561,7 @@ namespace WSGCliente.Controllers
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
                                                                 var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "604";
+                                                                itemDireccion.P_NCOUNTRY = "1";
                                                                 itemDireccion.P_DESTIDIRE = "Particular";
                                                                 itemDireccion.P_SRECTYPE = "2";
                                                                 itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
@@ -1663,7 +2696,7 @@ namespace WSGCliente.Controllers
                             break;
                     }
 
-
+                    
 
                     if (request.P_CodAplicacion == "EXTERNO1GCI")
                     {
@@ -1691,8 +2724,8 @@ namespace WSGCliente.Controllers
                                     responseMovigoo.EListClient_P_SLASTNAME2 = responseP.EListClient[0].P_SLASTNAME2;
                                     responseMovigoo.EListClient_P_DESSEXCLIEN = responseP.EListClient[0].P_DESSEXCLIEN;
                                     responseMovigoo.EListClient_P_DESCIVILSTA = responseP.EListClient[0].P_DESCIVILSTA;
-                                    responseMovigoo.EListClient_P_NCLIENT_SEG = responseP.EListClient[0].P_NCLIENT_SEG;
-                                    responseMovigoo.EListClient_P_NCLIENT_SEG_DESCRIP = responseP.EListClient[0].P_NCLIENT_SEG_DESCRIP;
+                                    //responseMovigoo.EListClient_P_NCLIENT_SEG = responseP.EListClient[0].P_NCLIENT_SEG;
+                                    //responseMovigoo.EListClient_P_NCLIENT_SEG_DESCRIP = responseP.EListClient[0].P_NCLIENT_SEG_DESCRIP;
 
                                     /*AGRUPAMIENTO DE RENTAS*/
                                     responseMovigoo.EListClient_P_DESPRODUCTO = responseP.EListClient[0]. P_DESPRODUCTO
@@ -1907,7 +2940,7 @@ namespace WSGCliente.Controllers
                                                                     itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
                                                                 }
                                                                 itemCliente.P_ORIGEN_DATA = "RENIEC";
-                                                                itemCliente.P_NNATIONALITY = "604";
+                                                                itemCliente.P_NNATIONALITY = "1";
                                                                 itemCliente.P_SSISTEMA = request.P_SSISTEMA;
                                                                 itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
                                                                 itemCliente.P_NU_DOC_SUSTENT = responseReniec.NUMERODOCUMENTOIDENTIDAD.Trim();
@@ -1933,7 +2966,7 @@ namespace WSGCliente.Controllers
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
                                                                 var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "604";
+                                                                itemDireccion.P_NCOUNTRY = "1";
                                                                 itemDireccion.P_DESTIDIRE = "Particular";
                                                                 itemDireccion.P_SRECTYPE = "2";
                                                                 itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
@@ -2206,7 +3239,7 @@ namespace WSGCliente.Controllers
                 ResponseSunatModel _ResponseSUNAT;
                 ServiceCore ServiceCore = new ServiceCore();
                 ResponseViewModel response = new ResponseViewModel();
-                 var itemCliente = new ClientViewModel();
+                var itemCliente = new ClientViewModel();
                 itemCliente.EListPhoneClient = new List<PhoneViewModel>();
                 itemCliente.EListEmailClient = new List<EmailViewModel>();
                 itemCliente.EListContactClient = new List<ContactViewModel>();
@@ -2281,8 +3314,8 @@ namespace WSGCliente.Controllers
             catch(Exception ex)
                 {
                      response.EListClient = new List<ClientViewModel> { itemCliente };
-                    response.P_NCODE = "3";
-                    response.P_SMESSAGE = ex.Message;
+                     response.P_NCODE = "3";
+                     response.P_SMESSAGE = ex.Message;
                 }
                 return response;
             }
@@ -2343,8 +3376,8 @@ namespace WSGCliente.Controllers
             foreach (AddressBindingModel element in addressBindingModels)
             {
                 if (element.P_NRECOWNER != "3" && element.P_NRECOWNER != "4") { 
-                element.P_NRECOWNER = "2";
-            }
+                    element.P_NRECOWNER = "2";
+                }
             }
             return addressBindingModels;
         }
@@ -2447,6 +3480,36 @@ namespace WSGCliente.Controllers
                 }
             }
             return response;
+        }
+
+        [Route("ConsultarSegmentoporDocumento")]
+        [HttpPost]
+        public IHttpActionResult ConsultarSegementoporDocumento(SegmentoBindingModel request)
+        {
+            ConsultaCore ConsultaCore = new ConsultaCore();
+
+            ResponseSegmentoViewModel response = new ResponseSegmentoViewModel();
+            try
+            {
+
+                if (request != null)
+                {
+                    response = ConsultaCore.ConsultarSegementoporDocumento(request);
+                    return Ok(response);
+                }
+                else
+                {
+                    response.P_NCODE = "1";
+                    response.P_SMESSAGE = "El request que se ha enviado no tiene el formato correcto.";
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.P_NCODE = "-1";
+                response.P_SMESSAGE = ex.Message;
+                return Ok(response);
+            }
         }
     }
 }

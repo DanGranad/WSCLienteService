@@ -67,3 +67,16 @@ D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.Data
 D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
 D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
 D:\Disco d\ServicioClientesBit\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\WSGCliente.DataAccess.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\WSGCliente.Entities.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\WSGCliente.Util.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\bin\Release\Newtonsoft.Json.xml
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csprojAssemblyReference.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.csproj.CopyComplete
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.DataAccess\obj\Release\WSGCliente.DataAccess.pdb

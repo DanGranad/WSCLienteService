@@ -30,3 +30,10 @@ C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGC
 C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Debug\WSGCliente.Util.dll
 C:\Users\Usuario\Documents\GitHub\RepositorioHomo\protecta.cliente360update\WSGCliente.Util\obj\Debug\WSGCliente.Util.pdb
 D:\Disco d\ServicioClientesBit\WSGCliente.Util\obj\Debug\WSGCliente.Util.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Debug\WSGCliente.Util.csprojAssemblyReference.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Debug\WSGCliente.Util.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\bin\Debug\WSGCliente.Util.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\bin\Debug\WSGCliente.Util.pdb
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Debug\WSGCliente.Util.csproj.CopyComplete
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Debug\WSGCliente.Util.dll
+C:\Users\Rafael Mallqui\Documents\ServicioClientesBit\WSCLienteService\WSGCliente.Util\obj\Debug\WSGCliente.Util.pdb

@@ -49,6 +49,7 @@ namespace WSGCliente.Entities.ViewModel
         public string P_SSMOKING { get; set; }
         public string P_SCUIT { get; set; }
         public string P_NTITLE { get; set; }
+        public string P_NOCCUPATION { get; set; }
         public string P_NWEIGHT { get; set; }
         public string P_SAUTO_CHAR { get; set; }
         public string P_SCREDIT_CARD { get; set; }
@@ -121,6 +122,7 @@ namespace WSGCliente.Entities.ViewModel
         public string P_SISCLIENT_CRITICO { get; set; }
         public string P_SBAJAMAIL_IND { get; set; }
         public string P_SREGIST { get; set; }
+        public string P_SFOTO { get; set; }
         public List<AddressViewModel> EListAddresClient { get; set; }
         public List<PhoneViewModel> EListPhoneClient { get; set; }
         public List<EmailViewModel> EListEmailClient { get; set; }

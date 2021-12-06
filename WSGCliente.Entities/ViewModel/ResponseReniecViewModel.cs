@@ -58,5 +58,6 @@ namespace WSGCliente.Entities.ViewModel
         public string CODUBIGEODEPARTAMENTODOMICILIO { get; set; }
         public string CODUBIGEODEPARTAMENTONACI { get; set; } 
         public string CODUBIGEOPROVINCIANACI { get; set; }
+        public string FOTO { get; set; }
     }
 }

@@ -23,6 +23,27 @@ namespace WSGCliente.Entities.ViewModel
         public string EListClient_P_NPOLICY { get; set; } = "";
         public string EListClient_P_NCERTIF { get; set; } = "";
 
+        //public string EListClient_P_NCLIENT_SEG { get; set; } = "";
+        //public string EListClient_P_NCLIENT_SEG_DESCRIP { get; set; } = "";
+    }
+
+    public class ResponseViewModelSegmento
+    {
+        public string P_NCODE { get; set; }
+        public string P_SMESSAGE { get; set; }
+        public string EListClient_P_DESDOC_TYPE { get; set; } = "";
+        public string EListClient_P_SIDDOC { get; set; } = "";
+        public string EListClient_P_SFIRSTNAME { get; set; } = "";
+        public string EListClient_P_SLASTNAME { get; set; } = "";
+        public string EListClient_P_SLASTNAME2 { get; set; } = "";
+        public string EListClient_P_DESSEXCLIEN { get; set; } = "";
+        public string EListClient_P_DESCIVILSTA { get; set; } = "";
+        public string EListClient_P_DESPRODUCTO { get; set; } = "";
+        public string EListClient_P_DESPRODUCTO_Finicio { get; set; } = "";
+        public string EListClient_P_DESPRODUCTO_Ffin { get; set; } = "";
+        public string EListClient_P_NPOLICY { get; set; } = "";
+        public string EListClient_P_NCERTIF { get; set; } = "";
+
         public string EListClient_P_NCLIENT_SEG { get; set; } = "";
         public string EListClient_P_NCLIENT_SEG_DESCRIP { get; set; } = "";
     }
