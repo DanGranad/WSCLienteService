@@ -324,7 +324,7 @@ namespace WSGCliente.DataAccess
                     }
                 }
 
-    if (response.P_NCODE == "0" || response.P_NCODE == "2")
+                if (response.P_NCODE == "0" || response.P_NCODE == "2")
                 {
                     if (request.ElistDocumentClient != null)
                     {
@@ -334,6 +334,20 @@ namespace WSGCliente.DataAccess
                             {
                                 response = InsertarArchivoAdjuntos(request, item, DataConnection, trx);
                                 listResponse.Add(response);
+                            }
+                        }
+                    }
+                }
+                //FOTO_CLIENTE
+                if (response.P_NCODE == "0" || response.P_NCODE == "2") {
+                    if (request.P_NIDDOC_TYPE == "2") {
+                        if (request.ElistDocumentClient != null) {
+                            foreach (var item in request.ElistDocumentClient)
+                            {
+                                if (!string.IsNullOrWhiteSpace(item.P_SCLIENT)) {
+                                    response = InsertarClienteFoto(item.P_SCLIENT, DataConnection, trx);
+                                    listResponse.Add(response);
+                                }
                             }
                         }
                     }
@@ -1273,7 +1287,7 @@ namespace WSGCliente.DataAccess
 
    public ResponseViewModel InsertarClienteReniec(ResponseReniecViewModel request2)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_INS_CLIENT_RENIEC";
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_INS_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
 
@@ -1327,6 +1341,8 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_PREFIJ_INTERIOR", OracleDbType.Varchar2, request2.PREFIJODPTOPISOINTERIOR, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_PREFIJ_CONJ", OracleDbType.Varchar2, request2.PREFIJOURBCONDRESID, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_RESERVADOR", OracleDbType.Varchar2, request2.RESERVADO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SPHOTO", OracleDbType.Clob, request2.FOTO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SSIGNATURE", OracleDbType.Clob, request2.FIRMA, ParameterDirection.Input));
 
 
                 //OUTPUT
@@ -2239,29 +2255,22 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
-        public ResponseViewModel InsertarPhoto(ResponseReniecViewModel item, DbConnection connection, DbTransaction trx)
+        public ResponseViewModel InsertarClienteFoto(string sclient, DbConnection connection, DbTransaction trx)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_INS_PHOTO";
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_INS_CLIENTE_FOTO";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
 
             try
             {
                 //INPUT
-                parameter.Add(new OracleParameter("P_SFOTO", OracleDbType.Clob, item.FOTO , ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_SFIRMA", OracleDbType.Clob, item.FIRMA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, sclient , ParameterDirection.Input));
       
                 //OUTPUT
                 OracleParameter P_NIDCM = new OracleParameter("P_NIDCM", OracleDbType.Int32, result.P_NIDCM, ParameterDirection.Output);
-               
-
                 parameter.Add(P_NIDCM);
-              
-
                 this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, connection, trx);
-                result.P_NIDCM = result.P_NIDCM;
-
-
+                result.P_NIDCM = Convert.ToInt32(P_NIDCM.Value);
             }
             catch (Exception ex)
             {
