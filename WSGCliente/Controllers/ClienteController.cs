@@ -1398,6 +1398,7 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_NSPECIALITY = "99";
                                                                 itemCliente.P_SISRENIEC_IND = "1";
                                                                 itemCliente.P_SFOTO = responseReniec.FOTO;
+                                                                itemCliente.P_SFIRMA = responseReniec.FIRMA;
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
                                                                 var itemDireccion = new AddressViewModel();

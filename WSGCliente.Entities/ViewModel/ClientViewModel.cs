@@ -123,6 +123,7 @@ namespace WSGCliente.Entities.ViewModel
         public string P_SBAJAMAIL_IND { get; set; }
         public string P_SREGIST { get; set; }
         public string P_SFOTO { get; set; }
+        public string P_SFIRMA { get; set; }
         public List<AddressViewModel> EListAddresClient { get; set; }
         public List<PhoneViewModel> EListPhoneClient { get; set; }
         public List<EmailViewModel> EListEmailClient { get; set; }
