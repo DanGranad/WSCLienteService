@@ -38,3 +38,9 @@ C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGClien
 C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
 C:\Users\Usuario\Desktop\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb
+C:\Users\mgadmin\Documents\GitHub\WSCLienteService\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.dll
+C:\Users\mgadmin\Documents\GitHub\WSCLienteService\WSGCliente.Entities\bin\Debug\WSGCliente.Entities.pdb
+C:\Users\mgadmin\Documents\GitHub\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csprojAssemblyReference.cache
+C:\Users\mgadmin\Documents\GitHub\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.csproj.CoreCompileInputs.cache
+C:\Users\mgadmin\Documents\GitHub\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.dll
+C:\Users\mgadmin\Documents\GitHub\WSCLienteService\WSGCliente.Entities\obj\Debug\WSGCliente.Entities.pdb
