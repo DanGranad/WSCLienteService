@@ -1388,6 +1388,11 @@ namespace WSGCliente.DataAccess
                 using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
                 {
                     ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
+                    ResponseReniecViewModel reniecModel = new ResponseReniecViewModel();
+
+                    //while (dr.Read()){ 
+                    //    reniecModel.
+                    //}
 
                 }
                 result.P_NCODE = "0";
