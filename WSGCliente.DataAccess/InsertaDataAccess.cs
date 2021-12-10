@@ -1387,12 +1387,64 @@ namespace WSGCliente.DataAccess
 
                 using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
                 {
-                    ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
+                    //ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
                     ResponseReniecViewModel reniecModel = new ResponseReniecViewModel();
 
-                    //while (dr.Read()){ 
-                    //    reniecModel.
-                    //}
+                   while (dr.Read()){
+                        reniecModel.CODE = dr["CODE"] == null || dr["CODE"].ToString() == "" ? "" : dr["CODE"].ToString();
+                        reniecModel.MESSAGE = dr["MESSAGE"] == null || dr["MESSAGE"].ToString() == "" ? "" : dr["MESSAGE"].ToString();
+                        reniecModel.CODIGOERROR = dr["CODIGOERROR"] == null || dr["CODIGOERROR"].ToString() == "" ? "" : dr["CODIGOERROR"].ToString();
+                        reniecModel.NUMERODNI = dr["NUMERODNI"] == null || dr["NUMERODNI"].ToString() == "" ? "" : dr["NUMERODNI"].ToString();
+                        reniecModel.DIGITOVERIFICACION = dr["DIGITOVERIFICACION"] == null || dr["DIGITOVERIFICACION"].ToString() == "" ? "" : dr["DIGITOVERIFICACION"].ToString();
+                        reniecModel.APELLIDOPATERNO = dr["APELLIDOPATERNO"] == null || dr["APELLIDOPATERNO"].ToString() == "" ? "" : dr["APELLIDOPATERNO"].ToString();
+                        reniecModel.APELLIDOMATERNO = dr["APELLIDOMATERNO"] == null || dr["APELLIDOMATERNO"].ToString() == "" ? "" : dr["APELLIDOMATERNO"].ToString();
+                        reniecModel.APELLIDOCASADA = dr["APELLIDOCASADA"] == null || dr["APELLIDOCASADA"].ToString() == "" ? "" : dr["APELLIDOCASADA"].ToString();
+                        reniecModel.NOMBRES = dr["NOMBRES"] == null || dr["NOMBRES"].ToString() == "" ? "" : dr["NOMBRES"].ToString();
+                        reniecModel.CODIGOUBIGEODEPARTAMENTODOMICILIO = dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"] == null || dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"].ToString();
+                        reniecModel.CODIGOUBIGEOPROVINCIADOMICILIO = dr["CODIGOUBIGEOPROVINCIADOMICILIO"] == null || dr["CODIGOUBIGEOPROVINCIADOMICILIO"].ToString() == "" ? "" : dr["CODIGOUBIGEOPROVINCIADOMICILIO"].ToString();
+                        reniecModel.CODIGOUBIGEODISTRITODOMICILIO = dr["CODIGOUBIGEODISTRITODOMICILIO"] == null || dr["MESCODIGOUBIGEODISTRITODOMICILIOSAGE"].ToString() == "" ? "" : dr["CODIGOUBIGEODISTRITODOMICILIO"].ToString();
+                        reniecModel.DEPARTAMENTODOMICILIO = dr["DEPARTAMENTODOMICILIO"] == null || dr["DEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["DEPARTAMENTODOMICILIO"].ToString();
+                        reniecModel.PROVINCIADOMICILIO = dr["PROVINCIADOMICILIO"] == null || dr["PROVINCIADOMICILIO"].ToString() == "" ? "" : dr["PROVINCIADOMICILIO"].ToString();
+                        reniecModel.DISTRITODOMICILIO = dr["DISTRITODOMICILIO"] == null || dr["DISTRITODOMICILIO"].ToString() == "" ? "" : dr["DISTRITODOMICILIO"].ToString();
+                        reniecModel.ESTADOCIVILCIUDADANO = dr["ESTADOCIVILCIUDADANO"] == null || dr["ESTADOCIVILCIUDADANO"].ToString() == "" ? "" : dr["ESTADOCIVILCIUDADANO"].ToString();
+                        reniecModel.CODIGOGRADOINSTRUCCION = dr["CODIGOGRADOINSTRUCCION"] == null || dr["CODIGOGRADOINSTRUCCION"].ToString() == "" ? "" : dr["CODIGOGRADOINSTRUCCION"].ToString();
+                        reniecModel.ESTATURA = dr["ESTATURA"] == null || dr["ESTATURA"].ToString() == "" ? "" : dr["ESTATURA"].ToString();
+                        reniecModel.SEXO = dr["SEXO"] == null || dr["SEXO"].ToString() == "" ? "" : dr["SEXO"].ToString();
+                        reniecModel.TIPODOCUMENTOIDENTIDAD = dr["TIPODOCUMENTOIDENTIDAD"] == null || dr["TIPODOCUMENTOIDENTIDAD"].ToString() == "" ? "" : dr["TIPODOCUMENTOIDENTIDAD"].ToString();
+                        reniecModel.NUMERODOCUMENTOIDENTIDAD = dr["NUMERODOCUMENTOIDENTIDAD"] == null || dr["NUMERODOCUMENTOIDENTIDAD"].ToString() == "" ? "" : dr["NUMERODOCUMENTOIDENTIDAD"].ToString();
+                        reniecModel.CODIGOUBIGEODEPARTAMENTONACIMIENTO = dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"] == null || dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"].ToString();
+                        reniecModel.CODIGOUBIGEOPROVINCIANACIMIENTO = dr["CODIGOUBIGEOPROVINCIANACIMIENTO"] == null || dr["CODIGOUBIGEOPROVINCIANACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEOPROVINCIANACIMIENTO"].ToString();
+                        reniecModel.CODIGOUBIGEODISTRITONACIMIENTO = dr["CODIGOUBIGEODISTRITONACIMIENTO"] == null || dr["CODIGOUBIGEODISTRITONACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEODISTRITONACIMIENTO"].ToString();
+                        reniecModel.DEPARTAMENTONACIMIENTO = dr["DEPARTAMENTONACIMIENTO"] == null || dr["DEPARTAMENTONACIMIENTO"].ToString() == "" ? "" : dr["DEPARTAMENTONACIMIENTO"].ToString();
+                        reniecModel.PROVINCIANACIMIENTO = dr["PROVINCIANACIMIENTO"] == null || dr["PROVINCIANACIMIENTO"].ToString() == "" ? "" : dr["PROVINCIANACIMIENTO"].ToString();
+                        reniecModel.DISTRITONACIMIENTO = dr["DISTRITONACIMIENTO"] == null || dr["DISTRITONACIMIENTO"].ToString() == "" ? "" : dr["DISTRITONACIMIENTO"].ToString();
+                        reniecModel.FECHANACIMIENTO = dr["FECHANACIMIENTO"] == null || dr["FECHANACIMIENTO"].ToString() == "" ? "" : dr["FECHANACIMIENTO"].ToString();
+                        reniecModel.NOMBRESPADRE = dr["NOMBRESPADRE"] == null || dr["NOMBRESPADRE"].ToString() == "" ? "" : dr["NOMBRESPADRE"].ToString();
+                        reniecModel.NOMBRESMADRE = dr["NOMBRESMADRE"] == null || dr["NOMBRESMADRE"].ToString() == "" ? "" : dr["NOMBRESMADRE"].ToString();
+                        reniecModel.FECHAINSCRIPCION = dr["FECHAINSCRIPCION"] == null || dr["FECHAINSCRIPCION"].ToString() == "" ? "" : dr["FECHAINSCRIPCION"].ToString();
+                        reniecModel.FECHAEMISION = dr["FECHAEMISION"] == null || dr["FECHAEMISION"].ToString() == "" ? "" : dr["FECHAEMISION"].ToString();
+                        reniecModel.CONSTANCIAVOTACION = dr["CONSTANCIAVOTACION"] == null || dr["CONSTANCIAVOTACION"].ToString() == "" ? "" : dr["CONSTANCIAVOTACION"].ToString();
+                        reniecModel.RESTRICCIONES = dr["RESTRICCIONES"] == null || dr["RESTRICCIONES"].ToString() == "" ? "" : dr["RESTRICCIONES"].ToString();
+                        reniecModel.PREFIJODIRECCION = dr["PREFIJODIRECCION"] == null || dr["PREFIJODIRECCION"].ToString() == "" ? "" : dr["PREFIJODIRECCION"].ToString();
+                        reniecModel.DIRECCION = dr["DIRECCION"] == null || dr["DIRECCION"].ToString() == "" ? "" : dr["DIRECCION"].ToString();
+                        reniecModel.NUMERODIRECCION = dr["NUMERODIRECCION"] == null || dr["NUMERODIRECCION"].ToString() == "" ? "" : dr["NUMERODIRECCION"].ToString();
+                        reniecModel.BLOCKCHALET = dr["BLOCKCHALET"] == null || dr["BLOCKCHALET"].ToString() == "" ? "" : dr["BLOCKCHALET"].ToString();
+                        reniecModel.INTERIOR = dr["INTERIOR"] == null || dr["INTERIOR"].ToString() == "" ? "" : dr["INTERIOR"].ToString();
+                        reniecModel.URBANIZACION = dr["URBANIZACION"] == null || dr["URBANIZACION"].ToString() == "" ? "" : dr["URBANIZACION"].ToString();
+                        reniecModel.ETAPA = dr["ETAPA"] == null || dr["ETAPA"].ToString() == "" ? "" : dr["ETAPA"].ToString();
+                        reniecModel.MANZANA = dr["MANZANA"] == null || dr["MANZANA"].ToString() == "" ? "" : dr["MANZANA"].ToString();
+                        reniecModel.LOTE = dr["LOTE"] == null || dr["LOTE"].ToString() == "" ? "" : dr["LOTE"].ToString();
+                        reniecModel.PREFIJOBLOCKCHALET = dr["PREFIJOBLOCKCHALET"] == null || dr["PREFIJOBLOCKCHALET"].ToString() == "" ? "" : dr["PREFIJOBLOCKCHALET"].ToString();
+                        reniecModel.PREFIJODPTOPISOINTERIOR = dr["PREFIJODPTOPISOINTERIOR"] == null || dr["PREFIJODPTOPISOINTERIOR"].ToString() == "" ? "" : dr["PREFIJODPTOPISOINTERIOR"].ToString();
+                        reniecModel.PREFIJOURBCONDRESID = dr["PREFIJOURBCONDRESID"] == null || dr["PREFIJOURBCONDRESID"].ToString() == "" ? "" : dr["PREFIJOURBCONDRESID"].ToString();
+                        reniecModel.RESERVADO = dr["RESERVADO"] == null || dr["RESERVADO"].ToString() == "" ? "" : dr["RESERVADO"].ToString();
+                        reniecModel.CODUBIGEODEPARTAMENTODOMICILIO = dr["CODUBIGEODEPARTAMENTODOMICILIO"] == null || dr["CODUBIGEODEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTODOMICILIO"].ToString();
+                        reniecModel.CODUBIGEODEPARTAMENTONACI = dr["CODUBIGEODEPARTAMENTONACI"] == null || dr["CODUBIGEODEPARTAMENTONACI"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTONACI"].ToString();
+                        reniecModel.CODUBIGEOPROVINCIANACI = dr["CODUBIGEOPROVINCIANACI"] == null || dr["CODUBIGEOPROVINCIANACI"].ToString() == "" ? "" : dr["CODUBIGEOPROVINCIANACI"].ToString();
+                        reniecModel.FOTO = dr["FOTO"] == null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString();
+                        reniecModel.FIRMA = dr["FIRMA"] == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
+                    }
+                    ElistClientReniec.Add(reniecModel);
 
                 }
                 result.P_NCODE = "0";
