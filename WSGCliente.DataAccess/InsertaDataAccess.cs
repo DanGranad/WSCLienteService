@@ -1368,7 +1368,7 @@ namespace WSGCliente.DataAccess
         }
 
         public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel request) {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_SEL_CLIENT_RENIEC";
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_SEL_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             List<ResponseReniecViewModel> ElistClientReniec = new List<ResponseReniecViewModel>();
@@ -1442,7 +1442,7 @@ namespace WSGCliente.DataAccess
                         reniecModel.CODUBIGEODEPARTAMENTONACI = dr["CODUBIGEODEPARTAMENTONACI"] == null || dr["CODUBIGEODEPARTAMENTONACI"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTONACI"].ToString();
                         reniecModel.CODUBIGEOPROVINCIANACI = dr["CODUBIGEOPROVINCIANACI"] == null || dr["CODUBIGEOPROVINCIANACI"].ToString() == "" ? "" : dr["CODUBIGEOPROVINCIANACI"].ToString();
                         reniecModel.FOTO = dr["FOTO"] == null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString();
-                        reniecModel.FIRMA = dr["FIRMA"] == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
+                        //reniecModel.FIRMA = dr.GetOracleClob("sd") ["FIRMA"] == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
                     }
                     ElistClientReniec.Add(reniecModel);
 
