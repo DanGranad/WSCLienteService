@@ -73,7 +73,7 @@ namespace WSGCliente.DataAccess
 
         public ResponsePViewModel ConsultarProveedor(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_LIST_CLIENT";
            //   var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponsePViewModel result = new ResponsePViewModel();
@@ -129,7 +129,7 @@ namespace WSGCliente.DataAccess
         }
         public List<ClientViewModel> ConsultarCliente(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_LIST_CLIENT";
            // var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientViewModel> EListClient = new List<ClientViewModel>();

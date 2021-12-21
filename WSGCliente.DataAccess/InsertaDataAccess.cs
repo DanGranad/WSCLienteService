@@ -1,4 +1,5 @@
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -341,15 +342,12 @@ namespace WSGCliente.DataAccess
                 //FOTO_CLIENTE
                 if (response.P_NCODE == "0" || response.P_NCODE == "2") {
                     if (request.P_NIDDOC_TYPE == "2") {
-                        if (request.ElistDocumentClient != null) {
-                            foreach (var item in request.ElistDocumentClient)
-                            {
-                                if (!string.IsNullOrWhiteSpace(item.P_SCLIENT)) {
-                                    response = InsertarClienteFoto(item.P_SCLIENT, DataConnection, trx);
+  
+                                if (!string.IsNullOrWhiteSpace(CodClient)) {
+                                    response = InsertarClienteFoto(CodClient, DataConnection, trx);
                                     listResponse.Add(response);
                                 }
-                            }
-                        }
+   
                     }
                 }
 
@@ -1368,7 +1366,7 @@ namespace WSGCliente.DataAccess
         }
 
         public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel request) {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_SEL_CLIENT_RENIEC";
+            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_SEL_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             List<ResponseReniecViewModel> ElistClientReniec = new List<ResponseReniecViewModel>();
@@ -1387,10 +1385,11 @@ namespace WSGCliente.DataAccess
 
                 using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
                 {
-                    //ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
+                   // ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
                     ResponseReniecViewModel reniecModel = new ResponseReniecViewModel();
 
-                   while (dr.Read()){
+                    while (dr.Read())
+                    {
                         reniecModel.CODE = dr["CODE"] == null || dr["CODE"].ToString() == "" ? "" : dr["CODE"].ToString();
                         reniecModel.MESSAGE = dr["MESSAGE"] == null || dr["MESSAGE"].ToString() == "" ? "" : dr["MESSAGE"].ToString();
                         reniecModel.CODIGOERROR = dr["CODIGOERROR"] == null || dr["CODIGOERROR"].ToString() == "" ? "" : dr["CODIGOERROR"].ToString();
@@ -1400,9 +1399,9 @@ namespace WSGCliente.DataAccess
                         reniecModel.APELLIDOMATERNO = dr["APELLIDOMATERNO"] == null || dr["APELLIDOMATERNO"].ToString() == "" ? "" : dr["APELLIDOMATERNO"].ToString();
                         reniecModel.APELLIDOCASADA = dr["APELLIDOCASADA"] == null || dr["APELLIDOCASADA"].ToString() == "" ? "" : dr["APELLIDOCASADA"].ToString();
                         reniecModel.NOMBRES = dr["NOMBRES"] == null || dr["NOMBRES"].ToString() == "" ? "" : dr["NOMBRES"].ToString();
-                        reniecModel.CODIGOUBIGEODEPARTAMENTODOMICILIO = dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"] == null || dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"].ToString();
-                        reniecModel.CODIGOUBIGEOPROVINCIADOMICILIO = dr["CODIGOUBIGEOPROVINCIADOMICILIO"] == null || dr["CODIGOUBIGEOPROVINCIADOMICILIO"].ToString() == "" ? "" : dr["CODIGOUBIGEOPROVINCIADOMICILIO"].ToString();
-                        reniecModel.CODIGOUBIGEODISTRITODOMICILIO = dr["CODIGOUBIGEODISTRITODOMICILIO"] == null || dr["MESCODIGOUBIGEODISTRITODOMICILIOSAGE"].ToString() == "" ? "" : dr["CODIGOUBIGEODISTRITODOMICILIO"].ToString();
+                        //reniecModel.CODIGOUBIGEODEPARTAMENTODOMICILIO = dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"] == null || dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["CODIGOUBIGEODEPARTAMENTODOMICILIO"].ToString();
+                        //reniecModel.CODIGOUBIGEOPROVINCIADOMICILIO = dr["CODIGOUBIGEOPROVINCIADOMICILIO"] == null || dr["CODIGOUBIGEOPROVINCIADOMICILIO"].ToString() == "" ? "" : dr["CODIGOUBIGEOPROVINCIADOMICILIO"].ToString();
+                        //reniecModel.CODIGOUBIGEODISTRITODOMICILIO = dr["CODIGOUBIGEODISTRITODOMICILIO"] == null || dr["MESCODIGOUBIGEODISTRITODOMICILIOSAGE"].ToString() == "" ? "" : dr["CODIGOUBIGEODISTRITODOMICILIO"].ToString();
                         reniecModel.DEPARTAMENTODOMICILIO = dr["DEPARTAMENTODOMICILIO"] == null || dr["DEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["DEPARTAMENTODOMICILIO"].ToString();
                         reniecModel.PROVINCIADOMICILIO = dr["PROVINCIADOMICILIO"] == null || dr["PROVINCIADOMICILIO"].ToString() == "" ? "" : dr["PROVINCIADOMICILIO"].ToString();
                         reniecModel.DISTRITODOMICILIO = dr["DISTRITODOMICILIO"] == null || dr["DISTRITODOMICILIO"].ToString() == "" ? "" : dr["DISTRITODOMICILIO"].ToString();
@@ -1412,9 +1411,9 @@ namespace WSGCliente.DataAccess
                         reniecModel.SEXO = dr["SEXO"] == null || dr["SEXO"].ToString() == "" ? "" : dr["SEXO"].ToString();
                         reniecModel.TIPODOCUMENTOIDENTIDAD = dr["TIPODOCUMENTOIDENTIDAD"] == null || dr["TIPODOCUMENTOIDENTIDAD"].ToString() == "" ? "" : dr["TIPODOCUMENTOIDENTIDAD"].ToString();
                         reniecModel.NUMERODOCUMENTOIDENTIDAD = dr["NUMERODOCUMENTOIDENTIDAD"] == null || dr["NUMERODOCUMENTOIDENTIDAD"].ToString() == "" ? "" : dr["NUMERODOCUMENTOIDENTIDAD"].ToString();
-                        reniecModel.CODIGOUBIGEODEPARTAMENTONACIMIENTO = dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"] == null || dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"].ToString();
-                        reniecModel.CODIGOUBIGEOPROVINCIANACIMIENTO = dr["CODIGOUBIGEOPROVINCIANACIMIENTO"] == null || dr["CODIGOUBIGEOPROVINCIANACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEOPROVINCIANACIMIENTO"].ToString();
-                        reniecModel.CODIGOUBIGEODISTRITONACIMIENTO = dr["CODIGOUBIGEODISTRITONACIMIENTO"] == null || dr["CODIGOUBIGEODISTRITONACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEODISTRITONACIMIENTO"].ToString();
+                        //reniecModel.CODIGOUBIGEODEPARTAMENTONACIMIENTO = dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"] == null || dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEODEPARTAMENTONACIMIENTO"].ToString();
+                        //reniecModel.CODIGOUBIGEOPROVINCIANACIMIENTO = dr["CODIGOUBIGEOPROVINCIANACIMIENTO"] == null || dr["CODIGOUBIGEOPROVINCIANACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEOPROVINCIANACIMIENTO"].ToString();
+                        //reniecModel.CODIGOUBIGEODISTRITONACIMIENTO = dr["CODIGOUBIGEODISTRITONACIMIENTO"] == null || dr["CODIGOUBIGEODISTRITONACIMIENTO"].ToString() == "" ? "" : dr["CODIGOUBIGEODISTRITONACIMIENTO"].ToString();
                         reniecModel.DEPARTAMENTONACIMIENTO = dr["DEPARTAMENTONACIMIENTO"] == null || dr["DEPARTAMENTONACIMIENTO"].ToString() == "" ? "" : dr["DEPARTAMENTONACIMIENTO"].ToString();
                         reniecModel.PROVINCIANACIMIENTO = dr["PROVINCIANACIMIENTO"] == null || dr["PROVINCIANACIMIENTO"].ToString() == "" ? "" : dr["PROVINCIANACIMIENTO"].ToString();
                         reniecModel.DISTRITONACIMIENTO = dr["DISTRITONACIMIENTO"] == null || dr["DISTRITONACIMIENTO"].ToString() == "" ? "" : dr["DISTRITONACIMIENTO"].ToString();
@@ -1441,10 +1440,15 @@ namespace WSGCliente.DataAccess
                         reniecModel.CODUBIGEODEPARTAMENTODOMICILIO = dr["CODUBIGEODEPARTAMENTODOMICILIO"] == null || dr["CODUBIGEODEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTODOMICILIO"].ToString();
                         reniecModel.CODUBIGEODEPARTAMENTONACI = dr["CODUBIGEODEPARTAMENTONACI"] == null || dr["CODUBIGEODEPARTAMENTONACI"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTONACI"].ToString();
                         reniecModel.CODUBIGEOPROVINCIANACI = dr["CODUBIGEOPROVINCIANACI"] == null || dr["CODUBIGEOPROVINCIANACI"].ToString() == "" ? "" : dr["CODUBIGEOPROVINCIANACI"].ToString();
-                        reniecModel.FOTO = dr["FOTO"] == null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString();
-                        reniecModel.FIRMA = dr["FIRMA"] == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
+                        reniecModel.FOTO = dr["FOTO"].ToString() == null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString(); 
+                        reniecModel.FIRMA = dr["FIRMA"].ToString() == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
+                        ElistClientReniec.Add(reniecModel);
+                        //reniecModel.FOTO
+                        // var length = dr["FOTO"]; //== null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString();
+                        //var length2 = length.Length;
+                        //reniecModel.FIRMA = (string) dr.GetOracleClob(48).Value; //dr["FIRMA"] == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
                     }
-                    ElistClientReniec.Add(reniecModel);
+                   
 
                 }
                 result.P_NCODE = "0";
@@ -2327,7 +2331,7 @@ namespace WSGCliente.DataAccess
                 OracleParameter P_NIDCM = new OracleParameter("P_NIDCM", OracleDbType.Int32, result.P_NIDCM, ParameterDirection.Output);
                 parameter.Add(P_NIDCM);
                 this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, connection, trx);
-                result.P_NIDCM = Convert.ToInt32(P_NIDCM.Value);
+                result.P_NIDCM = Convert.ToInt32(P_NIDCM.Value.ToString());
             }
             catch (Exception ex)
             {

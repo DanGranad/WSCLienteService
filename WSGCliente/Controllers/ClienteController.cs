@@ -1,23 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Reporting.WinForms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WSGCliente.Core;
 using WSGCliente.Entities.BindingModel;
-using WSGCliente.Entities.ViewModel;
-using System.IO;
-using System.Net.Mail;
-using System.Configuration;
-using System.Text;
-using Microsoft.Reporting.WinForms;
-using static WSGCliente.Util.GlobalEnum;
-using WSGCliente.Entities.BindingModel.LAFT;
-using WSGCliente.Util;
 using WSGCliente.Entities.BindingModel.CE;
+using WSGCliente.Entities.BindingModel.LAFT;
+using WSGCliente.Entities.ViewModel;
+using WSGCliente.Util;
+using static WSGCliente.Util.GlobalEnum;
 
 namespace WSGCliente.Controllers
 {
@@ -26,9 +26,9 @@ namespace WSGCliente.Controllers
     public class ClienteController : ApiController
     {
 
-        string[] ArrayAplicacion = new ConsultaCore().ConsultarAplicacionesGC().Select(x=> x.SCOD_APPLICATION).ToArray();
+        string[] ArrayAplicacion = new ConsultaCore().ConsultarAplicacionesGC().Select(x => x.SCOD_APPLICATION).ToArray();
 
-     [Route("ValidarClienteMasivoSCTR")]
+        [Route("ValidarClienteMasivoSCTR")]
         [HttpPost]
         public IHttpActionResult ValidarClienteMasivoSCTR(List<ClientBindingModel> request)
         {
@@ -99,7 +99,7 @@ namespace WSGCliente.Controllers
             List<ListViewErrores> listErrores = new List<ListViewErrores>();
             InsertaCore InsertaCore = new InsertaCore();
 
-            String V_SPROCESO = "";
+            string V_SPROCESO = "";
 
             try
             {
@@ -128,64 +128,68 @@ namespace WSGCliente.Controllers
                                     {
                                         ResponseViewModel datosReniec = new ResponseViewModel();
                                         datosReniec = consultarReniec(item);
-                                        ReniecBindingModel reniecItem = new ReniecBindingModel();
-                                        reniecItem.P_SNOPROCESO = item.P_SNOPROCESO;
-                                        reniecItem.P_NNUMREG = item.P_NNUMREG;
-                                        reniecItem.P_SFILENAME = item.P_SFILENAME;
-                                        reniecItem.P_NIDDOC_TYPE = Convert.ToInt64(datosReniec.EListClient[0].P_NIDDOC_TYPE);
-                                        reniecItem.P_SIDDOC = item.P_SIDDOC;
-                                        reniecItem.P_SFIRSTNAME = item.P_SFIRSTNAME;
-                                        reniecItem.P_SLASTNAME = item.P_SLASTNAME;
-                                        reniecItem.P_SLASTNAME2 = item.P_SLASTNAME2;
-                                        reniecItem.P_SSEXCLIEN = item.P_SSEXCLIEN;
-                                        reniecItem.P_NCIVILSTA = Convert.ToInt64(item.P_NCIVILSTA);
-                                        reniecItem.P_DBIRTHDAT = item.P_DBIRTHDAT;
-                                        reniecItem.P_STI_DIRE = item.EListAddresClient[0].P_STI_DIRE;
-                                        reniecItem.P_SNOM_DIRECCION = item.EListAddresClient[0].P_SNOM_DIRECCION;
-                                        reniecItem.P_SNUM_DIRECCION = item.EListAddresClient[0].P_SNUM_DIRECCION;
-                                        reniecItem.P_STI_BLOCKCHALET = item.EListAddresClient[0].P_STI_BLOCKCHALET;
-                                        reniecItem.P_SBLOCKCHALET = item.EListAddresClient[0].P_SBLOCKCHALET;
-                                        reniecItem.P_STI_INTERIOR = item.EListAddresClient[0].P_STI_INTERIOR;
-                                        reniecItem.P_SNUM_INTERIOR = item.EListAddresClient[0].P_SNUM_INTERIOR;
-                                        reniecItem.P_STI_CJHT = item.EListAddresClient[0].P_STI_CJHT;
-                                        reniecItem.P_SNOM_CJHT = item.EListAddresClient[0].P_SNOM_CJHT;
-                                        reniecItem.P_SETAPA = item.EListAddresClient[0].P_SETAPA;
-                                        reniecItem.P_SMANZANA = item.EListAddresClient[0].P_SMANZANA;
-                                        reniecItem.P_SLOTE = item.EListAddresClient[0].P_SLOTE;
-                                        reniecItem.P_SREFERENCIA = item.EListAddresClient[0].P_SREFERENCE;
-                                        reniecItem.P_NMUNICIPALITY = item.EListAddresClient[0].P_NMUNICIPALITY;
-                                        reniecItem.P_SFIRSTNAME_R = datosReniec.EListClient[0].P_SFIRSTNAME;
-                                        reniecItem.P_SLASTNAME_R = datosReniec.EListClient[0].P_SLASTNAME;
-                                        reniecItem.P_SLASTNAME2_R = datosReniec.EListClient[0].P_SLASTNAME2;
-                                        reniecItem.P_SSEXCLIEN_R = datosReniec.EListClient[0].P_SSEXCLIEN;
-                                        reniecItem.P_NCIVILSTA_R = Convert.ToInt64(datosReniec.EListClient[0].P_NCIVILSTA);
-                                        reniecItem.P_DBIRTHDAT_R = datosReniec.EListClient[0].P_DBIRTHDAT;
-                                        reniecItem.P_STI_DIRE_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_DIRE;
-                                        reniecItem.P_SNOM_DIRECCION_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNOM_DIRECCION;
-                                        reniecItem.P_SNUM_DIRECCION_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNUM_DIRECCION;
-                                        reniecItem.P_STI_BLOCKCHALET_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_BLOCKCHALET;
-                                        reniecItem.P_SBLOCKCHALET_R = datosReniec.EListClient[0].EListAddresClient[0].P_SBLOCKCHALET;
-                                        reniecItem.P_STI_INTERIOR_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_INTERIOR;
-                                        reniecItem.P_SNUM_INTERIOR_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNUM_INTERIOR;
-                                        reniecItem.P_STI_CJHT_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_CJHT;
-                                        reniecItem.P_SNOM_CJHT_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNOM_CJHT;
-                                        reniecItem.P_SETAPA_R = datosReniec.EListClient[0].EListAddresClient[0].P_SETAPA;
-                                        reniecItem.P_SMANZANA_R = datosReniec.EListClient[0].EListAddresClient[0].P_SMANZANA;
-                                        reniecItem.P_SLOTE_R = datosReniec.EListClient[0].EListAddresClient[0].P_SLOTE;
-                                        reniecItem.P_NUSERCODE = Convert.ToInt64(item.P_NUSERCODE);
+                                        ReniecBindingModel reniecItem = new ReniecBindingModel
+                                        {
+                                            P_SNOPROCESO = item.P_SNOPROCESO,
+                                            P_NNUMREG = item.P_NNUMREG,
+                                            P_SFILENAME = item.P_SFILENAME,
+                                            P_NIDDOC_TYPE = Convert.ToInt64(datosReniec.EListClient[0].P_NIDDOC_TYPE),
+                                            P_SIDDOC = item.P_SIDDOC,
+                                            P_SFIRSTNAME = item.P_SFIRSTNAME,
+                                            P_SLASTNAME = item.P_SLASTNAME,
+                                            P_SLASTNAME2 = item.P_SLASTNAME2,
+                                            P_SSEXCLIEN = item.P_SSEXCLIEN,
+                                            P_NCIVILSTA = Convert.ToInt64(item.P_NCIVILSTA),
+                                            P_DBIRTHDAT = item.P_DBIRTHDAT,
+                                            P_STI_DIRE = item.EListAddresClient[0].P_STI_DIRE,
+                                            P_SNOM_DIRECCION = item.EListAddresClient[0].P_SNOM_DIRECCION,
+                                            P_SNUM_DIRECCION = item.EListAddresClient[0].P_SNUM_DIRECCION,
+                                            P_STI_BLOCKCHALET = item.EListAddresClient[0].P_STI_BLOCKCHALET,
+                                            P_SBLOCKCHALET = item.EListAddresClient[0].P_SBLOCKCHALET,
+                                            P_STI_INTERIOR = item.EListAddresClient[0].P_STI_INTERIOR,
+                                            P_SNUM_INTERIOR = item.EListAddresClient[0].P_SNUM_INTERIOR,
+                                            P_STI_CJHT = item.EListAddresClient[0].P_STI_CJHT,
+                                            P_SNOM_CJHT = item.EListAddresClient[0].P_SNOM_CJHT,
+                                            P_SETAPA = item.EListAddresClient[0].P_SETAPA,
+                                            P_SMANZANA = item.EListAddresClient[0].P_SMANZANA,
+                                            P_SLOTE = item.EListAddresClient[0].P_SLOTE,
+                                            P_SREFERENCIA = item.EListAddresClient[0].P_SREFERENCE,
+                                            P_NMUNICIPALITY = item.EListAddresClient[0].P_NMUNICIPALITY,
+                                            P_SFIRSTNAME_R = datosReniec.EListClient[0].P_SFIRSTNAME,
+                                            P_SLASTNAME_R = datosReniec.EListClient[0].P_SLASTNAME,
+                                            P_SLASTNAME2_R = datosReniec.EListClient[0].P_SLASTNAME2,
+                                            P_SSEXCLIEN_R = datosReniec.EListClient[0].P_SSEXCLIEN,
+                                            P_NCIVILSTA_R = Convert.ToInt64(datosReniec.EListClient[0].P_NCIVILSTA),
+                                            P_DBIRTHDAT_R = datosReniec.EListClient[0].P_DBIRTHDAT,
+                                            P_STI_DIRE_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_DIRE,
+                                            P_SNOM_DIRECCION_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNOM_DIRECCION,
+                                            P_SNUM_DIRECCION_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNUM_DIRECCION,
+                                            P_STI_BLOCKCHALET_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_BLOCKCHALET,
+                                            P_SBLOCKCHALET_R = datosReniec.EListClient[0].EListAddresClient[0].P_SBLOCKCHALET,
+                                            P_STI_INTERIOR_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_INTERIOR,
+                                            P_SNUM_INTERIOR_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNUM_INTERIOR,
+                                            P_STI_CJHT_R = datosReniec.EListClient[0].EListAddresClient[0].P_STI_CJHT,
+                                            P_SNOM_CJHT_R = datosReniec.EListClient[0].EListAddresClient[0].P_SNOM_CJHT,
+                                            P_SETAPA_R = datosReniec.EListClient[0].EListAddresClient[0].P_SETAPA,
+                                            P_SMANZANA_R = datosReniec.EListClient[0].EListAddresClient[0].P_SMANZANA,
+                                            P_SLOTE_R = datosReniec.EListClient[0].EListAddresClient[0].P_SLOTE,
+                                            P_NUSERCODE = Convert.ToInt64(item.P_NUSERCODE)
+                                        };
                                         var responseReniec = InsertaCore.InsertarReniec(reniecItem);
                                     }
                                     else
                                     {
-                                        ErrorValBindingModel errorItem = new ErrorValBindingModel();
-                                        errorItem.P_SNOPROCESO = item.P_SNOPROCESO;
-                                        errorItem.P_NNUMREG = item.P_NNUMREG;
-                                        errorItem.P_SFILENAME = item.P_SFILENAME;
-                                        errorItem.P_SDESERROR = error.SMENSAJE;
-                                        errorItem.P_SCOLUMNA = error.SCAMPO;
-                                        errorItem.P_NUSERCODE = Convert.ToInt64(item.P_NUSERCODE);
-                                        errorItem.P_NIDDOC_TYPE = Convert.ToInt64(item.P_NIDDOC_TYPE);
-                                        errorItem.P_SIDDOC = item.P_SIDDOC;
+                                        ErrorValBindingModel errorItem = new ErrorValBindingModel
+                                        {
+                                            P_SNOPROCESO = item.P_SNOPROCESO,
+                                            P_NNUMREG = item.P_NNUMREG,
+                                            P_SFILENAME = item.P_SFILENAME,
+                                            P_SDESERROR = error.SMENSAJE,
+                                            P_SCOLUMNA = error.SCAMPO,
+                                            P_NUSERCODE = Convert.ToInt64(item.P_NUSERCODE),
+                                            P_NIDDOC_TYPE = Convert.ToInt64(item.P_NIDDOC_TYPE),
+                                            P_SIDDOC = item.P_SIDDOC
+                                        };
                                         var responseErrores = InsertaCore.InsertarErrores(errorItem);
                                     }
 
@@ -198,40 +202,42 @@ namespace WSGCliente.Controllers
                                 var responseCliente = EjecutarStore(item);
                                 if (responseCliente.P_NCODE == "0")
                                 {
-                                    ExitoValBindingModel exitoItem = new ExitoValBindingModel();
-                                    exitoItem.P_SNOPROCESO = item.P_SNOPROCESO;
-                                    exitoItem.P_NNUMREG = item.P_NNUMREG;
-                                    exitoItem.P_SFILENAME = item.P_SFILENAME;
-                                    exitoItem.P_NIDDOC_TYPE = Convert.ToInt64(item.P_NIDDOC_TYPE);
-                                    exitoItem.P_SIDDOC = item.P_SIDDOC;
-                                    exitoItem.P_SFIRSTNAME = item.P_SFIRSTNAME;
-                                    exitoItem.P_SLASTNAME = item.P_SLASTNAME;
-                                    exitoItem.P_SLASTNAME2 = item.P_SLASTNAME2;
-                                    exitoItem.P_SLEGALNAME = item.P_SLEGALNAME;
-                                    exitoItem.P_SSEXCLIEN = item.P_SSEXCLIEN;
-                                    exitoItem.P_NCIVILSTA = Convert.ToInt64(item.P_NCIVILSTA);
-                                    exitoItem.P_DBIRTHDAT = item.P_DBIRTHDAT;
-                                    exitoItem.P_STI_DIRE = item.EListAddresClient[0].P_STI_DIRE;
-                                    exitoItem.P_SNOM_DIRECCION = item.EListAddresClient[0].P_SNOM_DIRECCION;
-                                    exitoItem.P_SNUM_DIRECCION = item.EListAddresClient[0].P_SNUM_DIRECCION;
-                                    exitoItem.P_STI_BLOCKCHALET = item.EListAddresClient[0].P_STI_BLOCKCHALET;
-                                    exitoItem.P_SBLOCKCHALET = item.EListAddresClient[0].P_SBLOCKCHALET;
-                                    exitoItem.P_TIPO_DIRE = item.EListAddresClient[0].P_SRECTYPE;
-                                    exitoItem.P_STI_INTERIOR = item.EListAddresClient[0].P_STI_INTERIOR;
-                                    exitoItem.P_SNUM_INTERIOR = item.EListAddresClient[0].P_SNUM_INTERIOR;
-                                    exitoItem.P_STI_CJHT = item.EListAddresClient[0].P_STI_CJHT;
-                                    exitoItem.P_SNOM_CJHT = item.EListAddresClient[0].P_SNOM_CJHT;
-                                    exitoItem.P_SETAPA = item.EListAddresClient[0].P_SETAPA;
-                                    exitoItem.P_SMANZANA = item.EListAddresClient[0].P_SMANZANA;
-                                    exitoItem.P_SLOTE = item.EListAddresClient[0].P_SLOTE;
-                                    exitoItem.P_SREFERENCIA = item.EListAddresClient[0].P_SREFERENCIA;
-                                    exitoItem.P_NMUNICIPALITY = Convert.ToInt64(item.EListAddresClient[0].P_NMUNICIPALITY);
-                                    exitoItem.P_NPHONE_TYPE = Convert.ToInt64(item.EListPhoneClient[0].P_NPHONE_TYPE);
-                                    exitoItem.P_SPHONE = item.EListPhoneClient[0].P_SPHONE;
-                                    exitoItem.P_TIPO_EMAIL = item.EListEmailClient[0].P_SRECTYPE;
-                                    exitoItem.P_SE_MAIL = item.EListEmailClient[0].P_SE_MAIL;
-                                    exitoItem.P_SCLIENT = responseCliente.P_SCOD_CLIENT;
-                                    exitoItem.P_NUSERCODE = Convert.ToInt64(item.P_NUSERCODE);
+                                    ExitoValBindingModel exitoItem = new ExitoValBindingModel
+                                    {
+                                        P_SNOPROCESO = item.P_SNOPROCESO,
+                                        P_NNUMREG = item.P_NNUMREG,
+                                        P_SFILENAME = item.P_SFILENAME,
+                                        P_NIDDOC_TYPE = Convert.ToInt64(item.P_NIDDOC_TYPE),
+                                        P_SIDDOC = item.P_SIDDOC,
+                                        P_SFIRSTNAME = item.P_SFIRSTNAME,
+                                        P_SLASTNAME = item.P_SLASTNAME,
+                                        P_SLASTNAME2 = item.P_SLASTNAME2,
+                                        P_SLEGALNAME = item.P_SLEGALNAME,
+                                        P_SSEXCLIEN = item.P_SSEXCLIEN,
+                                        P_NCIVILSTA = Convert.ToInt64(item.P_NCIVILSTA),
+                                        P_DBIRTHDAT = item.P_DBIRTHDAT,
+                                        P_STI_DIRE = item.EListAddresClient[0].P_STI_DIRE,
+                                        P_SNOM_DIRECCION = item.EListAddresClient[0].P_SNOM_DIRECCION,
+                                        P_SNUM_DIRECCION = item.EListAddresClient[0].P_SNUM_DIRECCION,
+                                        P_STI_BLOCKCHALET = item.EListAddresClient[0].P_STI_BLOCKCHALET,
+                                        P_SBLOCKCHALET = item.EListAddresClient[0].P_SBLOCKCHALET,
+                                        P_TIPO_DIRE = item.EListAddresClient[0].P_SRECTYPE,
+                                        P_STI_INTERIOR = item.EListAddresClient[0].P_STI_INTERIOR,
+                                        P_SNUM_INTERIOR = item.EListAddresClient[0].P_SNUM_INTERIOR,
+                                        P_STI_CJHT = item.EListAddresClient[0].P_STI_CJHT,
+                                        P_SNOM_CJHT = item.EListAddresClient[0].P_SNOM_CJHT,
+                                        P_SETAPA = item.EListAddresClient[0].P_SETAPA,
+                                        P_SMANZANA = item.EListAddresClient[0].P_SMANZANA,
+                                        P_SLOTE = item.EListAddresClient[0].P_SLOTE,
+                                        P_SREFERENCIA = item.EListAddresClient[0].P_SREFERENCIA,
+                                        P_NMUNICIPALITY = Convert.ToInt64(item.EListAddresClient[0].P_NMUNICIPALITY),
+                                        P_NPHONE_TYPE = Convert.ToInt64(item.EListPhoneClient[0].P_NPHONE_TYPE),
+                                        P_SPHONE = item.EListPhoneClient[0].P_SPHONE,
+                                        P_TIPO_EMAIL = item.EListEmailClient[0].P_SRECTYPE,
+                                        P_SE_MAIL = item.EListEmailClient[0].P_SE_MAIL,
+                                        P_SCLIENT = responseCliente.P_SCOD_CLIENT,
+                                        P_NUSERCODE = Convert.ToInt64(item.P_NUSERCODE)
+                                    };
                                     var resExitoso = InsertaCore.InsertarExitosos(exitoItem);
                                 }
                             }
@@ -247,15 +253,17 @@ namespace WSGCliente.Controllers
 
 
                     //Llamar para crear Excel
-                    ReportBindingModel reportRequest = new ReportBindingModel();
-                    reportRequest.P_SNOPROCESO = V_SPROCESO;
+                    ReportBindingModel reportRequest = new ReportBindingModel
+                    {
+                        P_SNOPROCESO = V_SPROCESO
+                    };
                     var ListErrores = InsertaCore.ListarError(reportRequest);
                     var ListExitosos = InsertaCore.ListarExitoso(reportRequest);
                     var ListReniec = InsertaCore.ListarReniec(reportRequest);
 
-                    String pathErrores = "";
-                    String pathExitosos = "";
-                    String pathReniec = "";
+                    string pathErrores = "";
+                    string pathExitosos = "";
+                    string pathReniec = "";
 
                     if (ListErrores.Count > 0)
                     {
@@ -291,7 +299,7 @@ namespace WSGCliente.Controllers
                 return Ok(response);
             }
         }
- 
+
         private void EnviarEmail(string pathErrores, string pathExitosos, string pathReniec, string V_SPROCESO, string NUSERCODE)
         {
             InsertaCore InsertaCore = new InsertaCore();
@@ -382,22 +390,28 @@ namespace WSGCliente.Controllers
 
                 if (pathErrores != "")
                 {
-                    archivo = new System.Net.Mail.Attachment(pathErrores);
-                    archivo.Name = V_SPROCESO + "Errores.xls";
+                    archivo = new System.Net.Mail.Attachment(pathErrores)
+                    {
+                        Name = V_SPROCESO + "Errores.xls"
+                    };
                     mail.Attachments.Add(archivo);
                 }
 
                 if (pathExitosos != "")
                 {
-                    archivo = new System.Net.Mail.Attachment(pathExitosos);
-                    archivo.Name = V_SPROCESO + "Exitosos.xls";
+                    archivo = new System.Net.Mail.Attachment(pathExitosos)
+                    {
+                        Name = V_SPROCESO + "Exitosos.xls"
+                    };
                     mail.Attachments.Add(archivo);
                 }
 
                 if (pathReniec != "")
                 {
-                    archivo = new System.Net.Mail.Attachment(pathReniec);
-                    archivo.Name = V_SPROCESO + "Reniec.xls";
+                    archivo = new System.Net.Mail.Attachment(pathReniec)
+                    {
+                        Name = V_SPROCESO + "Reniec.xls"
+                    };
                     mail.Attachments.Add(archivo);
                 }
 
@@ -464,12 +478,16 @@ namespace WSGCliente.Controllers
             dynamic pathReniec = "";
             try
             {
-                ReportDataSource dsOBJ = new ReportDataSource();
-                dsOBJ.Name = "dsReniec";
-                dsOBJ.Value = listReniec;
+                ReportDataSource dsOBJ = new ReportDataSource
+                {
+                    Name = "dsReniec",
+                    Value = listReniec
+                };
                 IEnumerable<ReportDataSource> datasets = new List<ReportDataSource> { dsOBJ };
-                LocalReport localReport = new LocalReport();
-                localReport.ReportPath = HttpContext.Current.Server.MapPath("~/Reports/ReportReniec.rdlc");
+                LocalReport localReport = new LocalReport
+                {
+                    ReportPath = HttpContext.Current.Server.MapPath("~/Reports/ReportReniec.rdlc")
+                };
                 foreach (ReportDataSource datasource in datasets)
                 {
                     localReport.DataSources.Add(datasource);
@@ -512,12 +530,16 @@ namespace WSGCliente.Controllers
             dynamic pathExitosos = "";
             try
             {
-                ReportDataSource dsOBJ = new ReportDataSource();
-                dsOBJ.Name = "dsExitoso";
-                dsOBJ.Value = listExitosos;
+                ReportDataSource dsOBJ = new ReportDataSource
+                {
+                    Name = "dsExitoso",
+                    Value = listExitosos
+                };
                 IEnumerable<ReportDataSource> datasets = new List<ReportDataSource> { dsOBJ };
-                LocalReport localReport = new LocalReport();
-                localReport.ReportPath = HttpContext.Current.Server.MapPath("~/Reports/ReportExitoso.rdlc");
+                LocalReport localReport = new LocalReport
+                {
+                    ReportPath = HttpContext.Current.Server.MapPath("~/Reports/ReportExitoso.rdlc")
+                };
                 foreach (ReportDataSource datasource in datasets)
                 {
                     localReport.DataSources.Add(datasource);
@@ -564,12 +586,16 @@ namespace WSGCliente.Controllers
             dynamic pathErrores = "";
             try
             {
-                ReportDataSource dsOBJ = new ReportDataSource();
-                dsOBJ.Name = "dsError";
-                dsOBJ.Value = listErrores;
+                ReportDataSource dsOBJ = new ReportDataSource
+                {
+                    Name = "dsError",
+                    Value = listErrores
+                };
                 IEnumerable<ReportDataSource> datasets = new List<ReportDataSource> { dsOBJ };
-                LocalReport localReport = new LocalReport();
-                localReport.ReportPath = HttpContext.Current.Server.MapPath("~/Reports/ReportError.rdlc");
+                LocalReport localReport = new LocalReport
+                {
+                    ReportPath = HttpContext.Current.Server.MapPath("~/Reports/ReportError.rdlc")
+                };
                 foreach (ReportDataSource datasource in datasets)
                 {
                     localReport.DataSources.Add(datasource);
@@ -700,57 +726,63 @@ namespace WSGCliente.Controllers
                 itemCliente.P_SISRENIEC_IND = "1";
 
                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                var itemDireccion = new AddressViewModel();
-                itemDireccion.P_NCOUNTRY = "1";
-                itemDireccion.P_DESTIDIRE = "Particular";
-                itemDireccion.P_SRECTYPE = "2";
-                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                var itemDireccion = new AddressViewModel
+                {
+                    P_NCOUNTRY = "1",
+                    P_DESTIDIRE = "Particular",
+                    P_SRECTYPE = "2",
+                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                    P_SLOTE = responseReniec.LOTE.Trim(),
+                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                };
                 //Direccion completa
-                var param = new DireccionCompletaBindingModel();
-                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                param.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                param.P_SLOTE = responseReniec.LOTE.Trim();
-                param.P_SREFERENCIA = "";
-                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                var param = new DireccionCompletaBindingModel
+                {
+                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                    P_SLOTE = responseReniec.LOTE.Trim(),
+                    P_SREFERENCIA = "",
+                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                };
                 //itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                 itemCliente.EListAddresClient.Add(itemDireccion);
                 itemCliente.EListPhoneClient = new List<PhoneViewModel>();
                 itemCliente.EListEmailClient = new List<EmailViewModel>();
                 itemCliente.EListContactClient = new List<ContactViewModel>();
                 itemCliente.EListCIIUClient = new List<CiiuViewModel>();
-                response.EListClient = new List<ClientViewModel>();
-                response.EListClient.Add(itemCliente);
+                response.EListClient = new List<ClientViewModel>
+                {
+                    itemCliente
+                };
             }
 
             return response;
@@ -813,7 +845,8 @@ namespace WSGCliente.Controllers
                         }
 
                     }
-                    else{
+                    else
+                    {
                         response.P_NCODE = "1";
                         response.P_SMESSAGE = "El tipo de operación enviado no es el correcto.";
                     }
@@ -836,13 +869,14 @@ namespace WSGCliente.Controllers
             }
         }
 
-        public String ConsultarReniec(String Documento) {
+        public string ConsultarReniec(string Documento)
+        {
             return null;
         }
 
 
 
-        
+
 
 
         [Route("GestionarCliente")]
@@ -852,7 +886,7 @@ namespace WSGCliente.Controllers
             ConsultaCore ConsultaCore = new ConsultaCore();
             InsertaCore InsertaCore = new InsertaCore();
             ServiceCore ServiceCore = new ServiceCore();
-            
+
             ResponseViewModel response = new ResponseViewModel();
             ResponsePViewModel responseP = new ResponsePViewModel();
             ResponseReniecViewModel responseReniec = new ResponseReniecViewModel();
@@ -860,7 +894,7 @@ namespace WSGCliente.Controllers
             try
             {
                 //Se homologa el tipo de documento de acuerdo al codigo de aplicacion
-                TipoDoc  = HomologarCampo(request.P_NIDDOC_TYPE, request.P_CodAplicacion, "DOCIDE");
+                TipoDoc = HomologarCampo(request.P_NIDDOC_TYPE, request.P_CodAplicacion, "DOCIDE");
 
                 if (request != null)
                 {
@@ -891,8 +925,8 @@ namespace WSGCliente.Controllers
 
                             if (ArrayAplicacion.Contains(request.P_CodAplicacion.ToUpper()))
                             {
-                                if (request.P_CodAplicacion.ToUpper() == "REGISTRORM" ||  request.P_CodAplicacion.ToUpper() == "REGISTROR")
-                                {   
+                                if (request.P_CodAplicacion.ToUpper() == "REGISTRORM" || request.P_CodAplicacion.ToUpper() == "REGISTROR")
+                                {
                                 }
                                 else
                                 {
@@ -927,11 +961,12 @@ namespace WSGCliente.Controllers
                                                             {
                                                                 string responseR = "";
                                                                 var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request,out ExisteLocal);
-                                                                if (ExisteLocal != true) { 
-                                                                responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
-                                                                responseReniec = JsonConvert.DeserializeObject<ResponseReniecViewModel>(responseR, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                                                                AddClientReniec(responseReniec);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                if (ExisteLocal != true)
+                                                                {
+                                                                    responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
+                                                                    responseReniec = JsonConvert.DeserializeObject<ResponseReniecViewModel>(responseR, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                                                                    AddClientReniec(responseReniec);
                                                                 }
                                                                 if (responseReniec.CODIGOERROR != "0000")
                                                                 {
@@ -951,14 +986,18 @@ namespace WSGCliente.Controllers
 
                                                             if (responseReniec.CODIGOERROR == "0000")
                                                             {
-                                                                var itemCliente = new ClientViewModel();
-                                                                itemCliente.P_NIDDOC_TYPE = "2";
-                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
-                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
-                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
-                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
-                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
-                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+                                                                var itemCliente = new ClientViewModel
+                                                                {
+                                                                    P_NIDDOC_TYPE = "2",
+                                                                    P_SIDDOC = responseReniec.NUMERODNI,
+                                                                    P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION,
+                                                                    P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim(),
+                                                                    P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim(),
+                                                                    P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
+                                                                    P_SFIRSTNAME = responseReniec.NOMBRES.Trim(),
+                                                                    P_SFOTO = responseReniec.FOTO,
+                                                                    P_SFIRMA= responseReniec.FIRMA
+                                                                };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
                                                                 {
@@ -1023,53 +1062,57 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_SISRENIEC_IND = "1";
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                                                                var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "1";
-                                                                itemDireccion.P_DESTIDIRE = "Particular";
-                                                                itemDireccion.P_SRECTYPE = "2";
-                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                var itemDireccion = new AddressViewModel
+                                                                {
+                                                                    P_NCOUNTRY = "1",
+                                                                    P_DESTIDIRE = "Particular",
+                                                                    P_SRECTYPE = "2",
+                                                                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                                                                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                                                                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                                                                };
                                                                 //Direccion completa
-                                                                var param = new DireccionCompletaBindingModel();
-                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                param.P_SREFERENCIA = "";
-                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var param = new DireccionCompletaBindingModel
+                                                                {
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_SREFERENCIA = "",
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                                                                };
                                                                 var result = InsertaCore.DireccionCompleta(param);
                                                                 itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                                                                 itemCliente.EListAddresClient.Add(itemDireccion);
-                                                                if(request.P_CodAplicacion.ToString() == "FIDELIZACION")
+                                                                if (request.P_CodAplicacion.ToString() == "FIDELIZACION")
                                                                 {
                                                                     itemCliente.EListAddresClient = HomologarUbigeo(itemCliente.EListAddresClient, request.P_CodAplicacion.ToString());
                                                                 }
@@ -1111,9 +1154,9 @@ namespace WSGCliente.Controllers
 
 
                                                     }
-                                                    else if(request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "1")
+                                                    else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "1")
                                                     {
-                                                        return  Ok(ConsultarSUNAT(request.P_SIDDOC));
+                                                        return Ok(ConsultarSUNAT(request.P_SIDDOC));
                                                     }
                                                     else if (request.P_SIDDOC != "" && request.P_NIDDOC_TYPE == "4")
                                                     {
@@ -1129,16 +1172,16 @@ namespace WSGCliente.Controllers
                                                 {
                                                     item.P_SSISTEMA = request.P_SSISTEMA;
                                                     item.P_ORIGEN_DATA = "VTIME";
-                                                    if(request.P_CodAplicacion == "FIDELIZACION")
+                                                    if (request.P_CodAplicacion == "FIDELIZACION")
                                                     {
-                                                     item.P_SSEXCLIEN = HomologarCampo(item.P_SSEXCLIEN, request.P_CodAplicacion, "RSEXO");
-                                                     item.P_NCIVILSTA = HomologarCampo(item.P_NCIVILSTA, request.P_CodAplicacion, "RESTADOCIVIL");
-                                                     List<AddressViewModel> ListAddress = ConsultaCore.ConsultarClienteDireccion(item.P_SCLIENT);
-                                                    item.EListAddresClient = HomologarUbigeo(ListAddress, request.P_CodAplicacion);
+                                                        item.P_SSEXCLIEN = HomologarCampo(item.P_SSEXCLIEN, request.P_CodAplicacion, "RSEXO");
+                                                        item.P_NCIVILSTA = HomologarCampo(item.P_NCIVILSTA, request.P_CodAplicacion, "RESTADOCIVIL");
+                                                        List<AddressViewModel> ListAddress = ConsultaCore.ConsultarClienteDireccion(item.P_SCLIENT);
+                                                        item.EListAddresClient = HomologarUbigeo(ListAddress, request.P_CodAplicacion);
                                                     }
                                                     else
                                                     {
-                                                    item.EListAddresClient = ConsultaCore.ConsultarClienteDireccion(item.P_SCLIENT);
+                                                        item.EListAddresClient = ConsultaCore.ConsultarClienteDireccion(item.P_SCLIENT);
                                                     }
                                                     item.EListPhoneClient = ConsultaCore.ConsultarClienteTelefono(item.P_SCLIENT);
                                                     item.EListEmailClient = ConsultaCore.ConsultarClienteEmail(item.P_SCLIENT);
@@ -1146,7 +1189,7 @@ namespace WSGCliente.Controllers
                                                     item.EListCIIUClient = ConsultaCore.ConsultarClienteCiiu(item.P_SCLIENT);
                                                     item.EListHistoryClient = ConsultaCore.ConsultarClienteHistory(item.P_SCLIENT);
                                                     item.ElistInfoBancariaClient = ConsultaCore.ConsultarInfoBancaria(item.P_SCLIENT);
-                                                    item.ElistDocumentosClient= ConsultaCore.ConsultarDocumentosAdjunto(item.P_SCLIENT);
+                                                    item.ElistDocumentosClient = ConsultaCore.ConsultarDocumentosAdjunto(item.P_SCLIENT);
                                                 }
                                             }
                                         }
@@ -1155,7 +1198,7 @@ namespace WSGCliente.Controllers
                                         try
                                         {
                                             var _Aplicattion = new ConsultaCore().ConsultarAplicacionesGC().Where(x => x.SCOD_APPLICATION == request.P_CodAplicacion).FirstOrDefault();
-                                            
+
                                             if (_Aplicattion.NIND_USE_LAFT == "1")
                                             {
                                                 var ClientLAFT = ConsultaClientLAFT(request.P_SIDDOC);
@@ -1191,7 +1234,7 @@ namespace WSGCliente.Controllers
                                         catch (Exception ex)
                                         {
                                             response = EjecutarStore(request);
-                                        }    
+                                        }
                                         break;
                                 }
                             }
@@ -1300,7 +1343,7 @@ namespace WSGCliente.Controllers
                                                             {
                                                                 string responseR = "";
                                                                 var ExisteLocal = false;
-                                                                  responseReniec = ObtenerClientReniecLocal(request,out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -1326,14 +1369,16 @@ namespace WSGCliente.Controllers
 
                                                             if (responseReniec.CODIGOERROR == "0000")
                                                             {
-                                                                var itemCliente = new ClientViewModel();
-                                                                itemCliente.P_NIDDOC_TYPE = "2";
-                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
-                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
-                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
-                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
-                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
-                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+                                                                var itemCliente = new ClientViewModel
+                                                                {
+                                                                    P_NIDDOC_TYPE = "2",
+                                                                    P_SIDDOC = responseReniec.NUMERODNI,
+                                                                    P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION,
+                                                                    P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim(),
+                                                                    P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim(),
+                                                                    P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
+                                                                    P_SFIRSTNAME = responseReniec.NOMBRES.Trim()
+                                                                };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
                                                                 {
@@ -1373,7 +1418,7 @@ namespace WSGCliente.Controllers
                                                                     itemCliente.P_SSEXCLIEN = HomologarCampo(responseReniec.SEXO, request.P_CodAplicacion, "RSEXO");
                                                                 }
                                                                 itemCliente.P_ORIGEN_DATA = "RENIEC";
-                                                               // itemCliente.P_NNATIONALITY = "604";
+                                                                // itemCliente.P_NNATIONALITY = "604";
                                                                 itemCliente.P_NNATIONALITY = "1";
                                                                 itemCliente.P_SSISTEMA = request.P_SSISTEMA;
                                                                 itemCliente.P_TI_DOC_SUSTENT = responseReniec.TIPODOCUMENTOIDENTIDAD;
@@ -1401,50 +1446,54 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_SFIRMA = responseReniec.FIRMA;
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                                                                var itemDireccion = new AddressViewModel();
-                                                               // itemDireccion.P_NCOUNTRY = "604";
-                                                                itemDireccion.P_NCOUNTRY = "1";
-                                                                itemDireccion.P_DESTIDIRE = "Particular";
-                                                                itemDireccion.P_SRECTYPE = "2";
-                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                var itemDireccion = new AddressViewModel
+                                                                {
+                                                                    // itemDireccion.P_NCOUNTRY = "604";
+                                                                    P_NCOUNTRY = "1",
+                                                                    P_DESTIDIRE = "Particular",
+                                                                    P_SRECTYPE = "2",
+                                                                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                                                                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                                                                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                                                                };
                                                                 //Direccion completa
-                                                                var param = new DireccionCompletaBindingModel();
-                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                param.P_SREFERENCIA = "";
-                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var param = new DireccionCompletaBindingModel
+                                                                {
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_SREFERENCIA = "",
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                                                                };
                                                                 var result = InsertaCore.DireccionCompleta(param);
                                                                 itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                                                                 itemCliente.EListAddresClient.Add(itemDireccion);
@@ -1612,7 +1661,7 @@ namespace WSGCliente.Controllers
                                                             {
                                                                 string responseR = "";
                                                                 var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request,out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -1638,14 +1687,16 @@ namespace WSGCliente.Controllers
 
                                                             if (responseReniec.CODIGOERROR == "0000")
                                                             {
-                                                                var itemCliente = new ClientViewModel();
-                                                                itemCliente.P_NIDDOC_TYPE = "2";
-                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
-                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
-                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
-                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
-                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
-                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+                                                                var itemCliente = new ClientViewModel
+                                                                {
+                                                                    P_NIDDOC_TYPE = "2",
+                                                                    P_SIDDOC = responseReniec.NUMERODNI,
+                                                                    P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION,
+                                                                    P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim(),
+                                                                    P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim(),
+                                                                    P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
+                                                                    P_SFIRSTNAME = responseReniec.NOMBRES.Trim()
+                                                                };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
                                                                 {
@@ -1711,50 +1762,54 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_SISRENIEC_IND = "1";
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                                                                var itemDireccion = new AddressViewModel();
-                                                                // itemDireccion.P_NCOUNTRY = "604";
-                                                                itemDireccion.P_NCOUNTRY = "1";
-                                                                itemDireccion.P_DESTIDIRE = "Particular";
-                                                                itemDireccion.P_SRECTYPE = "2";
-                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                var itemDireccion = new AddressViewModel
+                                                                {
+                                                                    // itemDireccion.P_NCOUNTRY = "604";
+                                                                    P_NCOUNTRY = "1",
+                                                                    P_DESTIDIRE = "Particular",
+                                                                    P_SRECTYPE = "2",
+                                                                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                                                                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                                                                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                                                                };
                                                                 //Direccion completa
-                                                                var param = new DireccionCompletaBindingModel();
-                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                param.P_SREFERENCIA = "";
-                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var param = new DireccionCompletaBindingModel
+                                                                {
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_SREFERENCIA = "",
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                                                                };
                                                                 var result = InsertaCore.DireccionCompleta(param);
                                                                 itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                                                                 itemCliente.EListAddresClient.Add(itemDireccion);
@@ -1861,9 +1916,10 @@ namespace WSGCliente.Controllers
 
             List<string> Emails = ConfigurationManager.AppSettings["CorreoLAFT"].Split('|').ToList();
 
-            foreach (string email in Emails) {
+            foreach (string email in Emails)
+            {
 
-                configs.Add(new Config { Documento = request.P_SIDDOC, Nombres = request.P_SFIRSTNAME, ApellidoMaterno = request.P_SLASTNAME2, ApellidoPaterno = request.P_SLASTNAME , aplicativo = applications.SCOD_APPLICATION, Correo = email.ToString() });
+                configs.Add(new Config { Documento = request.P_SIDDOC, Nombres = request.P_SFIRSTNAME, ApellidoMaterno = request.P_SLASTNAME2, ApellidoPaterno = request.P_SLASTNAME, aplicativo = applications.SCOD_APPLICATION, Correo = email.ToString() });
             }
             return new Mail().ComposeMail("0", configs);
         }
@@ -1882,47 +1938,49 @@ namespace WSGCliente.Controllers
             };
 
             var _Aplicattion = new ConsultaCore().ConsultarAplicacionesGC().Where(x => x.SCOD_APPLICATION == request.P_CodAplicacion).FirstOrDefault();
-                if (_Aplicattion.NIND_USE_LAFT == "1")
+            if (_Aplicattion.NIND_USE_LAFT == "1")
+            {
+                var ClientLAFT = ConsultaClientLAFT(request.P_SIDDOC);
+                if (ClientLAFT.Count > 0)
                 {
-                    var ClientLAFT = ConsultaClientLAFT(request.P_SIDDOC);
-                    if (ClientLAFT.Count > 0)
+                    if (ClientLAFT[0].liberado == false)
                     {
-                        if (ClientLAFT[0].liberado == false)
+                        if (ClientLAFT[0].aplicaciones.Where(x => x.aplicacion.id == _Aplicattion.NID_SISTEMA_LAFT && x.activo).ToList().Count <= 0 &&
+                        ClientLAFT[0].configRegistro.aplicaciones.Where(x => x.aplicacion.id == _Aplicattion.NID_SISTEMA_LAFT && x.activo).ToList().Count <= 0)
                         {
-                            if (ClientLAFT[0].aplicaciones.Where(x => x.aplicacion.id == _Aplicattion.NID_SISTEMA_LAFT && x.activo).ToList().Count <= 0 &&
-                            ClientLAFT[0].configRegistro.aplicaciones.Where(x => x.aplicacion.id == _Aplicattion.NID_SISTEMA_LAFT && x.activo).ToList().Count <= 0)
-                            {
 
-                                if (ClientLAFT[0].senial.indAlert)
-                                {
+                            if (ClientLAFT[0].senial.indAlert)
+                            {
                                 request.P_SFIRSTNAME = string.IsNullOrEmpty(ClientLAFT[0].nombre) ? "" : ClientLAFT[0].nombre;
                                 request.P_SLASTNAME = string.IsNullOrEmpty(ClientLAFT[0].apellidoPaterno) ? "" : ClientLAFT[0].apellidoPaterno;
                                 request.P_SLASTNAME2 = string.IsNullOrEmpty(ClientLAFT[0].apellidoMaterno) ? "" : ClientLAFT[0].apellidoMaterno;
                                 var Cuerpo = listMessage(request, _Aplicattion);
                                 foreach (Message item in Cuerpo)
                                 {
-                                try { 
+                                    try
+                                    {
 
-                                  new Mail().SendMail("0", item.Address, item.Subject, item.Body, null);
+                                        new Mail().SendMail("0", item.Address, item.Subject, item.Body, null);
 
-                                }catch(Exception ex)
-                                {
+                                    }
+                                    catch (Exception ex)
+                                    {
 
+                                    }
                                 }
                             }
+                            if (ClientLAFT[0].senial.indError)
+                            {
+                                ClientLAFT[0].locked_App = true;
+                                ClientLAFT[0].locked_Message = WSGCliente.Util.GlobalMessage.ClientLAFT;
+                                //response.P_NCODE = "1";
+                                //response.P_SMESSAGE = WSGCliente.Util.GlobalMessage.ClientLAFT;
+                            }
                         }
-                        if (ClientLAFT[0].senial.indError)
-                        {
-                            ClientLAFT[0].locked_App = true;
-                            ClientLAFT[0].locked_Message = WSGCliente.Util.GlobalMessage.ClientLAFT;
-                            //response.P_NCODE = "1";
-                            //response.P_SMESSAGE = WSGCliente.Util.GlobalMessage.ClientLAFT;
-                        }
-                     }
-                   }
+                    }
                     _LaftClient = ClientLAFT[0];
                 }
-                
+
             }
             return Ok(_LaftClient);
         }
@@ -1932,31 +1990,33 @@ namespace WSGCliente.Controllers
         public List<LaftRegistroBindingModel> ConsultaClientLAFT(string NroDocumento)
         {
             List<LaftRegistroBindingModel> laftRegistroBindings = new List<LaftRegistroBindingModel>();
-            try { 
+            try
+            {
 
-            var ListClientLAFT = new ServiceCore().ConsumeServiceComum(Service.LAFT, Method.GET, 
-                new string[] { NroDocumento },true);
+                var ListClientLAFT = new ServiceCore().ConsumeServiceComum(Service.LAFT, Method.GET,
+                    new string[] { NroDocumento }, true);
 
-                laftRegistroBindings = 
+                laftRegistroBindings =
                     JsonConvert.DeserializeObject<List<LaftRegistroBindingModel>>(ListClientLAFT, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
 
-                foreach(LaftRegistroBindingModel ClientLAFT in laftRegistroBindings)
+                foreach (LaftRegistroBindingModel ClientLAFT in laftRegistroBindings)
                 {
                     if (ClientLAFT.id != 0)
                     {
                         var AppClientLAFT = new ServiceCore().ConsumeServiceComum(Service.RegistroLAFT, Method.GET,
-                            new string[] { ClientLAFT.id.ToString() },true);
+                            new string[] { ClientLAFT.id.ToString() }, true);
 
                         var ClientLAFTBindings =
                             JsonConvert.DeserializeObject<LaftRegistroBindingModel>(AppClientLAFT, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                       if(ClientLAFTBindings != null) { 
-                        ClientLAFT.configRegistro = ClientLAFTBindings.configRegistro;
-                        ClientLAFT.aplicaciones = ClientLAFTBindings.aplicaciones;
+                        if (ClientLAFTBindings != null)
+                        {
+                            ClientLAFT.configRegistro = ClientLAFTBindings.configRegistro;
+                            ClientLAFT.aplicaciones = ClientLAFTBindings.aplicaciones;
                         }
                     }
                 }
-               return laftRegistroBindings;                 
+                return laftRegistroBindings;
             }
             catch (Exception ex)
             {
@@ -1971,7 +2031,7 @@ namespace WSGCliente.Controllers
             ResponseViewModelEmBlue response = new ResponseViewModelEmBlue();
             var rutaEmblue = "http://api.embluemail.com/Services/Emblue3Service.svc/"; //COLOCAR EN APPSETTINGS
             ServiceCore ServiceCore = new ServiceCore();
-            var emBlueRes = ServiceCore.SendSMS(request,rutaEmblue);
+            var emBlueRes = ServiceCore.SendSMS(request, rutaEmblue);
             return Ok(emBlueRes);
         }
 
@@ -2082,14 +2142,16 @@ namespace WSGCliente.Controllers
 
                                                             if (responseReniec.CODIGOERROR == "0000")
                                                             {
-                                                                var itemCliente = new ClientViewModel();
-                                                                itemCliente.P_NIDDOC_TYPE = "2";
-                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
-                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
-                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
-                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
-                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
-                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+                                                                var itemCliente = new ClientViewModel
+                                                                {
+                                                                    P_NIDDOC_TYPE = "2",
+                                                                    P_SIDDOC = responseReniec.NUMERODNI,
+                                                                    P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION,
+                                                                    P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim(),
+                                                                    P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim(),
+                                                                    P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
+                                                                    P_SFIRSTNAME = responseReniec.NOMBRES.Trim()
+                                                                };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
                                                                 {
@@ -2154,49 +2216,53 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_SISRENIEC_IND = "1";
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                                                                var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "1";
-                                                                itemDireccion.P_DESTIDIRE = "Particular";
-                                                                itemDireccion.P_SRECTYPE = "2";
-                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                var itemDireccion = new AddressViewModel
+                                                                {
+                                                                    P_NCOUNTRY = "1",
+                                                                    P_DESTIDIRE = "Particular",
+                                                                    P_SRECTYPE = "2",
+                                                                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                                                                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                                                                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                                                                };
                                                                 //Direccion completa
-                                                                var param = new DireccionCompletaBindingModel();
-                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                param.P_SREFERENCIA = "";
-                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var param = new DireccionCompletaBindingModel
+                                                                {
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_SREFERENCIA = "",
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                                                                };
                                                                 var result = InsertaCore.DireccionCompleta(param);
                                                                 itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                                                                 itemCliente.EListAddresClient.Add(itemDireccion);
@@ -2346,7 +2412,7 @@ namespace WSGCliente.Controllers
                                         }
                                     }
                                     resAgrupado.Sort();
-                                    responseMovigoo.EListClient_P_DESPRODUCTO = String.Join(" | ", resAgrupado.ToArray());
+                                    responseMovigoo.EListClient_P_DESPRODUCTO = string.Join(" | ", resAgrupado.ToArray());
                                 }
                             }
                         }
@@ -2489,14 +2555,16 @@ namespace WSGCliente.Controllers
 
                                                             if (responseReniec.CODIGOERROR == "0000")
                                                             {
-                                                                var itemCliente = new ClientViewModel();
-                                                                itemCliente.P_NIDDOC_TYPE = "2";
-                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
-                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
-                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
-                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
-                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
-                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+                                                                var itemCliente = new ClientViewModel
+                                                                {
+                                                                    P_NIDDOC_TYPE = "2",
+                                                                    P_SIDDOC = responseReniec.NUMERODNI,
+                                                                    P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION,
+                                                                    P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim(),
+                                                                    P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim(),
+                                                                    P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
+                                                                    P_SFIRSTNAME = responseReniec.NOMBRES.Trim()
+                                                                };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
                                                                 {
@@ -2561,49 +2629,53 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_SISRENIEC_IND = "1";
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                                                                var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "1";
-                                                                itemDireccion.P_DESTIDIRE = "Particular";
-                                                                itemDireccion.P_SRECTYPE = "2";
-                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                var itemDireccion = new AddressViewModel
+                                                                {
+                                                                    P_NCOUNTRY = "1",
+                                                                    P_DESTIDIRE = "Particular",
+                                                                    P_SRECTYPE = "2",
+                                                                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                                                                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                                                                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                                                                };
                                                                 //Direccion completa
-                                                                var param = new DireccionCompletaBindingModel();
-                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                param.P_SREFERENCIA = "";
-                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var param = new DireccionCompletaBindingModel
+                                                                {
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_SREFERENCIA = "",
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                                                                };
                                                                 var result = InsertaCore.DireccionCompleta(param);
                                                                 itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                                                                 itemCliente.EListAddresClient.Add(itemDireccion);
@@ -2697,14 +2769,14 @@ namespace WSGCliente.Controllers
                             break;
                     }
 
-                    
+
 
                     if (request.P_CodAplicacion == "EXTERNO1GCI")
                     {
                         responseMovigoo.P_NCODE = responseP.P_NCODE;
-                        responseMovigoo.P_SMESSAGE = responseP.P_SMESSAGE  ;
-                  
-                        if(responseP.EListClient != null)
+                        responseMovigoo.P_SMESSAGE = responseP.P_SMESSAGE;
+
+                        if (responseP.EListClient != null)
                         {
 
                             if (responseP.EListClient.Count == 1)
@@ -2715,7 +2787,8 @@ namespace WSGCliente.Controllers
 
                                     responseMovigoo.P_SMESSAGE = "No existen registros con los criterios ingresados.";
                                 }
-                                else {
+                                else
+                                {
 
                                     responseMovigoo.P_SMESSAGE = "";
                                     responseMovigoo.EListClient_P_DESDOC_TYPE = responseP.EListClient[0].P_DESDOC_TYPE;
@@ -2729,32 +2802,34 @@ namespace WSGCliente.Controllers
                                     //responseMovigoo.EListClient_P_NCLIENT_SEG_DESCRIP = responseP.EListClient[0].P_NCLIENT_SEG_DESCRIP;
 
                                     /*AGRUPAMIENTO DE RENTAS*/
-                                    responseMovigoo.EListClient_P_DESPRODUCTO = responseP.EListClient[0]. P_DESPRODUCTO
+                                    responseMovigoo.EListClient_P_DESPRODUCTO = responseP.EListClient[0].P_DESPRODUCTO
                                         .Replace("COLABORADORES | ", "")
                                         .Replace(" | COLABORADORES | ", "")
                                         .Replace(" | COLABORADORES", "");
 
                                     var sepSegmentos = responseMovigoo.EListClient_P_DESPRODUCTO.Split('|');
-                                    List<string>  resAgrupado = new List<string>();
-                                    foreach (var segmento in sepSegmentos) {
+                                    List<string> resAgrupado = new List<string>();
+                                    foreach (var segmento in sepSegmentos)
+                                    {
                                         if (segmento.Trim().Contains("RENTA"))
                                         {
-                                            resAgrupado.Add ("RENTAS");
+                                            resAgrupado.Add("RENTAS");
                                         }
                                         else if (segmento.Trim().Contains("SOAT"))
                                         {
                                             resAgrupado.Add("SOAT");
                                         }
-                                        else {
+                                        else
+                                        {
                                             resAgrupado.Add(segmento.Trim());
                                         }
                                     }
                                     resAgrupado.Sort();
-                                    responseMovigoo.EListClient_P_DESPRODUCTO = String.Join(" | ", resAgrupado.ToArray());
+                                    responseMovigoo.EListClient_P_DESPRODUCTO = string.Join(" | ", resAgrupado.ToArray());
                                 }
                             }
-                        }                             
-                        return Ok(responseMovigoo); 
+                        }
+                        return Ok(responseMovigoo);
                     }
                     else
                     {
@@ -2894,14 +2969,16 @@ namespace WSGCliente.Controllers
 
                                                             if (responseReniec.CODIGOERROR == "0000")
                                                             {
-                                                                var itemCliente = new ClientViewModel();
-                                                                itemCliente.P_NIDDOC_TYPE = "2";
-                                                                itemCliente.P_SIDDOC = responseReniec.NUMERODNI;
-                                                                itemCliente.P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION;
-                                                                itemCliente.P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim();
-                                                                itemCliente.P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim();
-                                                                itemCliente.P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim();
-                                                                itemCliente.P_SFIRSTNAME = responseReniec.NOMBRES.Trim();
+                                                                var itemCliente = new ClientViewModel
+                                                                {
+                                                                    P_NIDDOC_TYPE = "2",
+                                                                    P_SIDDOC = responseReniec.NUMERODNI,
+                                                                    P_DIG_VERIFICACION = responseReniec.DIGITOVERIFICACION,
+                                                                    P_SLASTNAME = responseReniec.APELLIDOPATERNO.Trim(),
+                                                                    P_SLASTNAME2 = responseReniec.APELLIDOMATERNO.Trim(),
+                                                                    P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
+                                                                    P_SFIRSTNAME = responseReniec.NOMBRES.Trim()
+                                                                };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
                                                                 {
@@ -2966,49 +3043,53 @@ namespace WSGCliente.Controllers
                                                                 itemCliente.P_SISRENIEC_IND = "1";
 
                                                                 itemCliente.EListAddresClient = new List<AddressViewModel>();
-                                                                var itemDireccion = new AddressViewModel();
-                                                                itemDireccion.P_NCOUNTRY = "1";
-                                                                itemDireccion.P_DESTIDIRE = "Particular";
-                                                                itemDireccion.P_SRECTYPE = "2";
-                                                                itemDireccion.P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO;
-                                                                itemDireccion.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                itemDireccion.P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                itemDireccion.P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
-                                                                itemDireccion.P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim();
-                                                                itemDireccion.P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim();
-                                                                itemDireccion.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                itemDireccion.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                itemDireccion.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                itemDireccion.P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim();
-                                                                itemDireccion.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                itemDireccion.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                itemDireccion.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                itemDireccion.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                itemDireccion.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                itemDireccion.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                itemDireccion.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                itemDireccion.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
+                                                                var itemDireccion = new AddressViewModel
+                                                                {
+                                                                    P_NCOUNTRY = "1",
+                                                                    P_DESTIDIRE = "Particular",
+                                                                    P_SRECTYPE = "2",
+                                                                    P_SCOD_DEP_UBI_DOM = responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO,
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_SCOD_PRO_UBI_DOM = responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_SCOD_DIS_UBI_DOM = responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO,
+                                                                    P_SDES_DEP_DOM = responseReniec.DEPARTAMENTODOMICILIO.Trim(),
+                                                                    P_SDES_PRO_DOM = responseReniec.PROVINCIADOMICILIO.Trim(),
+                                                                    P_SDES_DIS_DOM = responseReniec.DISTRITODOMICILIO.Trim(),
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.BLOCKCHALET.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim()
+                                                                };
                                                                 //Direccion completa
-                                                                var param = new DireccionCompletaBindingModel();
-                                                                param.P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim();
-                                                                param.P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim();
-                                                                param.P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim();
-                                                                param.P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim();
-                                                                param.P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim();
-                                                                param.P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim();
-                                                                param.P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim();
-                                                                param.P_SNOM_CJHT = responseReniec.URBANIZACION.Trim();
-                                                                param.P_SETAPA = responseReniec.ETAPA.Trim();
-                                                                param.P_SMANZANA = responseReniec.MANZANA.Trim();
-                                                                param.P_SLOTE = responseReniec.LOTE.Trim();
-                                                                param.P_SREFERENCIA = "";
-                                                                param.P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString();
-                                                                param.P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO;
-                                                                param.P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO;
+                                                                var param = new DireccionCompletaBindingModel
+                                                                {
+                                                                    P_STI_DIRE = responseReniec.PREFIJODIRECCION.Trim(),
+                                                                    P_SNOM_DIRECCION = responseReniec.DIRECCION.Trim(),
+                                                                    P_SNUM_DIRECCION = responseReniec.NUMERODIRECCION.Trim(),
+                                                                    P_STI_BLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_SBLOCKCHALET = responseReniec.PREFIJOBLOCKCHALET.Trim(),
+                                                                    P_STI_INTERIOR = responseReniec.PREFIJODPTOPISOINTERIOR.Trim(),
+                                                                    P_SNUM_INTERIOR = responseReniec.INTERIOR.Trim(),
+                                                                    P_STI_CJHT = responseReniec.PREFIJOURBCONDRESID.Trim(),
+                                                                    P_SNOM_CJHT = responseReniec.URBANIZACION.Trim(),
+                                                                    P_SETAPA = responseReniec.ETAPA.Trim(),
+                                                                    P_SMANZANA = responseReniec.MANZANA.Trim(),
+                                                                    P_SLOTE = responseReniec.LOTE.Trim(),
+                                                                    P_SREFERENCIA = "",
+                                                                    P_NPROVINCE = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString(),
+                                                                    P_NLOCAL = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO,
+                                                                    P_NMUNICIPALITY = Convert.ToInt32(responseReniec.CODIGOUBIGEODEPARTAMENTODOMICILIO).ToString() + responseReniec.CODIGOUBIGEOPROVINCIADOMICILIO + responseReniec.CODIGOUBIGEODISTRITODOMICILIO
+                                                                };
                                                                 var result = InsertaCore.DireccionCompleta(param);
                                                                 itemDireccion.P_SDESDIREBUSQ = result.P_SDESDIREBUSQ;
                                                                 itemCliente.EListAddresClient.Add(itemDireccion);
@@ -3124,7 +3205,7 @@ namespace WSGCliente.Controllers
                                 responseMovigoo.EListClient_P_DESCIVILSTA = responseP.EListClient[0].P_DESCIVILSTA;
 
 
-                                var arraMov = responseP.EListClient[0].P_DESPRODUCTO.Split('|') ;
+                                var arraMov = responseP.EListClient[0].P_DESPRODUCTO.Split('|');
                                 if (arraMov.Length > 1)
                                 {
                                     responseMovigoo.EListClient_P_DESPRODUCTO = arraMov[0];
@@ -3133,11 +3214,12 @@ namespace WSGCliente.Controllers
                                     responseMovigoo.EListClient_P_NPOLICY = arraMov[3];
                                     responseMovigoo.EListClient_P_NCERTIF = arraMov[4];
                                 }
-                                else {
+                                else
+                                {
                                     responseMovigoo.EListClient_P_DESPRODUCTO = arraMov[0];
                                     responseMovigoo.EListClient_P_NPOLICY = arraMov[1];
                                 }
-                               
+
                             }
                         }
                         return Ok(responseMovigoo);
@@ -3178,128 +3260,133 @@ namespace WSGCliente.Controllers
             ResponseViewModel response = new ResponseViewModel();
             ResponseCEModel _responseCEModel;
             ServiceCore ServiceCore = new ServiceCore();
-            
-            var itemCliente = new ClientViewModel();
-            
-            itemCliente.EListPhoneClient = new List<PhoneViewModel>();
-            itemCliente.EListEmailClient = new List<EmailViewModel>();
-            itemCliente.EListContactClient = new List<ContactViewModel>();
-            itemCliente.EListCIIUClient = new List<CiiuViewModel>();
-            itemCliente.EListAddresClient = new List<AddressViewModel>();
-            itemCliente.P_DBIRTHDAT = client.P_DBIRTHDAT;
-            itemCliente.P_NIDDOC_TYPE = client.P_NIDDOC_TYPE;
-            itemCliente.P_SIDDOC = client.P_SIDDOC;
-            itemCliente.P_SREGIST = "1";
-            itemCliente.P_ORIGEN_DATA = "CE";
+
+            var itemCliente = new ClientViewModel
+            {
+                EListPhoneClient = new List<PhoneViewModel>(),
+                EListEmailClient = new List<EmailViewModel>(),
+                EListContactClient = new List<ContactViewModel>(),
+                EListCIIUClient = new List<CiiuViewModel>(),
+                EListAddresClient = new List<AddressViewModel>(),
+                P_DBIRTHDAT = client.P_DBIRTHDAT,
+                P_NIDDOC_TYPE = client.P_NIDDOC_TYPE,
+                P_SIDDOC = client.P_SIDDOC,
+                P_SREGIST = "1",
+                P_ORIGEN_DATA = "CE"
+            };
             response.P_NCODE = "3";
             try
             {
-            var FechaNac = string.IsNullOrEmpty(client.P_DBIRTHDAT) ? DateTime.Now : Convert.ToDateTime(client.P_DBIRTHDAT);
-            RequestCEModel _objCE = new RequestCEModel()
-            {
-                CE = client.P_SIDDOC,
-                ANIO = FechaNac.Year.ToString(),
-                MES = FechaNac.Month.ToString(),
-                DIA = FechaNac.Day.ToString()
-            };
-            var request = JsonConvert.SerializeObject(_objCE);
-            
-                string _responseJSON = ServiceCore.ConsumeServiceComum(Service.UrlCE,Method.POST,new System.Net.WebHeaderCollection(),request,null,false);
+                var FechaNac = string.IsNullOrEmpty(client.P_DBIRTHDAT) ? DateTime.Now : Convert.ToDateTime(client.P_DBIRTHDAT);
+                RequestCEModel _objCE = new RequestCEModel()
+                {
+                    CE = client.P_SIDDOC,
+                    ANIO = FechaNac.Year.ToString(),
+                    MES = FechaNac.Month.ToString(),
+                    DIA = FechaNac.Day.ToString()
+                };
+                var request = JsonConvert.SerializeObject(_objCE);
+
+                string _responseJSON = ServiceCore.ConsumeServiceComum(Service.UrlCE, Method.POST, new System.Net.WebHeaderCollection(), request, null, false);
                 if (!string.IsNullOrEmpty(_responseJSON))
                 {
-                    _responseCEModel =  JsonConvert.DeserializeObject<ResponseCEModel>(_responseJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                    if(_responseCEModel.estado == 0)
+                    _responseCEModel = JsonConvert.DeserializeObject<ResponseCEModel>(_responseJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    if (_responseCEModel.estado == 0)
                     {
                         response.P_NCODE = "0";
                         itemCliente.P_DBIRTHDAT = Convert.ToDateTime(_responseCEModel.nacimiento).ToString("dd/MM/yyyy");
-                        string[] nombres = _responseCEModel.nombre.Replace(",","").Split(' ').ToArray();
+                        string[] nombres = _responseCEModel.nombre.Replace(",", "").Split(' ').ToArray();
                         itemCliente.P_SLASTNAME = (nombres.ElementAtOrDefault(0) != null) ? nombres[0] : string.Empty;
                         itemCliente.P_SLASTNAME2 = (nombres.ElementAtOrDefault(1) != null) ? nombres[1] : string.Empty;
-                        itemCliente.P_SFIRSTNAME = (nombres.ElementAtOrDefault(2) != null) ?  nombres[2] : string.Empty;
+                        itemCliente.P_SFIRSTNAME = (nombres.ElementAtOrDefault(2) != null) ? nombres[2] : string.Empty;
                         itemCliente.P_SFIRSTNAME += (nombres.ElementAtOrDefault(3) != null) ? " " + nombres[3] : string.Empty;
-                        itemCliente.P_NNATIONALITY  = new ConsultaCore().ObtenerCodigoPais(_responseCEModel.nacionalidad).ToString();
+                        itemCliente.P_NNATIONALITY = new ConsultaCore().ObtenerCodigoPais(_responseCEModel.nacionalidad).ToString();
 
                     }
                 }
-                
+
                 response.EListClient = new List<ClientViewModel> { itemCliente };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.P_NCODE = "3";
                 response.P_SMESSAGE = ex.Message;
-                response.EListClient = new  List<ClientViewModel> { itemCliente };
+                response.EListClient = new List<ClientViewModel> { itemCliente };
             }
-          
+
             return response;
         }
 
         public ResponseViewModel ConsultarSUNAT(string str_Documento)
         {
-           
-                ResponseSunatModel _ResponseSUNAT;
-                ServiceCore ServiceCore = new ServiceCore();
-                ResponseViewModel response = new ResponseViewModel();
-                var itemCliente = new ClientViewModel();
-                itemCliente.EListPhoneClient = new List<PhoneViewModel>();
-                itemCliente.EListEmailClient = new List<EmailViewModel>();
-                itemCliente.EListContactClient = new List<ContactViewModel>();
-                itemCliente.EListCIIUClient = new List<CiiuViewModel>();
-                itemCliente.EListAddresClient = new List<AddressViewModel>();
-                itemCliente.P_NIDDOC_TYPE = "1";
-                itemCliente.P_SIDDOC = str_Documento;
-            try { 
-                    string _responseJSON= ServiceCore.ConsultarCliente(str_Documento, "UrlServiceSUNAT");
-                    _ResponseSUNAT  = JsonConvert.DeserializeObject<ResponseSunatModel>(_responseJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            ResponseSunatModel _ResponseSUNAT;
+            ServiceCore ServiceCore = new ServiceCore();
+            ResponseViewModel response = new ResponseViewModel();
+            var itemCliente = new ClientViewModel
+            {
+                EListPhoneClient = new List<PhoneViewModel>(),
+                EListEmailClient = new List<EmailViewModel>(),
+                EListContactClient = new List<ContactViewModel>(),
+                EListCIIUClient = new List<CiiuViewModel>(),
+                EListAddresClient = new List<AddressViewModel>(),
+                P_NIDDOC_TYPE = "1",
+                P_SIDDOC = str_Documento
+            };
+            try
+            {
+                string _responseJSON = ServiceCore.ConsultarCliente(str_Documento, "UrlServiceSUNAT");
+                _ResponseSUNAT = JsonConvert.DeserializeObject<ResponseSunatModel>(_responseJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                 if (_ResponseSUNAT.Exito == true && _ResponseSUNAT.Data != null)
                 {
-                    
-                    var _ObjClient = _ResponseSUNAT.Data ;
-                    
-                    
-                    string[] array = new string[] { "10","15","17" };
+
+                    var _ObjClient = _ResponseSUNAT.Data;
+
+
+                    string[] array = new string[] { "10", "15", "17" };
                     if (array.Contains(str_Documento.Substring(0, 2)))
                     {
-                         
-                            string[] Nombre = _ObjClient.RazonSocial.Split(' ');
-                        string Firstname="";
-                            if(Nombre.Length > 2)
-                            {
+
+                        string[] Nombre = _ObjClient.RazonSocial.Split(' ');
+                        string Firstname = "";
+                        if (Nombre.Length > 2)
+                        {
                             Firstname = Nombre[2];
-                            }
-                            if(Nombre.Length > 3)
-                            {
+                        }
+                        if (Nombre.Length > 3)
+                        {
                             Firstname = Firstname + " " + Nombre[3];
-                            }
-                                itemCliente.P_SFIRSTNAME = Firstname;
-                            if (Nombre[0] != null)
-                            {
-                                itemCliente.P_SLASTNAME = Nombre[0];
-                            }
-                            if (Nombre[1] != null)
-                            {
-                                itemCliente.P_SLASTNAME2= Nombre[1];
-                            }
-                        
+                        }
+                        itemCliente.P_SFIRSTNAME = Firstname;
+                        if (Nombre[0] != null)
+                        {
+                            itemCliente.P_SLASTNAME = Nombre[0];
+                        }
+                        if (Nombre[1] != null)
+                        {
+                            itemCliente.P_SLASTNAME2 = Nombre[1];
+                        }
+
 
                     }
-                    
-                        itemCliente.P_SLEGALNAME = _ObjClient.RazonSocial;
-                    
+
+                    itemCliente.P_SLEGALNAME = _ObjClient.RazonSocial;
+
                     // itemCliente.P_SFIRSTNAME = (_ObjClient.Direcion == "-" || _ObjClient.Direcion == null  ? _ObjClient.RazonSocial : null);
                     //Address
-                    
+
                     var _ObjDirecClient = new AddressViewModel();
-                    if (_ObjClient.Direcion != "-" && _ObjClient.Direcion != null) {
-                    
-                    _ObjDirecClient.P_SNOM_DIRECCION = _ObjClient.Direcion;
-                    _ObjDirecClient.P_SDESDIREBUSQ = _ObjClient.Direcion;
-                    _ObjDirecClient.P_DESDISTRITO = _ObjClient.Distrito;
-                    _ObjDirecClient.P_DESDEPARTAMENTO = _ObjClient.Departamento;
-                    _ObjDirecClient.P_DESPROVINCIA = _ObjClient.Provincia;
-                    itemCliente.EListAddresClient.Add(_ObjDirecClient);
-                    } 
-                   
+                    if (_ObjClient.Direcion != "-" && _ObjClient.Direcion != null)
+                    {
+
+                        _ObjDirecClient.P_SNOM_DIRECCION = _ObjClient.Direcion;
+                        _ObjDirecClient.P_SDESDIREBUSQ = _ObjClient.Direcion;
+                        _ObjDirecClient.P_DESDISTRITO = _ObjClient.Distrito;
+                        _ObjDirecClient.P_DESDEPARTAMENTO = _ObjClient.Departamento;
+                        _ObjDirecClient.P_DESPROVINCIA = _ObjClient.Provincia;
+                        itemCliente.EListAddresClient.Add(_ObjDirecClient);
+                    }
+
                     itemCliente.P_ORIGEN_DATA = "RENIEC";
                     itemCliente.P_SISRENIEC_IND = "1";
                     response.EListClient = new List<ClientViewModel> { itemCliente };
@@ -3312,71 +3399,80 @@ namespace WSGCliente.Controllers
                     response.P_NCODE = "3";
                 }
             }
-            catch(Exception ex)
-                {
-                     response.EListClient = new List<ClientViewModel> { itemCliente };
-                     response.P_NCODE = "3";
-                     response.P_SMESSAGE = ex.Message;
-                }
-                return response;
+            catch (Exception ex)
+            {
+                response.EListClient = new List<ClientViewModel> { itemCliente };
+                response.P_NCODE = "3";
+                response.P_SMESSAGE = ex.Message;
             }
-            
-        
+            return response;
+        }
 
-        public ResponseReniecViewModel ObtenerClientReniecLocal(ClientBindingModel client,out Boolean ExistLocal) {
-            try {
+
+
+        public ResponseReniecViewModel ObtenerClientReniecLocal(ClientBindingModel client, out bool ExistLocal)
+        {
+            try
+            {
                 ExistLocal = false;
                 ResponseReniecViewModel ResponseClient = new ResponseReniecViewModel();
                 InsertaCore InsertaCore = new InsertaCore();
-                ResponseViewModel response= InsertaCore.ObtenerClientReniecLocal(client);
+                ResponseViewModel response = InsertaCore.ObtenerClientReniecLocal(client);
                 List<ResponseReniecViewModel> ListReniec = (List<ResponseReniecViewModel>)response.Data;
                 if (ListReniec != null)
                 {
                     ExistLocal = (ListReniec.Count > 0) ? true : false;
+
                     ResponseClient = ListReniec[0];
+
                     //Campos muy grandes para el store 
                     ResponseClient.CODIGOUBIGEODEPARTAMENTODOMICILIO = ResponseClient.CODUBIGEODEPARTAMENTODOMICILIO;
                     ResponseClient.CODIGOUBIGEODEPARTAMENTONACIMIENTO = ResponseClient.CODUBIGEODEPARTAMENTONACI;
                     ResponseClient.CODIGOUBIGEOPROVINCIANACIMIENTO = ResponseClient.CODUBIGEOPROVINCIANACI;
                 }
                 return ResponseClient;
-                }
-                catch(Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
                 ExistLocal = false;
                 return null;
-                }
+            }
         }
-        public void AddClientReniec(ResponseReniecViewModel responseR) {
-            if (responseR != null) {
+        public void AddClientReniec(ResponseReniecViewModel responseR)
+        {
+            if (responseR != null)
+            {
                 InsertaCore Core = new InsertaCore();
                 ResponseViewModel Response = Core.InsertarClienteReniec(responseR);
             }
         }
-        public string HomologarCampo(string valor,string CodAplication,string Tipo)
+        public string HomologarCampo(string valor, string CodAplication, string Tipo)
         {
-            if(valor != "") { 
-            InsertaCore Core = new InsertaCore();
-            return Core.HomologarCampos(CodAplication, Tipo, valor);
-            }else{return "";}
+            if (valor != "")
+            {
+                InsertaCore Core = new InsertaCore();
+                return Core.HomologarCampos(CodAplication, Tipo, valor);
+            }
+            else { return ""; }
         }
-        public List<AddressViewModel> HomologarUbigeo(List<AddressViewModel> addressBindingModels,string CodAplication)
+        public List<AddressViewModel> HomologarUbigeo(List<AddressViewModel> addressBindingModels, string CodAplication)
         {
             InsertaCore Core = new InsertaCore();
-                foreach (AddressViewModel element in addressBindingModels)
-                {
+            foreach (AddressViewModel element in addressBindingModels)
+            {
                 string Municipality = Core.HomologarCampos(CodAplication, "RUBIGEO", element.P_NMUNICIPALITY.ToString());
                 element.P_NMUNICIPALITY = Municipality;
                 element.P_NLOCAL = Municipality.Substring(0, 2);
                 element.P_NPROVINCE = Municipality.Substring(0, 4);
-                }
-                return addressBindingModels;
+            }
+            return addressBindingModels;
         }
         public List<AddressBindingModel> SetRecowner(List<AddressBindingModel> addressBindingModels)
         {
             foreach (AddressBindingModel element in addressBindingModels)
             {
-                if (element.P_NRECOWNER != "3" && element.P_NRECOWNER != "4") { 
+                if (element.P_NRECOWNER != "3" && element.P_NRECOWNER != "4")
+                {
                     element.P_NRECOWNER = "2";
                 }
             }
@@ -3386,7 +3482,8 @@ namespace WSGCliente.Controllers
         {
             InsertaCore InsertaCore = new InsertaCore();
             ResponseViewModel response = new ResponseViewModel();
-        if(request.P_CodAplicacion.ToUpper() == "GESTORCLIENTE") { 
+            if (request.P_CodAplicacion.ToUpper() == "GESTORCLIENTE")
+            {
                 if (request.P_NIDDOC_TYPE == "1")
                 {
                     if (request.EListCIIUClient == null || request.EListCIIUClient.Count() == 0)
@@ -3419,7 +3516,7 @@ namespace WSGCliente.Controllers
             InsertaCore InsertaCore = new InsertaCore();
             ResponseViewModel response = new ResponseViewModel();
             string TipoDoc = InsertaCore.HomologarCampos(request.P_CodAplicacion, "DOCIDE", request.P_NIDDOC_TYPE.ToString());
-            if (TipoDoc == "1" && request.P_CodAplicacion =="GESTORCLIENTE" && request.P_SREGISTCIIU != "1")
+            if (TipoDoc == "1" && request.P_CodAplicacion == "GESTORCLIENTE" && request.P_SREGISTCIIU != "1")
             {
                 if (request.EListCIIUClient == null || request.EListCIIUClient.Count() == 0)
                 {
@@ -3439,14 +3536,15 @@ namespace WSGCliente.Controllers
                         try
                         {
                             response = InsertaCore.InsertarCliente(request);
-                            if (request.P_SSISTEMA != null) { 
-                            if (request.P_SSISTEMA != "")
+                            if (request.P_SSISTEMA != null)
                             {
-                                ResponseSistemaViewModel responseSistema = new ResponseSistemaViewModel();
-                                responseSistema = InsertaCore.InsertarSistema(request.P_SSISTEMA, request.P_NIDDOC_TYPE, request.P_SIDDOC);
-                                response.P_SCOD_CLIENT = responseSistema.P_SCOD_CLIENT;
-                                response.P_SURL_SISTEMA = responseSistema.P_SURL_SISTEMA;
-                            }
+                                if (request.P_SSISTEMA != "")
+                                {
+                                    ResponseSistemaViewModel responseSistema = new ResponseSistemaViewModel();
+                                    responseSistema = InsertaCore.InsertarSistema(request.P_SSISTEMA, request.P_NIDDOC_TYPE, request.P_SIDDOC);
+                                    response.P_SCOD_CLIENT = responseSistema.P_SCOD_CLIENT;
+                                    response.P_SURL_SISTEMA = responseSistema.P_SURL_SISTEMA;
+                                }
                             }
 
                         }
