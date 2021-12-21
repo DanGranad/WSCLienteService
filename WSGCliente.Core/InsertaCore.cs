@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WSGCliente.DataAccess;
-using WSGCliente.Entities.ViewModel;
 using WSGCliente.Entities.BindingModel;
+using WSGCliente.Entities.ViewModel;
 
 namespace WSGCliente.Core
 {
@@ -62,14 +58,15 @@ namespace WSGCliente.Core
         {
             return InsertaDataAccess.ListarReniec(request);
         }
- public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel Client) {
+        public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel Client)
+        {
             return InsertaDataAccess.ObtenerClientReniecLocal(Client);
         }
         public ResponseViewModel InsertarClienteReniec(ResponseReniecViewModel Reniec)
         {
             return InsertaDataAccess.InsertarClienteReniec(Reniec);
         }
- public ResponseViewModel DestinatarioEmail(string nUSERCODE)
+        public ResponseViewModel DestinatarioEmail(string nUSERCODE)
         {
             return InsertaDataAccess.DestinatarioEmail(nUSERCODE);
         }

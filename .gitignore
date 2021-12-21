@@ -6,3 +6,4 @@ obj
 packages
 WSGCliente.Util/bin/
 .vs/
+WSGCliente/Properties/PublishProfiles/
