@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PagosCupon" targetNamespace="http://tempuri.org/PagosCuponxsd.xsd" xmlns:mstns="http://tempuri.org/PagosCuponxsd.xsd" xmlns="http://tempuri.org/PagosCuponxsd.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PagosCupon" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PagosCupon" msprop:Generator_UserDSName="PagosCupon">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CuponPago" msprop:Generator_TableClassName="CuponPagoDataTable" msprop:Generator_TableVarName="tableCuponPago" msprop:Generator_RowChangedName="CuponPagoRowChanged" msprop:Generator_TablePropName="CuponPago" msprop:Generator_RowDeletingName="CuponPagoRowDeleting" msprop:Generator_RowChangingName="CuponPagoRowChanging" msprop:Generator_RowEvHandlerName="CuponPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="CuponPagoRowDeleted" msprop:Generator_RowClassName="CuponPagoRow" msprop:Generator_UserTableName="CuponPago" msprop:Generator_RowEvArgName="CuponPagoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CONVENIO" msprop:Generator_ColumnVarNameInTable="columnCONVENIO" msprop:Generator_ColumnPropNameInRow="CONVENIO" msprop:Generator_ColumnPropNameInTable="CONVENIOColumn" msprop:Generator_UserColumnName="CONVENIO" type="xs:string" minOccurs="0" />
+              <xs:element name="PAGO_NUMERO" msprop:Generator_ColumnVarNameInTable="columnPAGO_NUMERO" msprop:Generator_ColumnPropNameInRow="PAGO_NUMERO" msprop:Generator_ColumnPropNameInTable="PAGO_NUMEROColumn" msprop:Generator_UserColumnName="PAGO_NUMERO" type="xs:string" minOccurs="0" />
+              <xs:element name="VENCIMIENTO_PAGO" msprop:Generator_ColumnVarNameInTable="columnVENCIMIENTO_PAGO" msprop:Generator_ColumnPropNameInRow="VENCIMIENTO_PAGO" msprop:Generator_ColumnPropNameInTable="VENCIMIENTO_PAGOColumn" msprop:Generator_UserColumnName="VENCIMIENTO_PAGO" type="xs:string" minOccurs="0" />
+              <xs:element name="IMPORTE" msprop:Generator_ColumnVarNameInTable="columnIMPORTE" msprop:Generator_ColumnPropNameInRow="IMPORTE" msprop:Generator_ColumnPropNameInTable="IMPORTEColumn" msprop:Generator_UserColumnName="IMPORTE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LugaresPago" msprop:Generator_TableClassName="LugaresPagoDataTable" msprop:Generator_TableVarName="tableLugaresPago" msprop:Generator_RowChangedName="LugaresPagoRowChanged" msprop:Generator_TablePropName="LugaresPago" msprop:Generator_RowDeletingName="LugaresPagoRowDeleting" msprop:Generator_RowChangingName="LugaresPagoRowChanging" msprop:Generator_RowEvHandlerName="LugaresPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="LugaresPagoRowDeleted" msprop:Generator_RowClassName="LugaresPagoRow" msprop:Generator_UserTableName="LugaresPago" msprop:Generator_RowEvArgName="LugaresPagoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ENTIDAD" msprop:Generator_ColumnVarNameInTable="columnENTIDAD" msprop:Generator_ColumnPropNameInRow="ENTIDAD" msprop:Generator_ColumnPropNameInTable="ENTIDADColumn" msprop:Generator_UserColumnName="ENTIDAD" type="xs:string" minOccurs="0" />
+              <xs:element name="IND_PAG_WEB" msprop:Generator_ColumnVarNameInTable="columnIND_PAG_WEB" msprop:Generator_ColumnPropNameInRow="IND_PAG_WEB" msprop:Generator_ColumnPropNameInTable="IND_PAG_WEBColumn" msprop:Generator_UserColumnName="IND_PAG_WEB" type="xs:string" minOccurs="0" />
+              <xs:element name="IND_AGE_EXP" msprop:Generator_ColumnVarNameInTable="columnIND_AGE_EXP" msprop:Generator_ColumnPropNameInRow="IND_AGE_EXP" msprop:Generator_ColumnPropNameInTable="IND_AGE_EXPColumn" msprop:Generator_UserColumnName="IND_AGE_EXP" type="xs:string" minOccurs="0" />
+              <xs:element name="CUENTA_RECAUDA" msprop:Generator_ColumnVarNameInTable="columnCUENTA_RECAUDA" msprop:Generator_ColumnPropNameInRow="CUENTA_RECAUDA" msprop:Generator_ColumnPropNameInTable="CUENTA_RECAUDAColumn" msprop:Generator_UserColumnName="CUENTA_RECAUDA" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Cronograma" msprop:Generator_TableClassName="CronogramaDataTable" msprop:Generator_TableVarName="tableCronograma" msprop:Generator_TablePropName="Cronograma" msprop:Generator_RowDeletingName="CronogramaRowDeleting" msprop:Generator_RowChangingName="CronogramaRowChanging" msprop:Generator_RowEvHandlerName="CronogramaRowChangeEventHandler" msprop:Generator_RowDeletedName="CronogramaRowDeleted" msprop:Generator_UserTableName="Cronograma" msprop:Generator_RowChangedName="CronogramaRowChanged" msprop:Generator_RowEvArgName="CronogramaRowChangeEvent" msprop:Generator_RowClassName="CronogramaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NROCUPON" msprop:Generator_ColumnVarNameInTable="columnNROCUPON" msprop:Generator_ColumnPropNameInRow="NROCUPON" msprop:Generator_ColumnPropNameInTable="NROCUPONColumn" msprop:Generator_UserColumnName="NROCUPON" type="xs:string" minOccurs="0" />
+              <xs:element name="NRORECIBO" msprop:Generator_ColumnVarNameInTable="columnNRORECIBO" msprop:Generator_ColumnPropNameInRow="NRORECIBO" msprop:Generator_ColumnPropNameInTable="NRORECIBOColumn" msprop:Generator_UserColumnName="NRORECIBO" type="xs:string" minOccurs="0" />
+              <xs:element name="VENCIMIENTO" msprop:Generator_ColumnVarNameInTable="columnVENCIMIENTO" msprop:Generator_ColumnPropNameInRow="VENCIMIENTO" msprop:Generator_ColumnPropNameInTable="VENCIMIENTOColumn" msprop:Generator_UserColumnName="VENCIMIENTO" type="xs:string" minOccurs="0" />
+              <xs:element name="INTERES" msprop:Generator_ColumnVarNameInTable="columnINTERES" msprop:Generator_ColumnPropNameInRow="INTERES" msprop:Generator_ColumnPropNameInTable="INTERESColumn" msprop:Generator_UserColumnName="INTERES" type="xs:string" minOccurs="0" />
+              <xs:element name="IMPORTE" msprop:Generator_ColumnVarNameInTable="columnIMPORTE" msprop:Generator_ColumnPropNameInRow="IMPORTE" msprop:Generator_ColumnPropNameInTable="IMPORTEColumn" msprop:Generator_UserColumnName="IMPORTE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
