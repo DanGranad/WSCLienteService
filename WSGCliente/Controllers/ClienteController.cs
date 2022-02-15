@@ -300,6 +300,87 @@ namespace WSGCliente.Controllers
             }
         }
 
+
+        [Route("ValidarEmail")]
+        [HttpPost]
+        public IHttpActionResult PruebaMail(ClientBindingModel request)
+        {
+            ResponseViewModel response = new ResponseViewModel();
+            List<ListViewErrores> listErrores = new List<ListViewErrores>();
+            InsertaCore InsertaCore = new InsertaCore();
+           
+
+            string V_SPROCESO = "";
+
+            try
+            {
+                EnviarEmail2();
+                return Ok(response);
+               
+            }
+
+            catch (Exception ex)
+            {
+                response.P_SMESSAGE = ex.Message;
+                response.P_NCODE = "1";
+                return Ok(response);
+            }
+        }
+        private void EnviarEmail2()
+        {
+            InsertaCore InsertaCore = new InsertaCore();
+            string mstr_presentacion = ConfigurationManager.AppSettings["wstr_Presentacion"];
+            string mstr_Body = ConfigurationManager.AppSettings["wstr_Body"];
+            string mstr_Body2 = ConfigurationManager.AppSettings["wstr_Body2"];
+            //string mstr_Titulo = ConfigurationManager.AppSettings["wstr_Titulo"];
+            string mstr_DisplayName = ConfigurationManager.AppSettings["wstr_DisplayName"];
+            //string mstr_Firma = "";
+            string mstr_Email = ConfigurationManager.AppSettings["wstr_Email"];
+            string mstr_EmailPassw = ConfigurationManager.AppSettings["wstr_EmailPassw"];
+            string mstr_SmtpClient = ConfigurationManager.AppSettings["wstr_SmtpClient"];
+            string mstr_SmtpPort = ConfigurationManager.AppSettings["wstr_SmtpPort"];
+            //string mstr_Body_Excel = ConfigurationManager.AppSettings["wstr_Body_Excel"];
+
+            ResponseViewModel responseCorreo = new ResponseViewModel();
+          
+
+            System.Net.Mail.Attachment archivo = null;
+            try
+            {  
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(mstr_SmtpClient);
+                //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
+                mail.From = new MailAddress(mstr_Email, "Prueba Email", Encoding.UTF8);
+                mail.Subject = "Prueba Envio Email";
+
+                mail.To.Add(ConfigurationManager.AppSettings["wstr_EmailAdmin"]);
+
+
+                //archivo.Dispose(); 
+
+                mail.Body = "This is for testing SMTP mail from GMAIL";
+                int port = Convert.ToInt16(mstr_SmtpPort);
+                SmtpServer.Port = port; //Puerto que utiliza Gmail para sus servicios
+                                        //Especificamos las credenciales con las que enviaremos el mail
+                SmtpServer.Credentials = new System.Net.NetworkCredential(mstr_Email, mstr_EmailPassw);
+                SmtpServer.EnableSsl = true;
+                //SmtpServer.UseDefaultCredentials = true;
+                SmtpServer.Send(mail);
+               
+
+                
+
+                //return "Correcto";
+            }
+            catch (Exception ex)
+            {
+               
+                //log.Info(string.Format("Estado Email: {0}", "No Enviado"));
+                //  log.Info(string.Format("Error: {0}", ex.Message));
+                throw ex;
+            }
+        }
+
         private void EnviarEmail(string pathErrores, string pathExitosos, string pathReniec, string V_SPROCESO, string NUSERCODE)
         {
             InsertaCore InsertaCore = new InsertaCore();

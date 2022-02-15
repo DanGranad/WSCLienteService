@@ -1,5 +1,5 @@
-using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
+
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -362,13 +362,13 @@ namespace WSGCliente.DataAccess
                     if (countLista == countSCam)
                     {
                         response.P_NCODE = "2";
-                        response.P_SMESSAGE = "No se ha realizado ninguna modificaci�n en el cliente";
+                        response.P_SMESSAGE = "No se ha realizado ninguna modificación en el cliente";
                     }
                     else
                     {
                         //  AgregarSIACSA(request);
                         response.P_NCODE = "0";
-                        response.P_SMESSAGE = "Se ha realizado la actualizaci�n correctamente";
+                        response.P_SMESSAGE = "Se ha realizado la actualización correctamente";
                         if (request.P_SISSEACSA_IND == "1" && EnvioSEACSA == 1)
                         {
                             try

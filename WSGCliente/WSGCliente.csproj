@@ -300,7 +300,6 @@
     <Content Include="bin\WSGCliente.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\WSGCliente.csproj.CoreCompileInputs.cache" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="obj\Debug\WSGCliente.csproj.FileListAbsolute.txt" />
     <Content Include="Templates\logo.png" />
     <Content Include="Templates\POL_08_LAFT.html" />
@@ -353,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
