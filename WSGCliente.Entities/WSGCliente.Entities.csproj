@@ -46,6 +46,7 @@
     <Compile Include="BindingModel\CE\RequestCEModel.cs" />
     <Compile Include="BindingModel\CiiuBindingModel.cs" />
     <Compile Include="BindingModel\ClientBindingModel.cs" />
+    <Compile Include="BindingModel\ClientHistoryBindingModel.cs" />
     <Compile Include="BindingModel\ContactBindingModel.cs" />
     <Compile Include="BindingModel\DireccionCompletaBindingModel.cs" />
     <Compile Include="BindingModel\EmailBindingModel.cs" />
@@ -91,10 +92,16 @@
     <Compile Include="ViewModel\EmailViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\ExitoViewModel.cs" />
+    <Compile Include="ViewModel\HistoryAddressViewModel.cs" />
+    <Compile Include="ViewModel\HistoryContactViewModel.cs" />
+    <Compile Include="ViewModel\HistoryEmailViewModel.cs" />
+    <Compile Include="ViewModel\HistoryInformationViewModel.cs" />
+    <Compile Include="ViewModel\HistoryPhoneViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\ListViewErrores.cs" />
     <Compile Include="ViewModel\PhoneViewModel.cs" />
     <Compile Include="ViewModel\ReniecViewModel.cs" />
+    <Compile Include="ViewModel\ResponseClientHistoryViewModel.cs" />
     <Compile Include="ViewModel\ResponsePViewModel.cs" />
     <Compile Include="ViewModel\ResponseReniecViewModel.cs" />
     <Compile Include="ViewModel\ResponseSegmentoViewModel.cs" />

@@ -56,6 +56,44 @@ namespace WSGCliente.Core
         {
             return ConsultaDataAccess.ConsultarClienteHistory(P_SCLIENT);
         }
+				//add 20220121
+        public List<HistoryInformationViewModel> ConsultarClienteHistoryInformation(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryInformation(P_NID,P_SCLIENT);
+        }
+        public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneBefore(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryPhoneBefore(P_NID,P_SCLIENT);
+        }
+        public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneNow(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryPhoneNow(P_NID,P_SCLIENT);
+        }
+        public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailBefore(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryEmailBefore(P_NID,P_SCLIENT);
+        }
+        public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailNow(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryEmailNow(P_NID,P_SCLIENT);
+        }
+        public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressBefore(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryAddressBefore(P_NID,P_SCLIENT);
+        }
+        public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressNow(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryAddressNow(P_NID,P_SCLIENT);
+        }
+        public List<HistoryContactViewModel> ConsultarClienteHistoryContactBefore(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryContactBefore(P_NID,P_SCLIENT);
+        }
+        public List<HistoryContactViewModel> ConsultarClienteHistoryContactNow(string P_NID, string P_SCLIENT)
+        {
+            return ConsultaDataAccess.ConsultarClienteHistoryContactNow(P_NID,P_SCLIENT);
+        }
+		//add 20220121
         //Implementacion Intermediario 2020
         public List<InfoBancariaBindingModel> ConsultarInfoBancaria(string P_SCLIENT)
         {

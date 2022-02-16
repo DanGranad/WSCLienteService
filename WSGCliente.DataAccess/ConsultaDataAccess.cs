@@ -373,9 +373,11 @@ namespace WSGCliente.DataAccess
             return EListCIIUClient;
         }
 
+//mod 20220121
+
         public List<HistoryViewModel> ConsultarClienteHistory(string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryViewModel> EListHistoryClient = new List<HistoryViewModel>();
 
@@ -398,7 +400,242 @@ namespace WSGCliente.DataAccess
 
             return EListHistoryClient;
         }
+        public List<HistoryInformationViewModel> ConsultarClienteHistoryInformation(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_INFORMATION";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryInformationViewModel> EListHistoryInformationClient = new List<HistoryInformationViewModel>();
 
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryInformationClient = dr.ReadRowsList<HistoryInformationViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryInformationClient;
+        }
+        public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneBefore(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_PHONE_BEFORE";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryPhoneViewModel> EListHistoryPhoneBeforeClient = new List<HistoryPhoneViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryPhoneBeforeClient = dr.ReadRowsList<HistoryPhoneViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryPhoneBeforeClient;
+        }
+        public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneNow(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_PHONE_NOW";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryPhoneViewModel> EListHistoryPhoneNowClient = new List<HistoryPhoneViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryPhoneNowClient = dr.ReadRowsList<HistoryPhoneViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryPhoneNowClient;
+        }
+        public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailBefore(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_EMAIL_BEFORE";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryEmailViewModel> EListHistoryEmailBeforeClient = new List<HistoryEmailViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryEmailBeforeClient = dr.ReadRowsList<HistoryEmailViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryEmailBeforeClient;
+        }
+        public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailNow(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_EMAIL_NOW";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryEmailViewModel> EListHistoryEmailNowClient = new List<HistoryEmailViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryEmailNowClient = dr.ReadRowsList<HistoryEmailViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryEmailNowClient;
+        }
+        public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressBefore(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_ADDRESS_BEFORE";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryAddressViewModel> EListHistoryAddressBeforeClient = new List<HistoryAddressViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryAddressBeforeClient = dr.ReadRowsList<HistoryAddressViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryAddressBeforeClient;
+        }
+        public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressNow(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_ADDRESS_NOW";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryAddressViewModel> EListHistoryAddressNowClient = new List<HistoryAddressViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryAddressNowClient = dr.ReadRowsList<HistoryAddressViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryAddressNowClient;
+        }
+        public List<HistoryContactViewModel> ConsultarClienteHistoryContactBefore(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_CONTACT_BEFORE";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryContactViewModel> EListHistoryContactBeforeClient = new List<HistoryContactViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryContactBeforeClient = dr.ReadRowsList<HistoryContactViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryContactBeforeClient;
+        }
+        public List<HistoryContactViewModel> ConsultarClienteHistoryContactNow(string P_NID, string P_SCLIENT)
+        {
+            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_CONTACT_NOW";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            List<HistoryContactViewModel> EListHistoryContactNowClient = new List<HistoryContactViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NID", OracleDbType.Varchar2, P_NID, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, P_SCLIENT, ParameterDirection.Input));
+                //OUTPUT
+                parameter.Add(new OracleParameter("C_TABLE", OracleDbType.RefCursor, ParameterDirection.Output));
+
+                using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
+                {
+                    EListHistoryContactNowClient = dr.ReadRowsList<HistoryContactViewModel>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return EListHistoryContactNowClient;
+        }
+
+//mod 20220121
         public List<ApplicationsBindingModel> ConsultarAplicacionesGC()
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_APLLICATIONS_GS";
