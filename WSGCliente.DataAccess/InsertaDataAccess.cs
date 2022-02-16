@@ -2358,7 +2358,7 @@ namespace WSGCliente.DataAccess
 
         public ResponseViewModel InsertarClienteHistorico(ClientBindingModel request, DbConnection connection, DbTransaction trx)
         {
-            var sPackageName = "PKG_BDU_INFO_CLIENTE_HCAMA.SP_INS_CLIENTE_HISTORICO_MIGRA";
+            var sPackageName = "PKG_BDU_INFO_CLIENTE.SP_INS_CLIENTE_HISTORICO_MIGRA";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             //result.EListClient = new List<ClientViewModel>();

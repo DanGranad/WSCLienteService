@@ -377,7 +377,7 @@ namespace WSGCliente.DataAccess
 
         public List<HistoryViewModel> ConsultarClienteHistory(string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryViewModel> EListHistoryClient = new List<HistoryViewModel>();
 
@@ -402,7 +402,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryInformationViewModel> ConsultarClienteHistoryInformation(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_INFORMATION";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_INFORMATION";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryInformationViewModel> EListHistoryInformationClient = new List<HistoryInformationViewModel>();
 
@@ -428,7 +428,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_PHONE_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_PHONE_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryPhoneViewModel> EListHistoryPhoneBeforeClient = new List<HistoryPhoneViewModel>();
 
@@ -454,7 +454,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_PHONE_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_PHONE_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryPhoneViewModel> EListHistoryPhoneNowClient = new List<HistoryPhoneViewModel>();
 
@@ -480,7 +480,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_EMAIL_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_EMAIL_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryEmailViewModel> EListHistoryEmailBeforeClient = new List<HistoryEmailViewModel>();
 
@@ -506,7 +506,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_EMAIL_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_EMAIL_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryEmailViewModel> EListHistoryEmailNowClient = new List<HistoryEmailViewModel>();
 
@@ -532,7 +532,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_ADDRESS_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_ADDRESS_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryAddressViewModel> EListHistoryAddressBeforeClient = new List<HistoryAddressViewModel>();
 
@@ -558,7 +558,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_ADDRESS_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_ADDRESS_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryAddressViewModel> EListHistoryAddressNowClient = new List<HistoryAddressViewModel>();
 
@@ -584,7 +584,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryContactViewModel> ConsultarClienteHistoryContactBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_CONTACT_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_CONTACT_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryContactViewModel> EListHistoryContactBeforeClient = new List<HistoryContactViewModel>();
 
@@ -610,7 +610,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryContactViewModel> ConsultarClienteHistoryContactNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_CONTACT_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_CONTACT_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryContactViewModel> EListHistoryContactNowClient = new List<HistoryContactViewModel>();
 
