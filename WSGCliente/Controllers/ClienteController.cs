@@ -1354,7 +1354,39 @@ namespace WSGCliente.Controllers
                 return Ok(response);
             }
         }
+ //add  20220119
+        [Route("GestionarCliente/SearchClientHistoryInformation")]
+        [HttpPost]
+        public IHttpActionResult SearchClientHistoryInformation(ClientHistoryBindingModel request)
+        {
+            ConsultaCore ConsultaCore = new ConsultaCore();
 
+            ResponseClientHistoryViewModel response = new ResponseClientHistoryViewModel();
+            List<HistoryInformationViewModel> EListHistoryInformationClient = new List<HistoryInformationViewModel>();
+
+
+            try
+            {
+                response.EListHistoryInformationClient = ConsultaCore.ConsultarClienteHistoryInformation(request.P_NID , request.P_SCLIENT);
+                response.EListHistoryPhoneBeforeClient = ConsultaCore.ConsultarClienteHistoryPhoneBefore(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryPhoneNowClient = ConsultaCore.ConsultarClienteHistoryPhoneNow(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryEmailBeforeClient = ConsultaCore.ConsultarClienteHistoryEmailBefore(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryEmailNowClient = ConsultaCore.ConsultarClienteHistoryEmailNow(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryAddressBeforeClient = ConsultaCore.ConsultarClienteHistoryAddressBefore(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryAddressNowClient = ConsultaCore.ConsultarClienteHistoryAddressNow(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryContactBeforeClient = ConsultaCore.ConsultarClienteHistoryContactBefore(request.P_NID, request.P_SCLIENT);
+                response.EListHistoryContactNowClient = ConsultaCore.ConsultarClienteHistoryContactNow(request.P_NID, request.P_SCLIENT);
+                response.P_NCODE = "0";
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.P_NCODE = "-1";
+                response.P_SMESSAGE = ex.Message;
+                return Ok(response);
+            }
+        }
+        //add
 
         [Route("GestionarClienteReniec")]
         [HttpPost]

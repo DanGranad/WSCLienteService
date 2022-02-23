@@ -203,6 +203,8 @@ namespace WSGCliente.DataAccess
         public ResponseViewModel InsertarClienteGeneral(ClientBindingModel request)
         {
             ResponseViewModel response = null;
+
+            Boolean insertoCliente = false; 
             var listResponse = new List<ResponseViewModel>();
             DbConnection DataConnection = ConnectionGet(enuTypeDataBase.OracleVTime);
             DbTransaction trx = null;
@@ -221,6 +223,9 @@ namespace WSGCliente.DataAccess
                     return response;
                 }
                 listResponse.Add(response);
+                
+
+
                 //Address
                 if (response.P_NCODE == "0" || response.P_NCODE == "2")
                 {
@@ -351,7 +356,15 @@ namespace WSGCliente.DataAccess
                     }
                 }
 
-                
+                insertoCliente = (response.P_NCODE == "0") ? false : true;
+                //Cliente  histórico migra 20220202  
+                if (!insertoCliente)
+                {
+                    response = InsertarClienteHistorico(request, DataConnection, trx);
+                    listResponse.Add(response);
+                }           
+
+                //Cliente  histórico migra 20220202  
 
                 var countLista = listResponse.Count();
                 var countSCam = listResponse.Where(x => x.P_NCODE == "2").Count();
@@ -2341,5 +2354,147 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
+
+        //add 20220201 insert  client_migra hcama@mg
+
+        public ResponseViewModel InsertarClienteHistorico(ClientBindingModel request, DbConnection connection, DbTransaction trx)
+        {
+            var sPackageName = "PKG_BDU_INFO_CLIENTE_HCAMA.SP_INS_CLIENTE_HISTORICO_MIGRA";
+            List<OracleParameter> parameter = new List<OracleParameter>();
+            ResponseViewModel result = new ResponseViewModel();
+            //result.EListClient = new List<ClientViewModel>();
+
+            try
+            {
+                //INPUT
+                parameter.Add(new OracleParameter("P_NUSERCODE", OracleDbType.Varchar2, request.P_NUSERCODE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NIDDOC_TYPE", OracleDbType.Varchar2, request.P_NIDDOC_TYPE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SIDDOC", OracleDbType.Varchar2, request.P_SIDDOC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SFIRSTNAME", OracleDbType.Varchar2, request.P_SFIRSTNAME, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SLASTNAME", OracleDbType.Varchar2, request.P_SLASTNAME, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SLASTNAME2", OracleDbType.Varchar2, request.P_SLASTNAME2, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SLEGALNAME", OracleDbType.Varchar2, request.P_SLEGALNAME, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SSEXCLIEN", OracleDbType.Varchar2, request.P_SSEXCLIEN, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NINCAPACITY", OracleDbType.Varchar2, request.P_NINCAPACITY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NINCAP_COD", OracleDbType.Varchar2, request.P_NINCAP_COD, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DBIRTHDAT", OracleDbType.Varchar2, request.P_DBIRTHDAT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DINCAPACITY", OracleDbType.Varchar2, request.P_DINCAPACITY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NHEALTH_ORG", OracleDbType.Varchar2, request.P_NHEALTH_ORG, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DDEATHDAT", OracleDbType.Varchar2, request.P_DDEATHDAT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DWEDD", OracleDbType.Varchar2, request.P_DWEDD, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SACCOUNT_IN", OracleDbType.Varchar2, request.P_SACCOUNT_IN, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NINVOICING", OracleDbType.Varchar2, request.P_NINVOICING, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NSPECIALITY", OracleDbType.Varchar2, request.P_NSPECIALITY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCIVILSTA", OracleDbType.Varchar2, request.P_NCIVILSTA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DAPROBDATE", OracleDbType.Varchar2, request.P_DAPROBDATE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SBLOCKADE", OracleDbType.Varchar2, request.P_SBLOCKADE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCLASS", OracleDbType.Varchar2, request.P_NCLASS, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DDRIVERDAT", OracleDbType.Varchar2, request.P_DDRIVERDAT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NHEIGHT", OracleDbType.Varchar2, request.P_NHEIGHT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NHOUSE_TYPE", OracleDbType.Varchar2, request.P_NHOUSE_TYPE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SLICENSE", OracleDbType.Varchar2, request.P_SLICENSE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NNOTENUM", OracleDbType.Varchar2, request.P_NNOTENUM, ParameterDirection.Input));
+                parameter.Add(new OracleParameter(" P_NOFFICE ", OracleDbType.Varchar2, request.P_NOFFICE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NQ_CARS", OracleDbType.Varchar2, request.P_NQ_CARS, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NQ_CHILD", OracleDbType.Varchar2, request.P_NQ_CHILD, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NRATE", OracleDbType.Varchar2, request.P_NRATE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_STAX_CODE", OracleDbType.Varchar2, request.P_STAX_CODE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SSMOKING", OracleDbType.Varchar2, request.P_SSMOKING, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCUIT", OracleDbType.Varchar2, request.P_SCUIT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NTITLE", OracleDbType.Varchar2, request.P_NTITLE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NWEIGHT", OracleDbType.Varchar2, request.P_NWEIGHT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SAUTO_CHAR", OracleDbType.Varchar2, request.P_SAUTO_CHAR, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCREDIT_CARD", OracleDbType.Varchar2, request.P_SCREDIT_CARD, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NECONOMIC_L", OracleDbType.Varchar2, request.P_NECONOMIC_L, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NEMPL_QUA", OracleDbType.Varchar2, request.P_NEMPL_QUA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NIMAGENUM", OracleDbType.Varchar2, request.P_NIMAGENUM, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NAREA", OracleDbType.Varchar2, request.P_NAREA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DDRIVEXPDAT", OracleDbType.Varchar2, request.P_DDRIVEXPDAT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NTYPDRIVER", OracleDbType.Varchar2, request.P_NTYPDRIVER, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NDISABILITY", OracleDbType.Varchar2, request.P_NDISABILITY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NLIMITDRIV", OracleDbType.Varchar2, request.P_NLIMITDRIV, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NAFP", OracleDbType.Varchar2, request.P_NAFP, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SBILL_IND", OracleDbType.Varchar2, request.P_SBILL_IND, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NNATIONALITY", OracleDbType.Varchar2, request.P_NNATIONALITY, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SDIGIT", OracleDbType.Varchar2, request.P_SDIGIT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DRETIREMENT", OracleDbType.Varchar2, request.P_DRETIREMENT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DINDEPENDANT", OracleDbType.Varchar2, request.P_DINDEPENDANT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DDEPENDANT", OracleDbType.Varchar2, request.P_DDEPENDANT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NMAILINGPREF", OracleDbType.Varchar2, request.P_NMAILINGPREF, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NLANGUAGE", OracleDbType.Varchar2, request.P_NLANGUAGE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SLEFTHANDED", OracleDbType.Varchar2, request.P_SLEFTHANDED, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SBLOCKLAFT", OracleDbType.Varchar2, request.P_SBLOCKLAFT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISCLIENT_IND", OracleDbType.Varchar2, request.P_SISCLIENT_IND, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISCLIENT_GBD", OracleDbType.Varchar2, request.P_SISCLIENT_GBD, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISRENIEC_IND", OracleDbType.Varchar2, request.P_SISRENIEC_IND, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SPOLIZA_ELECT_IND", OracleDbType.Varchar2, request.P_SPOLIZA_ELECT_IND, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_TI_DOC_SUSTENT", OracleDbType.Varchar2, request.P_TI_DOC_SUSTENT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NU_DOC_SUSTENT", OracleDbType.Varchar2, request.P_NU_DOC_SUSTENT, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_COD_UBIG_DEP_NAC", OracleDbType.Varchar2, request.P_COD_UBIG_DEP_NAC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_COD_UBIG_PROV_NAC", OracleDbType.Varchar2, request.P_COD_UBIG_PROV_NAC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_COD_UBIG_DIST_NAC", OracleDbType.Varchar2, request.P_COD_UBIG_DIST_NAC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DEPARTAMENTO_NACIMIENTO", OracleDbType.Varchar2, request.P_DEPARTAMENTO_NACIMIENTO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_PROVINCIA_NACIMIENTO", OracleDbType.Varchar2, request.P_PROVINCIA_NACIMIENTO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DISTRITO_NACIMIENTO", OracleDbType.Varchar2, request.P_DISTRITO_NACIMIENTO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NOMBRE_PADRE", OracleDbType.Varchar2, request.P_NOMBRE_PADRE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NOMBRE_MADRE", OracleDbType.Varchar2, request.P_NOMBRE_MADRE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_FECHA_INSC", OracleDbType.Varchar2, request.P_FECHA_INSC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_FECHA_EXPEDICION", OracleDbType.Varchar2, request.P_FECHA_EXPEDICION, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_CONSTANCIA_VOTACION", OracleDbType.Varchar2, request.P_CONSTANCIA_VOTACION, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_APELLIDO_CASADA", OracleDbType.Varchar2, request.P_APELLIDO_CASADA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SDIG_VERIFICACION", OracleDbType.Varchar2, request.P_SDIG_VERIFICACION, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SPROTEG_DATOS_IND", OracleDbType.Varchar2, request.P_SPROTEG_DATOS_IND, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_COD_CUSPP", OracleDbType.Varchar2, request.P_COD_CUSPP, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SGRADO_INSTRUCCION", OracleDbType.Varchar2, request.P_SGRADO_INSTRUCCION, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_FOTO_RENIEC", OracleDbType.Varchar2, request.P_FOTO_RENIEC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_FIRMA_RENIEC", OracleDbType.Varchar2, request.P_FIRMA_RENIEC, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, request.P_CodAplicacion, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISCLIENT_CRITICO", OracleDbType.Varchar2, request.P_SISCLIENT_CRITICO, ParameterDirection.Input));
+
+                parameter.Add(new OracleParameter("P_SISCLIENT_INTERME", OracleDbType.Varchar2, request.P_SISCLIENT_CORREDOR, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISCLIENT_CONTRA", OracleDbType.Varchar2, request.P_SISCLIENT_CONTRATANTE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISCORREDOR_IND", OracleDbType.Varchar2, request.P_NIND_CORREDOR, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SNAME_COMERCIAL", OracleDbType.Varchar2, request.P_SNAME_COMERCIAL, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCANT_TRABAJADORES", OracleDbType.Varchar2, request.P_NCANT_TRABAJADORES, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NCANT_USUARIOS", OracleDbType.Varchar2, request.P_NNUMERO_USUARIO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCOD_SBS", OracleDbType.Varchar2, request.P_SCOD_SBS, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SISCONSE_CLAUS_IND", OracleDbType.Varchar2, request.P_SIND_CONSENTI_CLAUS, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NID_SECTOR_EMPRESA", OracleDbType.Varchar2, request.P_NID_SECTOR_EMPRE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_NID_AREA_RESPO", OracleDbType.Varchar2, request.P_NID_AREA_RESPONSABLE, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DFECHA_RECEP_FACTU", OracleDbType.Varchar2, request.P_DFECHA_RECEP_FACTU, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SVENTACONSORCIO_IND", OracleDbType.Varchar2, request.P_SIND_VENTA_COMERCIAL, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SPARTIDA_ELECTRONICA", OracleDbType.Varchar2, request.P_SPARTIDA_ELECTRONICA, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SBAJAMAIL_IND", OracleDbType.Varchar2, request.P_SBAJAMAIL_IND, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_DFE_ANIVERSARIO", OracleDbType.Varchar2, request.P_DFE_ANIVERSARIO, ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SLIDER_CONSORCIO", OracleDbType.Varchar2, request.P_SLIDER_CONSORCIO, ParameterDirection.Input));
+
+                //OUTPUT
+                OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
+                OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
+                OracleParameter P_SCOD_CLIENT = new OracleParameter("P_SCOD_CLIENT", OracleDbType.Varchar2, result.P_SCOD_CLIENT, ParameterDirection.Output);
+
+                P_NCODE.Size = 4000;
+                P_SMESSAGE.Size = 4000;
+                P_SCOD_CLIENT.Size = 4000;
+                parameter.Add(P_SCOD_CLIENT);
+                parameter.Add(P_NCODE);
+                parameter.Add(P_SMESSAGE);
+
+
+                this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, connection, trx);
+                result.P_NCODE = P_NCODE.Value.ToString();
+                result.P_SMESSAGE = P_SMESSAGE.Value.ToString();
+                result.P_SCOD_CLIENT = P_SCOD_CLIENT.Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
+
+        //add 20220201 insert  client_migra hcama@mg
     }
 }

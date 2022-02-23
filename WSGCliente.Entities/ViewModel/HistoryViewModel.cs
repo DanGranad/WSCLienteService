@@ -24,6 +24,11 @@ namespace WSGCliente.Entities.ViewModel
         public string P_SPROTEG_DATOS_IND { get; set; }
         public string P_COD_CUSPP { get; set; }
         public string P_SBAJAMAIL_IND { get; set; }
+        //add 20220117 hcama@mg  ini
+        public string P_SDORIGENMIGRA { get; set; }
+        public string P_STIPOMODIFICACION { get; set; }
+        public string P_NID { get; set; }
+        //add 20220117 hcama@mg  ini
 
     }
 }
