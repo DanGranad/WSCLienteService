@@ -138,18 +138,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaestroController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-   
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <!-- <Content Include="bin\Antlr3.Runtime.pdb" /> -->
     <Content Include="bin\de\Microsoft.ReportViewer.Common.resources.dll" />
     <Content Include="bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll" />
     <Content Include="bin\de\Microsoft.ReportViewer.Design.resources.dll" />
@@ -297,10 +297,9 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="bin\WSGCliente.dll.config" /> 
+    <Content Include="bin\WSGCliente.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\WSGCliente.csproj.CoreCompileInputs.cache" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="obj\Debug\WSGCliente.csproj.FileListAbsolute.txt" />
     <Content Include="Templates\logo.png" />
     <Content Include="Templates\POL_08_LAFT.html" />
@@ -353,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

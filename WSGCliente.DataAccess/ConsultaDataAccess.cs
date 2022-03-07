@@ -1,4 +1,5 @@
-﻿using Oracle.DataAccess.Client;
+﻿
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace WSGCliente.DataAccess
         public ResponseViewModel Consultar(ClientBindingModel request)
         {
            // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             result.EListClient = new List<ClientViewModel>();
@@ -73,7 +74,7 @@ namespace WSGCliente.DataAccess
 
         public ResponsePViewModel ConsultarProveedor(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
            //   var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponsePViewModel result = new ResponsePViewModel();
@@ -129,7 +130,7 @@ namespace WSGCliente.DataAccess
         }
         public List<ClientViewModel> ConsultarCliente(ClientBindingModel request)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_LIST_CLIENT";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
            // var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientViewModel> EListClient = new List<ClientViewModel>();

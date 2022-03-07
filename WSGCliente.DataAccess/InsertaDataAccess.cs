@@ -1,5 +1,5 @@
-using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
+
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -223,7 +223,7 @@ namespace WSGCliente.DataAccess
                     return response;
                 }
                 listResponse.Add(response);
-                insertoCliente = (response.P_NCODE == "2") ?  false :  true;
+                
 
 
                 //Address
@@ -349,14 +349,14 @@ namespace WSGCliente.DataAccess
                     if (request.P_NIDDOC_TYPE == "2") {
   
                                 if (!string.IsNullOrWhiteSpace(CodClient)) {
-                                    response = InsertarClienteFoto(CodClient, DataConnection, trx);
+                                    response = InsertarClienteFoto(CodClient, request.P_SIDDOC, DataConnection, trx);
                                     listResponse.Add(response);
                                 }
    
                     }
                 }
 
-
+                insertoCliente = (response.P_NCODE == "0") ? false : true;
                 //Cliente  histórico migra 20220202  
                 if (!insertoCliente)
                 {
@@ -375,13 +375,13 @@ namespace WSGCliente.DataAccess
                     if (countLista == countSCam)
                     {
                         response.P_NCODE = "2";
-                        response.P_SMESSAGE = "No se ha realizado ninguna modificaci�n en el cliente";
+                        response.P_SMESSAGE = "No se ha realizado ninguna modificación en el cliente";
                     }
                     else
                     {
                         //  AgregarSIACSA(request);
                         response.P_NCODE = "0";
-                        response.P_SMESSAGE = "Se ha realizado la actualizaci�n correctamente";
+                        response.P_SMESSAGE = "Se ha realizado la actualización correctamente";
                         if (request.P_SISSEACSA_IND == "1" && EnvioSEACSA == 1)
                         {
                             try
@@ -1125,7 +1125,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_NROW", OracleDbType.Varchar2, request2.P_NROW, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, request.P_CodAplicacion, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SINFOR", OracleDbType.Varchar2, request2.P_SINFOR, ParameterDirection.Input));
-          
+                
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
@@ -1298,7 +1298,7 @@ namespace WSGCliente.DataAccess
 
    public ResponseViewModel InsertarClienteReniec(ResponseReniecViewModel request2)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_INS_CLIENT_RENIEC";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_INS_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
 
@@ -1379,7 +1379,7 @@ namespace WSGCliente.DataAccess
         }
 
         public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel request) {
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_SEL_CLIENT_RENIEC";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_SEL_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
             List<ResponseReniecViewModel> ElistClientReniec = new List<ResponseReniecViewModel>();
@@ -2329,9 +2329,9 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
-        public ResponseViewModel InsertarClienteFoto(string sclient, DbConnection connection, DbTransaction trx)
+        public ResponseViewModel InsertarClienteFoto(string sclient, string P_SIDDOC, DbConnection connection, DbTransaction trx)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_BK.SP_INS_CLIENTE_FOTO";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_INS_CLIENTE_FOTO";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
 
@@ -2339,7 +2339,8 @@ namespace WSGCliente.DataAccess
             {
                 //INPUT
                 parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, sclient , ParameterDirection.Input));
-      
+                parameter.Add(new OracleParameter("P_SIDDOC", OracleDbType.Varchar2, P_SIDDOC, ParameterDirection.Input));
+                                
                 //OUTPUT
                 OracleParameter P_NIDCM = new OracleParameter("P_NIDCM", OracleDbType.Int32, result.P_NIDCM, ParameterDirection.Output);
                 parameter.Add(P_NIDCM);

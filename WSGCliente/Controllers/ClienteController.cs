@@ -1375,7 +1375,7 @@ namespace WSGCliente.Controllers
                                                             {
                                                                 string responseR = "";
                                                                 var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                               // responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");

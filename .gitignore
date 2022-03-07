@@ -4,6 +4,5 @@ _ReSharper.*
 bin
 obj
 packages
-WSGCliente.Util/bin/
 .vs/
 WSGCliente/Properties/PublishProfiles/
