@@ -6,8 +6,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WSGCliente.Entities.BindingModel;
 using WSGCliente.Entities.BindingModel.Intermediarios;
 using WSGCliente.Entities.ViewModel;
@@ -134,7 +132,7 @@ namespace WSGCliente.DataAccess
         {
             List<ListViewErrores> listViewErrores = new List<ListViewErrores>();
             ResponseViewModel response = null;
-            
+
             try
             {
                 response = ValidarCliente(request);
@@ -142,60 +140,63 @@ namespace WSGCliente.DataAccess
                 listViewErrores = listViewErrores.Union(response.EListErrores).ToList();
 
 
-                if (response.P_NCODE != "3"){
+                if (response.P_NCODE != "3")
+                {
                     if (request.EListCIIUClient != null)
                     {
                         foreach (var item in request.EListCIIUClient)
-                         {
-                                response = ValidarCiiu(item, request);
-                         }
-                    }
-                    if(request.EListAddresClient != null)
-                    {
-                      foreach(var item in request.EListAddresClient)
                         {
-                                response = ValidarDireccion(item, request);
-                                listViewErrores = listViewErrores.Union(response.EListErrores).ToList();
+                            response = ValidarCiiu(item, request);
+                        }
+                    }
+                    if (request.EListAddresClient != null)
+                    {
+                        foreach (var item in request.EListAddresClient)
+                        {
+                            response = ValidarDireccion(item, request);
+                            listViewErrores = listViewErrores.Union(response.EListErrores).ToList();
                         }
                     }
                     if (request.EListContactClient != null)
                     {
                         foreach (var item in request.EListContactClient)
                         {
-                                response = ValidarContacto(item, request);
+                            response = ValidarContacto(item, request);
                         }
                     }
                     if (request.EListEmailClient != null)
                     {
                         foreach (var item in request.EListEmailClient)
-                        {                      
-                                response = ValidarCorreo(item, request);
-                                listViewErrores = listViewErrores.Union(response.EListErrores).ToList();     
+                        {
+                            response = ValidarCorreo(item, request);
+                            listViewErrores = listViewErrores.Union(response.EListErrores).ToList();
                         }
                     }
                     if (request.EListPhoneClient != null)
                     {
                         foreach (var item in request.EListPhoneClient)
                         {
-                                response = ValidarTelefono(item, request);
-                                listViewErrores = listViewErrores.Union(response.EListErrores).ToList();
+                            response = ValidarTelefono(item, request);
+                            listViewErrores = listViewErrores.Union(response.EListErrores).ToList();
                         }
                     }
                 }
                 //if (response.P_NCODE == "0"){
                 //    response.P_SMESSAGE = "No se encontraron errores al validar";
                 // }   
-                if (listViewErrores.Count > 0) {
+                if (listViewErrores.Count > 0)
+                {
                     response.P_NCODE = "1";
                     response.P_SMESSAGE = listViewErrores[0].SMENSAJE;
                     response.EListErrores = listViewErrores;
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 response.P_SMESSAGE = ex.Message;
                 response.P_NCODE = "1";
-                
+
             }
             return response;
         }
@@ -204,7 +205,7 @@ namespace WSGCliente.DataAccess
         {
             ResponseViewModel response = null;
 
-            Boolean insertoCliente = false; 
+            Boolean insertoCliente = false;
             var listResponse = new List<ResponseViewModel>();
             DbConnection DataConnection = ConnectionGet(enuTypeDataBase.OracleVTime);
             DbTransaction trx = null;
@@ -212,18 +213,18 @@ namespace WSGCliente.DataAccess
             var EnvioSEACSA = 0;
             try
             {
-                
+
                 DataConnection.Open();
                 trx = DataConnection.BeginTransaction();
                 response = InsertarCliente(request, DataConnection, trx);
                 CodClient = response.P_SCOD_CLIENT;
-                if(request.P_SCREDIT_CARD == "RET" && request.P_CodAplicacion == "SICCRM" && response.P_NCODE == "0")
+                if (request.P_SCREDIT_CARD == "RET" && request.P_CodAplicacion == "SICCRM" && response.P_NCODE == "0")
                 {
                     trx.Commit();
                     return response;
                 }
                 listResponse.Add(response);
-                
+
 
 
                 //Address
@@ -276,7 +277,7 @@ namespace WSGCliente.DataAccess
                             {
                                 response = InsertarEmail(request, item, DataConnection, trx);
                                 listResponse.Add(response);
-                                if(response.P_NCODE == "0")
+                                if (response.P_NCODE == "0")
                                 {
                                     EnvioSEACSA = 1;
                                 }
@@ -345,24 +346,27 @@ namespace WSGCliente.DataAccess
                     }
                 }
                 //FOTO_CLIENTE
-                if (response.P_NCODE == "0" || response.P_NCODE == "2") {
-                    if (request.P_NIDDOC_TYPE == "2") {
-  
-                                if (!string.IsNullOrWhiteSpace(CodClient)) {
-                                    response = InsertarClienteFoto(CodClient, request.P_SIDDOC, DataConnection, trx);
-                                    listResponse.Add(response);
-                                }
-   
+                if (response.P_NCODE == "0" || response.P_NCODE == "2")
+                {
+                    if (request.P_NIDDOC_TYPE == "2")
+                    {
+
+                        if (!string.IsNullOrWhiteSpace(CodClient))
+                        {
+                            response = InsertarClienteFoto(CodClient, request.P_SIDDOC, DataConnection, trx);
+                            listResponse.Add(response);
+                        }
+
                     }
                 }
 
-                insertoCliente = (response.P_NCODE == "0") ? false : true;
+                insertoCliente = (response.P_NCODE == "0") ? true : false;
                 //Cliente  histórico migra 20220202  
-                if (!insertoCliente)
+                if (insertoCliente)
                 {
                     response = InsertarClienteHistorico(request, DataConnection, trx);
                     listResponse.Add(response);
-                }           
+                }
 
                 //Cliente  histórico migra 20220202  
 
@@ -386,15 +390,15 @@ namespace WSGCliente.DataAccess
                         {
                             try
                             {
-                                request.P_NIDDOC_TYPE = HomologarCamposTrx("SEACSA", "RDOCIDE", request.P_NIDDOC_TYPE, DataConnection,trx);
-                                
+                                request.P_NIDDOC_TYPE = HomologarCamposTrx("SEACSA", "RDOCIDE", request.P_NIDDOC_TYPE, DataConnection, trx);
+
                                 ResponseViewModel ResponseSEACSA = AgregarSEACSA(request);
-                                
+
                                 // ResponseViewModel ResponseSEACSA = new ResponseViewModel
                                 // {
                                 //    P_NCODE = "0",
                                 //};
-                                if (ResponseSEACSA.P_NCODE == "0" || ResponseSEACSA.P_NCODE == "2" )
+                                if (ResponseSEACSA.P_NCODE == "0" || ResponseSEACSA.P_NCODE == "2")
                                 {
                                     //INI MARC
                                     ResponseViewModel ResponseRentas = ActualizarDatosRentasV(request);//MARC
@@ -406,7 +410,7 @@ namespace WSGCliente.DataAccess
                                 }
                                 else
                                 {
-                                    if(ResponseSEACSA.P_NCODE == "4")
+                                    if (ResponseSEACSA.P_NCODE == "4")
                                     {
                                         response.P_NCODE = "0";
                                         response.P_SMESSAGE = "El cliente cuenta con un endoso pendiente de aprobar.Solo se ha realizado la actualizaci�n en la base unica de clientes";
@@ -418,7 +422,7 @@ namespace WSGCliente.DataAccess
                                         response.P_SMESSAGE = ResponseSEACSA.P_SMESSAGE;
                                         trx.Rollback();
                                     }
-                                    
+
                                 }
 
                             }
@@ -445,7 +449,11 @@ namespace WSGCliente.DataAccess
             }
             catch (Exception ex)
             {
-                if (trx != null) trx.Rollback();
+                if (trx != null)
+                {
+                    trx.Rollback();
+                }
+
                 throw ex;
 
             }
@@ -461,7 +469,8 @@ namespace WSGCliente.DataAccess
         public AddressBindingModel GetUltimeAddress(List<AddressBindingModel> addressBindingModels)
         {
             AddressBindingModel SetAddress = new AddressBindingModel();
-          if(addressBindingModels != null) {
+            if (addressBindingModels != null)
+            {
                 if (addressBindingModels.Count > 0)
                 {
                     List<AddressBindingModel> Listaddress = addressBindingModels;
@@ -485,9 +494,10 @@ namespace WSGCliente.DataAccess
         }
         public PhoneBindingModel GetUltimePhone(List<PhoneBindingModel> phoneBindingModels, string typePhone)
         {
-         
+
             PhoneBindingModel SetPhone = new PhoneBindingModel();
-            if (phoneBindingModels != null) {
+            if (phoneBindingModels != null)
+            {
                 if (phoneBindingModels.Count > 0)
                 {
 
@@ -540,7 +550,7 @@ namespace WSGCliente.DataAccess
             ResponseViewModel response = null;
             //Obteniendo el ultimo registro
             AddressBindingModel address = GetUltimeAddress(Client.EListAddresClient);
-            PhoneBindingModel phoneCelular = GetUltimePhone(Client.EListPhoneClient,"2");
+            PhoneBindingModel phoneCelular = GetUltimePhone(Client.EListPhoneClient, "2");
             PhoneBindingModel phoneParticular = GetUltimePhone(Client.EListPhoneClient, "4");
             EmailBindingModel email = GetUltimeEmail(Client.EListEmailClient);
             if (address.P_SRECTYPE == null && phoneCelular.P_NPHONE_TYPE == null && email.P_SRECTYPE == null && phoneParticular == null)
@@ -559,7 +569,7 @@ namespace WSGCliente.DataAccess
             {
                 DataConnection.Open();
                 trx = DataConnection.BeginTransaction();
-                
+
                 response = SaveSIACSA(Client, phoneCelular, phoneParticular, email, address, DataConnection, trx);
 
                 if (response.P_NCODE == "0" || response.P_NCODE == "2")
@@ -570,12 +580,16 @@ namespace WSGCliente.DataAccess
                 {
                     trx.Rollback();
                 }
-                
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if (trx != null) trx.Rollback();
+                if (trx != null)
+                {
+                    trx.Rollback();
+                }
+
                 throw ex;
             }
             finally
@@ -628,7 +642,11 @@ namespace WSGCliente.DataAccess
             }
             catch (Exception ex)
             {
-                if (trx != null) trx.Rollback();
+                if (trx != null)
+                {
+                    trx.Rollback();
+                }
+
                 throw ex;
             }
             finally
@@ -665,7 +683,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_NPROVINCE", OracleDbType.Varchar2, request.P_NPROVINCE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NLOCAL", OracleDbType.Varchar2, request.P_NLOCAL, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NMUNICIPALITY", OracleDbType.Varchar2, request.P_NMUNICIPALITY, ParameterDirection.Input));
-                
+
                 //OUTPUT
                 //OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SDESDIREBUSQ = new OracleParameter("P_SDESDIREBUSQ", OracleDbType.Varchar2, result.P_SDESDIREBUSQ, ParameterDirection.Output);
@@ -687,7 +705,7 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
-        public ResponseViewModel SaveSIACSA(ClientBindingModel Client, PhoneBindingModel phone, PhoneBindingModel phone2,EmailBindingModel email, AddressBindingModel address, DbConnection connection, DbTransaction trx)
+        public ResponseViewModel SaveSIACSA(ClientBindingModel Client, PhoneBindingModel phone, PhoneBindingModel phone2, EmailBindingModel email, AddressBindingModel address, DbConnection connection, DbTransaction trx)
         {
             var sPackageName = "SP_ACTUALIZA_DIR_CLI_VT";
             List<OracleParameter> parameter = new List<OracleParameter>();
@@ -699,7 +717,7 @@ namespace WSGCliente.DataAccess
             {
                 parameter.Add(new OracleParameter("P_NIDDOC_TYPE", OracleDbType.Varchar2, Client.P_NIDDOC_TYPE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SID_DOC", OracleDbType.Varchar2, Client.P_SIDDOC, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_COD_DIRE_VIA", OracleDbType.Varchar2, address.P_STI_DIRE , ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_COD_DIRE_VIA", OracleDbType.Varchar2, address.P_STI_DIRE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_GLS_DIRECCION", OracleDbType.Varchar2, address.P_SNOM_DIRECCION, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NUM_DIRECCION", OracleDbType.Varchar2, address.P_SNUM_DIRECCION, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_COD_BLOCKCHALET", OracleDbType.Varchar2, address.P_STI_BLOCKCHALET, ParameterDirection.Input));
@@ -741,7 +759,7 @@ namespace WSGCliente.DataAccess
                 result.P_NCODE = P_NCODE.Value.ToString();
                 result.P_SMESSAGE = P_SMESSAGE.Value.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.P_NCODE = "1";
                 result.P_SMESSAGE = ex.Message;
@@ -796,7 +814,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_GLS_LOTE", OracleDbType.Varchar2, string.IsNullOrEmpty(address.P_SLOTE) ? "" : address.P_SLOTE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_GLS_REFERENCIA", OracleDbType.Varchar2, string.IsNullOrEmpty(address.P_SREFERENCE) ? "" : address.P_SREFERENCE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_COD_DIRE_VIA", OracleDbType.Varchar2, string.IsNullOrEmpty(address.P_STI_DIRE) ? "" : address.P_STI_DIRE, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_COD_USUARIO", OracleDbType.Varchar2, string.IsNullOrEmpty(CodUsuarioRENTASV) ? "" : CodUsuarioRENTASV, ParameterDirection.Input));  
+                parameter.Add(new OracleParameter("P_COD_USUARIO", OracleDbType.Varchar2, string.IsNullOrEmpty(CodUsuarioRENTASV) ? "" : CodUsuarioRENTASV, ParameterDirection.Input));
 
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
@@ -912,7 +930,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_FIRMA_RENIEC", OracleDbType.Varchar2, request.P_FIRMA_RENIEC, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, request.P_CodAplicacion, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SISCLIENT_CRITICO", OracleDbType.Varchar2, request.P_SISCLIENT_CRITICO, ParameterDirection.Input));
-                
+
                 parameter.Add(new OracleParameter("P_SISCLIENT_INTERME", OracleDbType.Varchar2, request.P_SISCLIENT_CORREDOR, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SISCLIENT_CONTRA", OracleDbType.Varchar2, request.P_SISCLIENT_CONTRATANTE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SISCORREDOR_IND", OracleDbType.Varchar2, request.P_NIND_CORREDOR, ParameterDirection.Input));
@@ -941,7 +959,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(P_SCOD_CLIENT);
                 parameter.Add(P_NCODE);
                 parameter.Add(P_SMESSAGE);
-                
+
 
                 this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, connection, trx);
                 result.P_NCODE = P_NCODE.Value.ToString();
@@ -1125,7 +1143,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_NROW", OracleDbType.Varchar2, request2.P_NROW, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, request.P_CodAplicacion, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SINFOR", OracleDbType.Varchar2, request2.P_SINFOR, ParameterDirection.Input));
-                
+
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
@@ -1172,7 +1190,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SE_MAIL", OracleDbType.Varchar2, request2.P_SE_MAIL, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SPHONE", OracleDbType.Varchar2, request2.P_SPHONE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SNAMEAREA", OracleDbType.Varchar2, request2.P_SNAMEAREA, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_SNAMEPOSITION", OracleDbType.Varchar2, request2.P_SNAMEPOSITION, ParameterDirection.Input)); 
+                parameter.Add(new OracleParameter("P_SNAMEPOSITION", OracleDbType.Varchar2, request2.P_SNAMEPOSITION, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NUSERCODE", OracleDbType.Varchar2, request.P_NUSERCODE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NROW", OracleDbType.Varchar2, request2.P_NROW, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, request.P_CodAplicacion, ParameterDirection.Input));
@@ -1180,7 +1198,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_ADDRESS", OracleDbType.Varchar2, request2.P_ADDRESS, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_UBIGEO", OracleDbType.Varchar2, request2.P_UBIGEO, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NEXTENS", OracleDbType.Varchar2, request2.P_NEXTENS, ParameterDirection.Input));
-                
+
 
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
@@ -1243,7 +1261,7 @@ namespace WSGCliente.DataAccess
 
             return result;
         }
-        public string HomologarCamposTrx(string P_Origen, string Campo, string expresion,DbConnection dbConnection , DbTransaction trx)
+        public string HomologarCamposTrx(string P_Origen, string Campo, string expresion, DbConnection dbConnection, DbTransaction trx)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_HOMOLDATOSOTROS";
             List<OracleParameter> parameter = new List<OracleParameter>();
@@ -1259,7 +1277,7 @@ namespace WSGCliente.DataAccess
                 Valor.Size = 4000;
                 parameter.Add(Valor);
 
-                this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter,dbConnection,trx);
+                this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, dbConnection, trx);
                 Return = Valor.Value.ToString();
             }
             catch (Exception ex)
@@ -1269,7 +1287,7 @@ namespace WSGCliente.DataAccess
 
             return Return;
         }
-        public string HomologarCampos(string P_Origen, string Campo , string expresion)
+        public string HomologarCampos(string P_Origen, string Campo, string expresion)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_HOMOLDATOSOTROS";
             List<OracleParameter> parameter = new List<OracleParameter>();
@@ -1281,10 +1299,10 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, P_Origen, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_STIPO_DATO", OracleDbType.Varchar2, Campo, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SCO_DATO_OTRO", OracleDbType.Varchar2, expresion, ParameterDirection.Input));
-                OracleParameter Valor = new OracleParameter("P_SCO_DATO_VTIME", OracleDbType.Varchar2,4000, ParameterDirection.Output);
+                OracleParameter Valor = new OracleParameter("P_SCO_DATO_VTIME", OracleDbType.Varchar2, 4000, ParameterDirection.Output);
                 Valor.Size = 4000;
                 parameter.Add(Valor);
-               
+
                 this.ExecuteByStoredProcedureVT(sPackageName, parameter);
                 Return = Valor.Value.ToString();
             }
@@ -1296,7 +1314,7 @@ namespace WSGCliente.DataAccess
             return Return;
         }
 
-   public ResponseViewModel InsertarClienteReniec(ResponseReniecViewModel request2)
+        public ResponseViewModel InsertarClienteReniec(ResponseReniecViewModel request2)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_INS_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
@@ -1378,7 +1396,8 @@ namespace WSGCliente.DataAccess
             return result;
         }
 
-        public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel request) {
+        public ResponseViewModel ObtenerClientReniecLocal(ClientBindingModel request)
+        {
             var sPackageName = "PKG_BDU_CLIENTE.SP_SEL_CLIENT_RENIEC";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
@@ -1398,7 +1417,7 @@ namespace WSGCliente.DataAccess
 
                 using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
                 {
-                   // ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
+                    // ElistClientReniec = dr.ReadRowsList<ResponseReniecViewModel>();
                     ResponseReniecViewModel reniecModel = new ResponseReniecViewModel();
 
                     while (dr.Read())
@@ -1453,7 +1472,7 @@ namespace WSGCliente.DataAccess
                         reniecModel.CODUBIGEODEPARTAMENTODOMICILIO = dr["CODUBIGEODEPARTAMENTODOMICILIO"] == null || dr["CODUBIGEODEPARTAMENTODOMICILIO"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTODOMICILIO"].ToString();
                         reniecModel.CODUBIGEODEPARTAMENTONACI = dr["CODUBIGEODEPARTAMENTONACI"] == null || dr["CODUBIGEODEPARTAMENTONACI"].ToString() == "" ? "" : dr["CODUBIGEODEPARTAMENTONACI"].ToString();
                         reniecModel.CODUBIGEOPROVINCIANACI = dr["CODUBIGEOPROVINCIANACI"] == null || dr["CODUBIGEOPROVINCIANACI"].ToString() == "" ? "" : dr["CODUBIGEOPROVINCIANACI"].ToString();
-                        reniecModel.FOTO = dr["FOTO"].ToString() == null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString(); 
+                        reniecModel.FOTO = dr["FOTO"].ToString() == null || dr["FOTO"].ToString() == "" ? "" : dr["FOTO"].ToString();
                         reniecModel.FIRMA = dr["FIRMA"].ToString() == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
                         ElistClientReniec.Add(reniecModel);
                         //reniecModel.FOTO
@@ -1461,7 +1480,7 @@ namespace WSGCliente.DataAccess
                         //var length2 = length.Length;
                         //reniecModel.FIRMA = (string) dr.GetOracleClob(48).Value; //dr["FIRMA"] == null || dr["FIRMA"].ToString() == "" ? "" : dr["FIRMA"].ToString();
                     }
-                   
+
 
                 }
                 result.P_NCODE = "0";
@@ -1635,7 +1654,7 @@ namespace WSGCliente.DataAccess
                 //OUTPUT
 
                 OracleParameter P_TABLA = new OracleParameter("C_TABLE", OracleDbType.RefCursor, ElistErrores, ParameterDirection.Output);
-                OracleParameter P_CAMPO = new OracleParameter("P_CAMPO", OracleDbType.Varchar2, result.P_SMESSAGE,ParameterDirection.Output);
+                OracleParameter P_CAMPO = new OracleParameter("P_CAMPO", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Int64, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
 
@@ -1650,7 +1669,7 @@ namespace WSGCliente.DataAccess
                 using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
                 {
                     ElistErrores = dr.ReadRowsList<ListViewErrores>();
-                    
+
                 }
                 result.P_NCODE = P_NCODE.Value.ToString();
                 result.P_SMESSAGE = P_SMESSAGE.Value.ToString();
@@ -1799,7 +1818,7 @@ namespace WSGCliente.DataAccess
                     ElistErrores = dr.ReadRowsList<ListViewErrores>();
 
                 }
-                
+
                 result.P_NCODE = P_NCODE.Value.ToString();
                 result.P_SMESSAGE = P_SMESSAGE.Value.ToString();
                 result.EListErrores = ElistErrores;
@@ -1929,7 +1948,7 @@ namespace WSGCliente.DataAccess
                 //INPUT
                 parameter.Add(new OracleParameter("P_STI_ACCION", OracleDbType.Varchar2, data.P_TipOper, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NRECOWNER", OracleDbType.Varchar2, data.P_NRECOWNER, ParameterDirection.Input));
-                
+
                 parameter.Add(new OracleParameter("P_NIDDOC_TYPE_CL", OracleDbType.Varchar2, client.P_NIDDOC_TYPE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SIDDOC_CL", OracleDbType.Varchar2, client.P_SIDDOC, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NIDCONT", OracleDbType.Varchar2, data.P_NIDCONT, ParameterDirection.Input));
@@ -1948,8 +1967,8 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SORIGEN", OracleDbType.Varchar2, client.P_CodAplicacion, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SPHONE1", OracleDbType.Varchar2, data.P_SPHONE1, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NEXTENS", OracleDbType.Varchar2, data.P_NEXTENS, ParameterDirection.Input));
-                
-                
+
+
 
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Int64, result.P_NCODE, ParameterDirection.Output);
@@ -2158,7 +2177,7 @@ namespace WSGCliente.DataAccess
         {
             var sPackageName = "PKG_BDU_CLIENTE.SPS_LIST_TRAMA_OK";
             List<OracleParameter> parameter = new List<OracleParameter>();
-            List<ExitoViewModel>  ListExitosos = new List<ExitoViewModel>();
+            List<ExitoViewModel> ListExitosos = new List<ExitoViewModel>();
 
 
             try
@@ -2242,7 +2261,7 @@ namespace WSGCliente.DataAccess
             return ListReniec;
         }
 
- public ResponseViewModel InsertarInfoBancaria(ClientBindingModel request,InfoBancariaBindingModel request2, DbConnection connection, DbTransaction trx)
+        public ResponseViewModel InsertarInfoBancaria(ClientBindingModel request, InfoBancariaBindingModel request2, DbConnection connection, DbTransaction trx)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_INS_CTA_BANCARIA";
             List<OracleParameter> parameter = new List<OracleParameter>();
@@ -2261,7 +2280,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SNUMERO_CUENTA", OracleDbType.Varchar2, request2.P_SNUMERO_CUENTA, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SNUMERO_CUENTA_INTER", OracleDbType.Varchar2, request2.P_SNUMERO_CUENTA_INTER, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SNUMERO_DETRACCION", OracleDbType.Varchar2, request2.P_SNUMERO_DETRACCION, ParameterDirection.Input));
-                    
+
                 parameter.Add(new OracleParameter("P_DEFECDATE", OracleDbType.Varchar2, "", ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NUSERCODE", OracleDbType.Varchar2, request.P_NUSERCODE, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_NIDCTA_BANCARIA", OracleDbType.Varchar2, request2.P_NIDCTA_BANCARIA, ParameterDirection.Input));
@@ -2289,7 +2308,7 @@ namespace WSGCliente.DataAccess
             return result;
         }
 
-        public ResponseViewModel InsertarArchivoAdjuntos(ClientBindingModel request,DocumentosBindingModel request2, DbConnection connection, DbTransaction trx)
+        public ResponseViewModel InsertarArchivoAdjuntos(ClientBindingModel request, DocumentosBindingModel request2, DbConnection connection, DbTransaction trx)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_INS_DOC_ADJUNTO";
             List<OracleParameter> parameter = new List<OracleParameter>();
@@ -2338,14 +2357,15 @@ namespace WSGCliente.DataAccess
             try
             {
                 //INPUT
-                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, sclient , ParameterDirection.Input));
+                parameter.Add(new OracleParameter("P_SCLIENT", OracleDbType.Varchar2, sclient, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SIDDOC", OracleDbType.Varchar2, P_SIDDOC, ParameterDirection.Input));
-                                
+
                 //OUTPUT
                 OracleParameter P_NIDCM = new OracleParameter("P_NIDCM", OracleDbType.Int32, result.P_NIDCM, ParameterDirection.Output);
                 parameter.Add(P_NIDCM);
                 this.ExecuteByStoredProcedureVT_TRX(sPackageName, parameter, connection, trx);
                 result.P_NIDCM = Convert.ToInt32(P_NIDCM.Value.ToString());
+                result.P_NCODE = "0";
             }
             catch (Exception ex)
             {
