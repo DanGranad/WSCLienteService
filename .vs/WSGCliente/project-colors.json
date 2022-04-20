@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f01a064f-af6c-451f-ad45-96e7014aba59": {
+      "ProjectGuid": "f01a064f-af6c-451f-ad45-96e7014aba59",
+      "DisplayName": "WSGCliente",
+      "ColorIndex": 0
+    },
+    "eb60af44-588f-4684-a809-9878bdf2943a": {
+      "ProjectGuid": "eb60af44-588f-4684-a809-9878bdf2943a",
+      "DisplayName": "WSGCliente.DataAccess",
+      "ColorIndex": 1
+    },
+    "94ee38c6-1f2f-4aad-a3be-b3d1b0ede261": {
+      "ProjectGuid": "94ee38c6-1f2f-4aad-a3be-b3d1b0ede261",
+      "DisplayName": "Api",
+      "ColorIndex": 2
+    },
+    "15031d15-8654-49ef-8e4a-4322fdff0cb6": {
+      "ProjectGuid": "15031d15-8654-49ef-8e4a-4322fdff0cb6",
+      "DisplayName": "WSGCliente.Util",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    },
+    "58a35645-62e1-4851-b695-0ba54b87666d": {
+      "ProjectGuid": "58a35645-62e1-4851-b695-0ba54b87666d",
+      "DisplayName": "Util",
+      "ColorIndex": 4
+    },
+    "0f4d9054-93e8-45e8-864c-3167f236ec9b": {
+      "ProjectGuid": "0f4d9054-93e8-45e8-864c-3167f236ec9b",
+      "DisplayName": "WSGCliente.Core",
+      "ColorIndex": 5
+    },
+    "4cd29d8f-7f90-4a0f-8f0d-97c5366f03e5": {
+      "ProjectGuid": "4cd29d8f-7f90-4a0f-8f0d-97c5366f03e5",
+      "DisplayName": "WSGCliente.Entities",
+      "ColorIndex": 6
+    }
+  },
+  "NextColorIndex": 7
+}
