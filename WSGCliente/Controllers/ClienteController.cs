@@ -308,7 +308,7 @@ namespace WSGCliente.Controllers
             ResponseViewModel response = new ResponseViewModel();
             List<ListViewErrores> listErrores = new List<ListViewErrores>();
             InsertaCore InsertaCore = new InsertaCore();
-           
+
 
             string V_SPROCESO = "";
 
@@ -316,7 +316,7 @@ namespace WSGCliente.Controllers
             {
                 EnviarEmail2();
                 return Ok(response);
-               
+
             }
 
             catch (Exception ex)
@@ -342,11 +342,11 @@ namespace WSGCliente.Controllers
             //string mstr_Body_Excel = ConfigurationManager.AppSettings["wstr_Body_Excel"];
 
             ResponseViewModel responseCorreo = new ResponseViewModel();
-          
+
 
             System.Net.Mail.Attachment archivo = null;
             try
-            {  
+            {
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient(mstr_SmtpClient);
                 //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
@@ -366,15 +366,15 @@ namespace WSGCliente.Controllers
                 SmtpServer.EnableSsl = true;
                 //SmtpServer.UseDefaultCredentials = true;
                 SmtpServer.Send(mail);
-               
 
-                
+
+
 
                 //return "Correcto";
             }
             catch (Exception ex)
             {
-               
+
                 //log.Info(string.Format("Estado Email: {0}", "No Enviado"));
                 //  log.Info(string.Format("Error: {0}", ex.Message));
                 throw ex;
@@ -576,18 +576,13 @@ namespace WSGCliente.Controllers
 
                 //Renderizado
                 string deviceInfo = "<DeviceInfo><OutputFormat>PDF</OutputFormat></DeviceInfo>";
-                Warning[] warnings;
-                string[] streams;
-                string mimeType;
                 byte[] renderedBytes;
-                string encoding;
-                string fileNameExtension;
 
                 string path = ConfigurationManager.AppSettings["RutaArchivo"] + v_SPROCESO;
                 //string path = @"D:\Report\" + v_SPROCESO;
                 pathReniec = (path + "/" + v_SPROCESO + "Reniec.xls");
 
-                renderedBytes = localReport.Render("EXCEL", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                renderedBytes = localReport.Render("EXCEL", deviceInfo, out string mimeType, out string encoding, out string fileNameExtension, out string[] streams, out Warning[] warnings);
 
                 FileStream file =
                     default(FileStream);
@@ -628,18 +623,13 @@ namespace WSGCliente.Controllers
 
                 //Renderizado
                 string deviceInfo = "<DeviceInfo><OutputFormat>PDF</OutputFormat></DeviceInfo>";
-                Warning[] warnings;
-                string[] streams;
-                string mimeType;
                 byte[] renderedBytes;
-                string encoding;
-                string fileNameExtension;
 
                 string path = ConfigurationManager.AppSettings["RutaArchivo"] + v_SPROCESO;
                 //string path = @"D:\Report\" + v_SPROCESO;
                 pathExitosos = (path + "/" + v_SPROCESO + "Exitosos.xls");
 
-                renderedBytes = localReport.Render("EXCEL", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                renderedBytes = localReport.Render("EXCEL", deviceInfo, out string mimeType, out string encoding, out string fileNameExtension, out string[] streams, out Warning[] warnings);
 
                 FileStream file = default(FileStream);
 
@@ -684,18 +674,13 @@ namespace WSGCliente.Controllers
 
                 //Renderizado
                 string deviceInfo = "<DeviceInfo><OutputFormat>PDF</OutputFormat></DeviceInfo>";
-                Warning[] warnings;
-                string[] streams;
-                string mimeType;
                 byte[] renderedBytes;
-                string encoding;
-                string fileNameExtension;
 
                 string path = ConfigurationManager.AppSettings["RutaArchivo"] + v_SPROCESO;
                 //string path = @"D:\Report\" + v_SPROCESO;
                 pathErrores = (path + "/" + v_SPROCESO + "Errores.xls");
 
-                renderedBytes = localReport.Render("EXCEL", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                renderedBytes = localReport.Render("EXCEL", deviceInfo, out string mimeType, out string encoding, out string fileNameExtension, out string[] streams, out Warning[] warnings);
 
                 FileStream file = default(FileStream);
 
@@ -955,11 +940,6 @@ namespace WSGCliente.Controllers
             return null;
         }
 
-
-
-
-
-
         [Route("GestionarCliente")]
         [HttpPost]
         public IHttpActionResult GestionarCliente(ClientBindingModel request)
@@ -1041,8 +1021,7 @@ namespace WSGCliente.Controllers
                                                             try
                                                             {
                                                                 string responseR = "";
-                                                                var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out bool ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -1077,7 +1056,7 @@ namespace WSGCliente.Controllers
                                                                     P_APELLIDO_CASADA = responseReniec.APELLIDOCASADA.Trim(),
                                                                     P_SFIRSTNAME = responseReniec.NOMBRES.Trim(),
                                                                     P_SFOTO = responseReniec.FOTO,
-                                                                    P_SFIRMA= responseReniec.FIRMA
+                                                                    P_SFIRMA = responseReniec.FIRMA
                                                                 };
 
                                                                 if (responseReniec.ESTADOCIVILCIUDADANO == "1")
@@ -1354,7 +1333,7 @@ namespace WSGCliente.Controllers
                 return Ok(response);
             }
         }
- //add  20220119
+        //add  20220119
         [Route("GestionarCliente/SearchClientHistoryInformation")]
         [HttpPost]
         public IHttpActionResult SearchClientHistoryInformation(ClientHistoryBindingModel request)
@@ -1367,7 +1346,7 @@ namespace WSGCliente.Controllers
 
             try
             {
-                response.EListHistoryInformationClient = ConsultaCore.ConsultarClienteHistoryInformation(request.P_NID , request.P_SCLIENT);
+                response.EListHistoryInformationClient = ConsultaCore.ConsultarClienteHistoryInformation(request.P_NID, request.P_SCLIENT);
                 response.EListHistoryPhoneBeforeClient = ConsultaCore.ConsultarClienteHistoryPhoneBefore(request.P_NID, request.P_SCLIENT);
                 response.EListHistoryPhoneNowClient = ConsultaCore.ConsultarClienteHistoryPhoneNow(request.P_NID, request.P_SCLIENT);
                 response.EListHistoryEmailBeforeClient = ConsultaCore.ConsultarClienteHistoryEmailBefore(request.P_NID, request.P_SCLIENT);
@@ -1456,7 +1435,7 @@ namespace WSGCliente.Controllers
                                                             {
                                                                 string responseR = "";
                                                                 var ExisteLocal = false;
-                                                               // responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                // responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -1773,8 +1752,7 @@ namespace WSGCliente.Controllers
                                                             try
                                                             {
                                                                 string responseR = "";
-                                                                var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out bool ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -2229,8 +2207,7 @@ namespace WSGCliente.Controllers
                                                             try
                                                             {
                                                                 string responseR = "";
-                                                                var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out bool ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -2642,8 +2619,7 @@ namespace WSGCliente.Controllers
                                                             try
                                                             {
                                                                 string responseR = "";
-                                                                var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out bool ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");
@@ -3056,8 +3032,7 @@ namespace WSGCliente.Controllers
                                                             try
                                                             {
                                                                 string responseR = "";
-                                                                var ExisteLocal = false;
-                                                                responseReniec = ObtenerClientReniecLocal(request, out ExisteLocal);
+                                                                responseReniec = ObtenerClientReniecLocal(request, out bool ExisteLocal);
                                                                 if (ExisteLocal != true)
                                                                 {
                                                                     responseR = ServiceCore.ConsultarCliente(request.P_SIDDOC, "UrlService");

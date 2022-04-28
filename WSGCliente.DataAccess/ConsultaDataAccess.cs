@@ -3,9 +3,6 @@ using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WSGCliente.Entities.BindingModel;
 using WSGCliente.Entities.BindingModel.Intermediarios;
 using WSGCliente.Entities.ViewModel;
@@ -17,7 +14,7 @@ namespace WSGCliente.DataAccess
     {
         public ResponseViewModel Consultar(ClientBindingModel request)
         {
-           // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
+            // var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
             var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponseViewModel result = new ResponseViewModel();
@@ -37,9 +34,9 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_SLEGALNAME", OracleDbType.Varchar2, request.P_SLEGALNAME, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_COD_CUSPP", OracleDbType.Varchar2, request.P_COD_CUSPP, ParameterDirection.Input));
                 parameter.Add(new OracleParameter("P_SREGIST", OracleDbType.Varchar2, request.P_SREGIST, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input)); 
-                 //OUTPUT
-                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
+                parameter.Add(new OracleParameter("P_NCLIENT_SEG", OracleDbType.Varchar2, request.P_NCLIENT_SEG, ParameterDirection.Input));
+                //OUTPUT
+                OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
                 OracleParameter P_SMESSAGE = new OracleParameter("P_SMESSAGE", OracleDbType.Varchar2, result.P_SMESSAGE, ParameterDirection.Output);
                 OracleParameter C_TABLE = new OracleParameter("C_TABLE", OracleDbType.RefCursor, result.EListClient, ParameterDirection.Output);
 
@@ -75,7 +72,7 @@ namespace WSGCliente.DataAccess
         public ResponsePViewModel ConsultarProveedor(ClientBindingModel request)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-           //   var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
+            //   var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             ResponsePViewModel result = new ResponsePViewModel();
             result.EListClient = new List<ClientPViewModel>();
@@ -131,7 +128,7 @@ namespace WSGCliente.DataAccess
         public List<ClientViewModel> ConsultarCliente(ClientBindingModel request)
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_CLIENT";
-           // var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
+            // var sPackageName = "PKG_BDU_CLIENTE1.SP_LIST_CLIENT";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<ClientViewModel> EListClient = new List<ClientViewModel>();
             string V_NCODE = "";
@@ -173,7 +170,7 @@ namespace WSGCliente.DataAccess
                 parameter.Add(new OracleParameter("P_NCERTIF", OracleDbType.Int64, request.P_NCERTIF, ParameterDirection.Input));
                 //hcama@mg 03.06.21 fin
 
-                
+
                 using (OracleDataReader dr = (OracleDataReader)this.ExecuteByStoredProcedureVT(sPackageName, parameter))
                 {
                     EListClient = dr.ReadRowsList<ClientViewModel>();
@@ -374,7 +371,7 @@ namespace WSGCliente.DataAccess
             return EListCIIUClient;
         }
 
-//mod 20220121
+        //mod 20220121
 
         public List<HistoryViewModel> ConsultarClienteHistory(string P_SCLIENT)
         {
@@ -403,7 +400,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryInformationViewModel> ConsultarClienteHistoryInformation(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_INFORMATION";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_INFORMATION";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryInformationViewModel> EListHistoryInformationClient = new List<HistoryInformationViewModel>();
 
@@ -429,7 +426,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_PHONE_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_PHONE_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryPhoneViewModel> EListHistoryPhoneBeforeClient = new List<HistoryPhoneViewModel>();
 
@@ -455,7 +452,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryPhoneViewModel> ConsultarClienteHistoryPhoneNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_PHONE_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_PHONE_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryPhoneViewModel> EListHistoryPhoneNowClient = new List<HistoryPhoneViewModel>();
 
@@ -481,7 +478,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_EMAIL_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_EMAIL_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryEmailViewModel> EListHistoryEmailBeforeClient = new List<HistoryEmailViewModel>();
 
@@ -507,7 +504,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryEmailViewModel> ConsultarClienteHistoryEmailNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_EMAIL_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_EMAIL_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryEmailViewModel> EListHistoryEmailNowClient = new List<HistoryEmailViewModel>();
 
@@ -533,7 +530,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_ADDRESS_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_ADDRESS_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryAddressViewModel> EListHistoryAddressBeforeClient = new List<HistoryAddressViewModel>();
 
@@ -559,7 +556,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryAddressViewModel> ConsultarClienteHistoryAddressNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_ADDRESS_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_ADDRESS_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryAddressViewModel> EListHistoryAddressNowClient = new List<HistoryAddressViewModel>();
 
@@ -585,7 +582,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryContactViewModel> ConsultarClienteHistoryContactBefore(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_CONTACT_BEFORE";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_CONTACT_BEFORE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryContactViewModel> EListHistoryContactBeforeClient = new List<HistoryContactViewModel>();
 
@@ -611,7 +608,7 @@ namespace WSGCliente.DataAccess
         }
         public List<HistoryContactViewModel> ConsultarClienteHistoryContactNow(string P_NID, string P_SCLIENT)
         {
-            var sPackageName = "PKG_BDU_CLIENTE_HCAMA.SP_LIST_HIST_CLIENT_CONTACT_NOW";
+            var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_HIST_CLIENT_CONTACT_NOW";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<HistoryContactViewModel> EListHistoryContactNowClient = new List<HistoryContactViewModel>();
 
@@ -636,7 +633,7 @@ namespace WSGCliente.DataAccess
             return EListHistoryContactNowClient;
         }
 
-//mod 20220121
+        //mod 20220121
         public List<ApplicationsBindingModel> ConsultarAplicacionesGC()
         {
             var sPackageName = "PKG_BDU_CLIENTE.SP_LIST_APLLICATIONS_GS";
@@ -752,7 +749,7 @@ namespace WSGCliente.DataAccess
         }
         public ResponseSegmentoViewModel ConsultarSegementoporDocumento(SegmentoBindingModel request)
         {
-          
+
             var sPackageName = "PKG_BDU_INFO_CLIENTE.SPS_LIST_OBTENER_SEGMENTO_CLIENTE";
             List<OracleParameter> parameter = new List<OracleParameter>();
             List<SegmentoViewModel> EListSegmento = new List<SegmentoViewModel>();
@@ -764,7 +761,7 @@ namespace WSGCliente.DataAccess
                 //INPUT
 
                 parameter.Add(new OracleParameter("P_NIDDOC_TYPE", OracleDbType.Varchar2, request.P_NIDDOC_TYPE, ParameterDirection.Input));
-                parameter.Add(new OracleParameter("P_SIDDOC", OracleDbType.Varchar2, request.P_SIDDOC, ParameterDirection.Input));   
+                parameter.Add(new OracleParameter("P_SIDDOC", OracleDbType.Varchar2, request.P_SIDDOC, ParameterDirection.Input));
 
                 //OUTPUT
                 OracleParameter P_NCODE = new OracleParameter("P_NCODE", OracleDbType.Varchar2, result.P_NCODE, ParameterDirection.Output);
