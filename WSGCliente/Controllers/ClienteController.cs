@@ -3469,9 +3469,9 @@ namespace WSGCliente.Controllers
 
                         _ObjDirecClient.P_SNOM_DIRECCION = _ObjClient.Direcion;
                         _ObjDirecClient.P_SDESDIREBUSQ = _ObjClient.Direcion;
-                        _ObjDirecClient.P_DESDISTRITO = _ObjClient.Distrito;
-                        _ObjDirecClient.P_DESDEPARTAMENTO = _ObjClient.Departamento;
-                        _ObjDirecClient.P_DESPROVINCIA = _ObjClient.Provincia;
+                        _ObjDirecClient.P_DESDISTRITO = RemoveAccents(_ObjClient?.Distrito);//
+                        _ObjDirecClient.P_DESDEPARTAMENTO = RemoveAccents(_ObjClient?.Departamento);//
+                        _ObjDirecClient.P_DESPROVINCIA = RemoveAccents(_ObjClient?.Provincia);//
                         itemCliente.EListAddresClient.Add(_ObjDirecClient);
                     }
 
@@ -3698,5 +3698,20 @@ namespace WSGCliente.Controllers
                 return Ok(response);
             }
         }
+        private string RemoveAccents(string text)
+        {
+            StringBuilder sbReturn = new StringBuilder();
+            var arrayText = text.Normalize(NormalizationForm.FormD).ToCharArray();
+            foreach (char letter in arrayText)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
+                {
+                    sbReturn.Append(letter);
+                }
+            }
+            return sbReturn.ToString();
+        }
+
     }
+
 }
