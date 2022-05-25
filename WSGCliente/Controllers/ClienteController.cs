@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -3427,10 +3428,7 @@ namespace WSGCliente.Controllers
                 _ResponseSUNAT = JsonConvert.DeserializeObject<ResponseSunatModel>(_responseJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                 if (_ResponseSUNAT.Exito == true && _ResponseSUNAT.Data != null)
                 {
-
                     var _ObjClient = _ResponseSUNAT.Data;
-
-
                     string[] array = new string[] { "10", "15", "17" };
                     if (array.Contains(str_Documento.Substring(0, 2)))
                     {
@@ -3466,12 +3464,11 @@ namespace WSGCliente.Controllers
                     var _ObjDirecClient = new AddressViewModel();
                     if (_ObjClient.Direcion != "-" && _ObjClient.Direcion != null)
                     {
-
                         _ObjDirecClient.P_SNOM_DIRECCION = _ObjClient.Direcion;
                         _ObjDirecClient.P_SDESDIREBUSQ = _ObjClient.Direcion;
-                        _ObjDirecClient.P_DESDISTRITO = RemoveAccents(_ObjClient?.Distrito);//
-                        _ObjDirecClient.P_DESDEPARTAMENTO = RemoveAccents(_ObjClient?.Departamento);//
-                        _ObjDirecClient.P_DESPROVINCIA = RemoveAccents(_ObjClient?.Provincia);//
+                        _ObjDirecClient.P_DESDISTRITO = RemoveAccents2(_ObjClient?.Distrito);//
+                        _ObjDirecClient.P_DESDEPARTAMENTO = RemoveAccents2(_ObjClient?.Departamento);//
+                        _ObjDirecClient.P_DESPROVINCIA = RemoveAccents2(_ObjClient?.Provincia);//
                         itemCliente.EListAddresClient.Add(_ObjDirecClient);
                     }
 
@@ -3710,6 +3707,30 @@ namespace WSGCliente.Controllers
                 }
             }
             return sbReturn.ToString();
+        }
+
+        private string RemoveAccents2(string aString)
+        {
+            //string accentedStr = text;
+            //string palabaSinTilde = Regex.Replace(accentedStr, @"[^0-9A-Za-z]", "",
+            //    RegexOptions.None);
+
+            //byte[] bytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(text);
+            //string cleanText = System.Text.Encoding.UTF8.GetString(bytes);
+            //var rx = new System.Text.RegularExpressions.Regex(@"\s*[^a-zA-Z0-9ñÑ ]+\s*");
+
+            //var text2 = rx.Replace(text, "$1");
+
+            char[] toReplace = "áéíóúÁÉÍÓÚ".ToCharArray();  //àèìòùÀÈÌÒÙ 
+            char[] replaceChars = "aeiouAEIOU".ToCharArray();
+            for (int index = 0; index <= toReplace.GetUpperBound(0); index++)
+            {
+                aString = aString.Replace(toReplace[index], replaceChars[index]);
+            }
+
+            return aString;
+
+
         }
 
     }
